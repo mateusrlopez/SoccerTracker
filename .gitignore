@@ -1,0 +1,14 @@
+# Distribution
+dist
+node_modules
+
+# Logs
+*.log*
+
+# Environment
+*.env*
+!.env.example
+
+# IDE specific
+.idea
+.vscode
