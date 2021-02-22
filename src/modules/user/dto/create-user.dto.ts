@@ -8,7 +8,7 @@ import {
     Validate,
 } from "class-validator";
 
-import { UniqueUser } from "../validations/unique-user.validation";
+import { UniqueUser } from "../validations/unique-user.validator";
 
 export class CreateUserDto {
     @IsDefined()

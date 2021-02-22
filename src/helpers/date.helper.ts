@@ -4,7 +4,7 @@ import * as relativeTime from "dayjs/plugin/relativeTime";
 import * as timezone from "dayjs/plugin/timezone";
 import * as utc from "dayjs/plugin/utc";
 
-import { appConfig } from "@config/app.config";
+import { appConfig } from "@config/index";
 
 dayjs.extend(customParseFormat);
 dayjs.extend(relativeTime);

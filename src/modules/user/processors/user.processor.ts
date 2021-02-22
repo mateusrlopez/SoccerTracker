@@ -16,6 +16,7 @@ export class UserProcessor {
         await this.mailerService.sendMail({
             context: {
                 name: user.name,
+                url: ``,
             },
             subject: "E-mail verification at SoccerStats",
             template: "confirm-email",

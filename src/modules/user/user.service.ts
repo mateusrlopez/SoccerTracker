@@ -17,8 +17,14 @@ export class UserService {
         return this.userRepository.find();
     }
 
-    public async findByEmail(email: string): Promise<IUser | undefined> {
-        return this.userRepository.findByEmail(email);
+    public async findByEmail(email: string): Promise<IUser> {
+        const user = this.userRepository.findByEmail(email);
+
+        if (typeof user === "undefined") {
+            throw new NotFoundException();
+        }
+
+        return user;
     }
 
     public async findById(id: number): Promise<IUser> {
@@ -35,8 +41,14 @@ export class UserService {
         return this.userRepository.save(createUserDto);
     }
 
-    public async update(id: number, updateUserDto: IUserUpdateDto): Promise<IUser> {
+    public async updateById(id: number, updateUserDto: IUserUpdateDto): Promise<IUser> {
         const user = await this.findById(id);
+
+        return this.userRepository.save(Object.assign(user, updateUserDto));
+    }
+
+    public async updateByEmail(email: string, updateUserDto: IUserUpdateDto): Promise<IUser> {
+        const user = await this.findByEmail(email);
 
         return this.userRepository.save(Object.assign(user, updateUserDto));
     }

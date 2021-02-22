@@ -18,23 +18,26 @@ export class AuthService {
     }
 
     public async validate(email: string, password: string): Promise<IUser> {
-        const user = await this.userService.findByEmail(email);
+        try {
+            const user = await this.userService.findByEmail(email);
 
-        if (typeof user === "undefined" || !hash.compare(password, user.password)) {
+            if (!hash.compare(password, user.password)) {
+                throw new Error();
+            }
+
+            return user;
+        } catch (e) {
             throw new UnauthorizedException("Invalid credentials");
         }
-
-        return user;
     }
 
     public async retrieveUser(email: string): Promise<IUser> {
-        const user = await this.userService.findByEmail(email);
-
-        if (typeof user === "undefined") {
-            throw new UnauthorizedException("Invalid user");
+        try {
+            const user = await this.userService.findByEmail(email);
+            return user;
+        } catch (e) {
+            throw new UnauthorizedException("Invalid users");
         }
-
-        return user;
     }
 
     public async assignToken(user: IUser): Promise<string> {

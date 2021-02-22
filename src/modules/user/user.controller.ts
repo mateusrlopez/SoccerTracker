@@ -33,7 +33,7 @@ export class UserController {
         @Param("id", ParseIntPipe) id: number,
         @Body() updateUserDto: UpdateUserDto
     ): Promise<IUser> {
-        return this.userService.update(id, updateUserDto);
+        return this.userService.updateById(id, updateUserDto);
     }
 
     @Delete(":id")

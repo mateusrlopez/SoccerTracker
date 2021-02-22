@@ -1,6 +1,7 @@
 export interface IUserUpdateDto {
-    name: string;
-    birthdate: string;
-    photoURL: string | null;
-    teamId: number | null;
+    name?: string;
+    password?: string;
+    birthdate?: string;
+    photoURL?: string | null;
+    teamId?: number | null;
 }

@@ -18,6 +18,6 @@ export class UniqueUser implements ValidatorConstraintInterface {
     }
 
     public defaultMessage(): string {
-        return "Email is already in user";
+        return "The e-mail $value is already in user";
     }
 }

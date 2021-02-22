@@ -1,16 +1,11 @@
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
-import * as dotenv from "dotenv";
 import * as helmet from "helmet";
 import { WinstonModule } from "nest-winston";
 
-import { appConfig } from "@config/app.config";
-import { corsConfig } from "@config/cors.config";
-import { loggerConfig } from "@config/logger.config";
+import { appConfig, corsConfig, loggerConfig } from "@config/index";
 
 import { AppModule } from "./app.module";
-
-dotenv.config();
 
 async function bootstrap() {
     const logger = WinstonModule.createLogger(loggerConfig);

@@ -11,7 +11,6 @@ export const databaseConfig: TypeOrmModuleOptions = {
     migrationsTableName: env.getVariable("DATABASE_MIGRATIONS_TABLE_NAME"),
     password: env.getVariable("DATABASE_PASSWORD"),
     port: env.getNumericVariable("DATABASE_PORT"),
-    subscribers: env.getArrayVariable("DATABASE_SUBSCRIBERS"),
     synchronize: env.getBooleanVariable("DATABASE_SYNCHRONIZE"),
     type: env.getVariable("DATABASE_CONNECTION") as "postgres",
     username: env.getVariable("DATABASE_USER"),
