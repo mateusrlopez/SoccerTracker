@@ -26,10 +26,6 @@
         "sort-keys": "error",
         "class-methods-use-this": "off",
         "no-useless-constructor": "off",
-        "array-bracket-newline": [
-            "error",
-            "consistent"
-        ],
         "prettier/prettier": "error",
         "import-helpers/order-imports": [
             "warn",
@@ -56,6 +52,15 @@
             "ignorePackages",
             {
               "ts": "never"
+            }
+        ],
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": [
+                    "**/*.spec.ts",
+                    "**/*.e2e-spec.ts"
+                ]
             }
         ],
         "@typescript-eslint/no-unused-vars": [

@@ -17,21 +17,21 @@ export class UserService {
         return this.userRepository.find();
     }
 
-    public async findByEmail(email: string): Promise<IUser> {
+    public async findByEmail(email: string, throwException = true): Promise<IUser> {
         const user = this.userRepository.findByEmail(email);
 
-        if (typeof user === "undefined") {
-            throw new NotFoundException();
+        if (throwException && typeof user === "undefined") {
+            throw new NotFoundException(`User with email ${email} not found`);
         }
 
         return user;
     }
 
-    public async findById(id: number): Promise<IUser> {
+    public async findById(id: number, throwException = true): Promise<IUser> {
         const user = await this.userRepository.findOne(id);
 
-        if (typeof user === "undefined") {
-            throw new NotFoundException();
+        if (throwException && typeof user === "undefined") {
+            throw new NotFoundException(`User with id ${id} not found`);
         }
 
         return user;

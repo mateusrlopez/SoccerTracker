@@ -1,19 +1,15 @@
 import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
 import { ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
 
-import { UserRepository } from "@user/repositories/user.repository";
+import { UserService } from "@user/user.service";
 
 @ValidatorConstraint({ async: true, name: "UserExists" })
 @Injectable()
 export class UserExists implements ValidatorConstraintInterface {
-    constructor(
-        @InjectRepository(UserRepository)
-        private readonly userRepository: UserRepository
-    ) {}
+    constructor(private readonly userService: UserService) {}
 
     public async validate(email: string): Promise<boolean> {
-        const user = await this.userRepository.findByEmail(email);
+        const user = await this.userService.findByEmail(email, false);
         return typeof user !== "undefined";
     }
 

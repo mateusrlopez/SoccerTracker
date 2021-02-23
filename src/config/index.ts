@@ -1,7 +1,3 @@
-import * as dotenv from "dotenv";
-
-dotenv.config();
-
 export { appConfig } from "./app.config";
 export { cacheConfig } from "./cache.config";
 export { corsConfig } from "./cors.config";

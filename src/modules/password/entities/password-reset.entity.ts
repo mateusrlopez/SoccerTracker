@@ -15,7 +15,7 @@ export class PasswordReset {
     @Column()
     public token: string;
 
-    @CreateDateColumn({ name: "created_at" })
+    @CreateDateColumn({ name: "created_at", type: "timestamp with time zone" })
     @Type(() => Date)
     public readonly createdAt: Dayjs;
 

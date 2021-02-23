@@ -23,7 +23,7 @@ export class User {
     @Column({ name: "email_verified" })
     public emailVerified: boolean;
 
-    @Column()
+    @Column({ transformer: transformer.parseDate, type: "date" })
     @Type(() => Date)
     public birthdate: Dayjs;
 
@@ -33,11 +33,19 @@ export class User {
     @Column({ name: "team_id" })
     public teamId: number | null;
 
-    @CreateDateColumn({ name: "created_at" })
+    @CreateDateColumn({
+        name: "created_at",
+        transformer: transformer.parseTimestamp,
+        type: "timestamp with time zone",
+    })
     @Type(() => Date)
     public readonly createdAt: Dayjs;
 
-    @UpdateDateColumn({ name: "updated_at" })
+    @UpdateDateColumn({
+        name: "updated_at",
+        transformer: transformer.parseTimestamp,
+        type: "timestamp with time zone",
+    })
     @Type(() => Date)
     public readonly updatedAt: Dayjs;
 
