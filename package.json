@@ -68,6 +68,7 @@
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "babel-plugin-module-resolver": "^4.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.19.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^7.2.0",
@@ -92,8 +93,8 @@
     "lint": "eslint --fix --ext ts src",
     "postinstall": "husky install",
     "start": "node dist/main.js",
-    "test": "jest",
-    "test:e2e": "jest -c test/jest.config.js",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:e2e": "cross-env NODE_ENV=test jest -c test/jest.config.js",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
   }
 }
