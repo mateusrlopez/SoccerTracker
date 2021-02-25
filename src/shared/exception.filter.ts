@@ -7,10 +7,10 @@ import {
     Inject,
     Logger,
     LoggerService,
-} from "@nestjs/common";
-import { Request, Response } from "express";
+} from '@nestjs/common';
+import { Request, Response } from 'express';
 
-import * as date from "@helpers/date.helper";
+import * as date from '@helpers/date.helper';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -29,14 +29,14 @@ export class GlobalExceptionFilter implements ExceptionFilter {
                 ? exception.getStatus()
                 : HttpStatus.INTERNAL_SERVER_ERROR;
 
-        const message = exception.getMessage() || "Something went wrong";
+        const message = exception.getMessage() || 'Something went wrong';
 
         this.log(request, message, status);
 
         response.status(status).json({
             message,
             status,
-            timestamp: date.now().format("YYYY-MM-DD HH:mm:ss"),
+            timestamp: date.now().format('YYYY-MM-DD HH:mm:ss'),
         });
     }
 

@@ -1,10 +1,10 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 
-import { ICreateUserDto } from "./interfaces/create-user-dto.interface";
-import { IUserUpdateDto } from "./interfaces/update-user-dto.interface";
-import { IUser } from "./interfaces/user.interface";
-import { UserRepository } from "./repositories/user.repository";
+import { ICreateUser } from './interfaces/create-user.interface';
+import { IUserUpdate } from './interfaces/update-user.interface';
+import { IUser } from './interfaces/user.interface';
+import { UserRepository } from './repositories/user.repository';
 
 @Injectable()
 export class UserService {
@@ -13,6 +13,10 @@ export class UserService {
         private readonly userRepository: UserRepository
     ) {}
 
+    public async create(createUserDto: ICreateUser): Promise<IUser> {
+        return this.userRepository.save(createUserDto);
+    }
+
     public async findAll(): Promise<IUser[]> {
         return this.userRepository.find();
     }
@@ -20,7 +24,7 @@ export class UserService {
     public async findByEmail(email: string, throwException = true): Promise<IUser> {
         const user = this.userRepository.findByEmail(email);
 
-        if (throwException && typeof user === "undefined") {
+        if (throwException && typeof user === 'undefined') {
             throw new NotFoundException(`User with email ${email} not found`);
         }
 
@@ -30,24 +34,20 @@ export class UserService {
     public async findById(id: number, throwException = true): Promise<IUser> {
         const user = await this.userRepository.findOne(id);
 
-        if (throwException && typeof user === "undefined") {
+        if (throwException && typeof user === 'undefined') {
             throw new NotFoundException(`User with id ${id} not found`);
         }
 
         return user;
     }
 
-    public async create(createUserDto: ICreateUserDto): Promise<IUser> {
-        return this.userRepository.save(createUserDto);
-    }
-
-    public async updateById(id: number, updateUserDto: IUserUpdateDto): Promise<IUser> {
+    public async updateById(id: number, updateUserDto: IUserUpdate): Promise<IUser> {
         const user = await this.findById(id);
 
         return this.userRepository.save(Object.assign(user, updateUserDto));
     }
 
-    public async updateByEmail(email: string, updateUserDto: IUserUpdateDto): Promise<IUser> {
+    public async updateByEmail(email: string, updateUserDto: IUserUpdate): Promise<IUser> {
         const user = await this.findByEmail(email);
 
         return this.userRepository.save(Object.assign(user, updateUserDto));

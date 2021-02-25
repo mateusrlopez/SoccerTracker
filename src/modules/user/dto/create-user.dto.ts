@@ -1,14 +1,6 @@
-import {
-    IsDefined,
-    IsEmail,
-    IsNumber,
-    IsOptional,
-    IsString,
-    IsUrl,
-    Validate,
-} from "class-validator";
+import { IsDefined, IsEmail, IsNumber, IsOptional, IsString, IsUrl } from 'class-validator';
 
-import { UniqueUser } from "../validations/unique-user.validator";
+import { UniqueUser } from '../validations/unique-user.validator';
 
 export class CreateUserDto {
     @IsDefined()
@@ -21,7 +13,7 @@ export class CreateUserDto {
 
     @IsDefined()
     @IsEmail()
-    @Validate(UniqueUser)
+    @UniqueUser()
     public readonly email: string;
 
     @IsDefined()

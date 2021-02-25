@@ -1,9 +1,9 @@
-import { MailerService } from "@nestjs-modules/mailer";
-import { Process, Processor } from "@nestjs/bull";
-import { Job } from "bull";
+import { MailerService } from '@nestjs-modules/mailer';
+import { Process, Processor } from '@nestjs/bull';
+import { Job } from 'bull';
 
-import { PASSWORD_RESET_QUEUE_NAME } from "@password/constants/password.constants";
-import { IPasswordReset } from "@password/interfaces/password-reset.interface";
+import { PASSWORD_RESET_QUEUE_NAME } from '@password/constants/password.constants';
+import { IPasswordReset } from '@password/interfaces/password-reset.interface';
 
 @Processor(PASSWORD_RESET_QUEUE_NAME)
 export class PasswordConsumer {
@@ -18,8 +18,8 @@ export class PasswordConsumer {
                 name: passwordReset.user.name,
                 url: ``,
             },
-            subject: "Password reset at SoccerStats",
-            template: "password-reset",
+            subject: 'Password reset at SoccerStats',
+            template: 'password-reset',
             to: passwordReset.email,
         });
     }

@@ -1,38 +1,40 @@
 module.exports = {
     presets: [
         [
-            "@babel/preset-env",
+            '@babel/preset-env',
             {
                 targets: {
-                    node: "current",
+                    node: 'current',
                 }
             },
         ],
-        "@babel/preset-typescript",
+        '@babel/preset-typescript',
     ],
     plugins: [
         [
-            "@babel/plugin-proposal-decorators",
+            '@babel/plugin-proposal-decorators',
             {
                 legacy: true,
             },
         ],
         [
-            "module-resolver",
+            'module-resolver',
             {
                 alias: {
-                    "@auth": "./src/modules/auth",
-                    "@config": "./src/config",
-                    "@helpers": "./src/helpers",
-                    "@password": "./src/modules/password",
-                    "@shared": "./src/shared",
-                    "@user": "./src/modules/user",
+                    '@auth': './src/modules/auth',
+                    '@config': './src/config',
+                    '@helpers': './src/helpers',
+                    '@password': './src/modules/password',
+                    '@shared': './src/shared',
+                    '@stadium': './src/modules/stadium',
+                    '@team': './src/modules/team',
+                    '@user': './src/modules/user',
                 },
             },
         ],
     ],
     ignore: [
-        "**/*.spec.ts",
-        "**/*.d.ts",
+        '**/*.spec.ts',
+        '**/*.d.ts',
     ],
 }

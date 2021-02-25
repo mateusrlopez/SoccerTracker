@@ -1,8 +1,8 @@
-import { Type } from "class-transformer";
-import { Dayjs } from "dayjs";
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Type } from 'class-transformer';
+import { Dayjs } from 'dayjs';
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 
-import { User } from "@user/entities/user.entity";
+import { User } from '@user/entities/user.entity';
 
 @Entity()
 export class PasswordReset {
@@ -15,11 +15,11 @@ export class PasswordReset {
     @Column()
     public token: string;
 
-    @CreateDateColumn({ name: "created_at", type: "timestamp with time zone" })
+    @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
     @Type(() => Date)
     public readonly createdAt: Dayjs;
 
     @OneToOne(() => User, { eager: true })
-    @JoinColumn({ name: "email" })
+    @JoinColumn({ name: 'email' })
     public user: User;
 }

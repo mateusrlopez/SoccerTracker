@@ -1,11 +1,11 @@
-import { NestFactory } from "@nestjs/core";
-import { NestExpressApplication } from "@nestjs/platform-express";
-import * as helmet from "helmet";
-import { WinstonModule } from "nest-winston";
+import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import * as helmet from 'helmet';
+import { WinstonModule } from 'nest-winston';
 
-import { appConfig, corsConfig, loggerConfig } from "@config/index";
+import { appConfig, corsConfig, loggerConfig } from '@config';
 
-import { AppModule } from "./app.module";
+import { AppModule } from './app.module';
 
 async function bootstrap() {
     const { hostname, port, routePrefix } = appConfig;

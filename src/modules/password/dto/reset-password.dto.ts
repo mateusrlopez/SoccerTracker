@@ -1,6 +1,6 @@
-import { IsDefined, IsEmail, IsString, MinLength, Validate } from "class-validator";
+import { IsDefined, IsEmail, IsString, MinLength } from 'class-validator';
 
-import { EqualsAttribute } from "@shared/equals-attribute.validator";
+import { IsSame } from '@shared/is-same.validator';
 
 export class ResetPasswordDto {
     @IsDefined()
@@ -18,6 +18,6 @@ export class ResetPasswordDto {
 
     @IsDefined()
     @IsString()
-    @Validate(EqualsAttribute, ["password"])
+    @IsSame('password')
     public readonly passwordConfirmation: string;
 }

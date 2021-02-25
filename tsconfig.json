@@ -4,7 +4,10 @@
     "module": "CommonJS",
     "baseUrl": ".",
     "outDir": "./dist",
-    "typeRoots": ["./src/@types", "./node_modules/@types"],
+    "typeRoots": [
+      "./src/@types",
+      "./node_modules/@types"
+    ],
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
     "resolveJsonModule": true,
@@ -14,10 +17,12 @@
     "isolatedModules": true,
     "paths": {
       "@auth/*": ["./src/modules/auth/*"],
-      "@config/*": ["./src/config/*"],
+      "@config": ["./src/config/"],
       "@helpers/*": ["./src/helpers/*"],
       "@password/*": ["./src/modules/password/*"],
       "@shared/*": ["./src/shared/*"],
+      "@stadium/*": ["./src/modules/stadium/*"],
+      "@team/*": ["./src/modules/team/*"],
       "@user/*": ["./src/modules/user/*"]
     }
   }

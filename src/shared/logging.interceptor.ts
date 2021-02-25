@@ -6,9 +6,9 @@ import {
     Logger,
     LoggerService,
     NestInterceptor,
-} from "@nestjs/common";
-import { Request } from "express";
-import { Observable } from "rxjs";
+} from '@nestjs/common';
+import { Request } from 'express';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {

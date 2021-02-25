@@ -1,4 +1,4 @@
-import * as bcrypt from "bcrypt";
+import * as bcrypt from 'bcrypt';
 
 export function genSalt(): string {
     return bcrypt.genSaltSync(10);

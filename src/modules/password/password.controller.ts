@@ -1,15 +1,15 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, Put, Res } from "@nestjs/common";
-import { Response } from "express";
+import { Body, Controller, HttpCode, HttpStatus, Post, Put, Res } from '@nestjs/common';
+import { Response } from 'express';
 
-import { AuthService } from "@auth/auth.service";
-import { Public } from "@auth/decorators/public-route.decorator";
-import { IUser } from "@user/interfaces/user.interface";
+import { AuthService } from '@auth/auth.service';
+import { Public } from '@auth/decorators/public-route.decorator';
+import { IUser } from '@user/interfaces/user.interface';
 
-import { RequestPasswordResetDto } from "./dto/request-password-reset.dto";
-import { ResetPasswordDto } from "./dto/reset-password.dto";
-import { PasswordService } from "./password.service";
+import { RequestPasswordResetDto } from './dto/request-password-reset.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
+import { PasswordService } from './password.service';
 
-@Controller("password")
+@Controller('password')
 export class PasswordController {
     constructor(
         private readonly authService: AuthService,
@@ -17,7 +17,7 @@ export class PasswordController {
     ) {}
 
     @Public()
-    @Put("reset")
+    @Put('reset')
     public async resetPassword(
         @Body() resetPasswordDto: ResetPasswordDto,
         @Res({ passthrough: true }) res: Response
@@ -25,13 +25,13 @@ export class PasswordController {
         const user = await this.passwordService.resetPassword(resetPasswordDto);
         const token = await this.authService.assignToken(user);
 
-        res.append("Authorization", `Bearer ${token}`);
+        res.append('Authorization', `Bearer ${token}`);
 
         return user;
     }
 
     @Public()
-    @Post("request-reset")
+    @Post('request-reset')
     @HttpCode(HttpStatus.NO_CONTENT)
     public async requestReset(
         @Body() requestPasswordResetDto: RequestPasswordResetDto

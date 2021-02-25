@@ -1,10 +1,10 @@
-import { IsDefined, IsEmail, Validate } from "class-validator";
+import { IsDefined, IsEmail } from 'class-validator';
 
-import { UserExists } from "@user/validations/user-exists.validator";
+import { UserExists } from '@user/validations/user-exists.validator';
 
 export class RequestPasswordResetDto {
     @IsDefined()
     @IsEmail()
-    @Validate(UserExists)
+    @UserExists()
     public readonly email: string;
 }

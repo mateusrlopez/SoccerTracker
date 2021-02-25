@@ -1,9 +1,9 @@
-import { Exclude, Expose, Type } from "class-transformer";
-import { Dayjs } from "dayjs";
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Exclude, Expose, Type } from 'class-transformer';
+import { Dayjs } from 'dayjs';
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 
-import * as date from "@helpers/date.helper";
-import * as transformer from "@helpers/transformer.helper";
+import * as date from '@helpers/date.helper';
+import * as transformer from '@helpers/transformer.helper';
 
 @Entity()
 export class User {
@@ -20,37 +20,40 @@ export class User {
     @Exclude()
     public password: string;
 
-    @Column({ name: "email_verified" })
+    @Column({ name: 'email_verified' })
     public emailVerified: boolean;
 
-    @Column({ transformer: transformer.parseDate, type: "date" })
+    @Column({ transformer: transformer.parseDate, type: 'date' })
     @Type(() => Date)
     public birthdate: Dayjs;
 
-    @Column({ name: "photo_url" })
+    @Column({ name: 'photo_url' })
     public photoURL: string | null;
 
-    @Column({ name: "team_id" })
+    @Column({ name: 'team_id' })
     public teamId: number | null;
 
+    @Column()
+    public admin: boolean;
+
     @CreateDateColumn({
-        name: "created_at",
+        name: 'created_at',
         transformer: transformer.parseTimestamp,
-        type: "timestamp with time zone",
+        type: 'timestamp with time zone',
     })
     @Type(() => Date)
     public readonly createdAt: Dayjs;
 
     @UpdateDateColumn({
-        name: "updated_at",
+        name: 'updated_at',
         transformer: transformer.parseTimestamp,
-        type: "timestamp with time zone",
+        type: 'timestamp with time zone',
     })
     @Type(() => Date)
     public readonly updatedAt: Dayjs;
 
     @Expose()
     public get age(): number {
-        return this.birthdate.diff(date.now(), "years");
+        return this.birthdate.diff(date.now(), 'years');
     }
 }

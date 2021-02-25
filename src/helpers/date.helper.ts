@@ -1,10 +1,10 @@
-import * as dayjs from "dayjs";
-import * as customParseFormat from "dayjs/plugin/customParseFormat";
-import * as relativeTime from "dayjs/plugin/relativeTime";
-import * as timezone from "dayjs/plugin/timezone";
-import * as utc from "dayjs/plugin/utc";
+import * as dayjs from 'dayjs';
+import * as customParseFormat from 'dayjs/plugin/customParseFormat';
+import * as relativeTime from 'dayjs/plugin/relativeTime';
+import * as timezone from 'dayjs/plugin/timezone';
+import * as utc from 'dayjs/plugin/utc';
 
-import { appConfig } from "@config/index";
+import { appConfig } from '@config';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(relativeTime);

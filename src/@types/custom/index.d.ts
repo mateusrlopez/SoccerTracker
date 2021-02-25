@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import { Dayjs } from 'dayjs';
 
 declare global {
     namespace Express {
@@ -12,6 +12,7 @@ declare global {
             age: number;
             photoURL: string | null;
             teamId: number | null;
+            admin: true;
             createdAt: Dayjs;
             updatedAt: Dayjs;
         }

@@ -1,16 +1,16 @@
-import { BullModule } from "@nestjs/bull";
-import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
+import { BullModule } from '@nestjs/bull';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { AuthModule } from "@auth/auth.module";
-import { UserModule } from "@user/user.module";
+import { AuthModule } from '@auth/auth.module';
+import { UserModule } from '@user/user.module';
 
-import { PASSWORD_RESET_QUEUE_NAME } from "./constants/password.constants";
-import { PasswordController } from "./password.controller";
-import { PasswordService } from "./password.service";
-import { PasswordConsumer } from "./processors/password.processor";
-import { PasswordResetRepository } from "./repositories/password.repository";
-import { PasswordResetSubscriber } from "./subscribers/password.subscriber";
+import { PASSWORD_RESET_QUEUE_NAME } from './constants/password.constants';
+import { PasswordController } from './password.controller';
+import { PasswordService } from './password.service';
+import { PasswordConsumer } from './processors/password.processor';
+import { PasswordResetRepository } from './repositories/password-reset.repository';
+import { PasswordResetSubscriber } from './subscribers/password-reset.subscriber';
 
 @Module({
     controllers: [PasswordController],

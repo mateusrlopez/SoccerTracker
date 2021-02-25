@@ -1,9 +1,9 @@
-import { MailerService } from "@nestjs-modules/mailer";
-import { Process, Processor } from "@nestjs/bull";
-import { Job } from "bull";
+import { MailerService } from '@nestjs-modules/mailer';
+import { Process, Processor } from '@nestjs/bull';
+import { Job } from 'bull';
 
-import { USER_QUEUE_NAME } from "@user/constants/user.constants";
-import { IUser } from "@user/interfaces/user.interface";
+import { USER_QUEUE_NAME } from '@user/constants/user.constants';
+import { IUser } from '@user/interfaces/user.interface';
 
 @Processor(USER_QUEUE_NAME)
 export class UserProcessor {
@@ -18,8 +18,8 @@ export class UserProcessor {
                 name: user.name,
                 url: ``,
             },
-            subject: "E-mail verification at SoccerStats",
-            template: "confirm-email",
+            subject: 'E-mail verification at SoccerStats',
+            template: 'confirm-email',
             to: user.email,
         });
     }

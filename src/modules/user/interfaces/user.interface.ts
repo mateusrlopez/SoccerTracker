@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import { Dayjs } from 'dayjs';
 
 export interface IUser {
     id: number;
@@ -10,6 +10,7 @@ export interface IUser {
     age: number;
     photoURL: string | null;
     teamId: number | null;
+    admin: boolean;
     createdAt: Dayjs;
     updatedAt: Dayjs;
 }

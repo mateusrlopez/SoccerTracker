@@ -1,6 +1,6 @@
-import { Dayjs } from "dayjs";
+import { Dayjs } from 'dayjs';
 
-import { IUser } from "@user/interfaces/user.interface";
+import { IUser } from '@user/interfaces/user.interface';
 
 export interface IPasswordReset {
     email: string;

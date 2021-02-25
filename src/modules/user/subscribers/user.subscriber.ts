@@ -1,11 +1,11 @@
-import { InjectQueue } from "@nestjs/bull";
-import { Injectable } from "@nestjs/common";
-import { Queue } from "bull";
-import { Connection, EntitySubscriberInterface, EventSubscriber, InsertEvent } from "typeorm";
+import { InjectQueue } from '@nestjs/bull';
+import { Injectable } from '@nestjs/common';
+import { Queue } from 'bull';
+import { Connection, EntitySubscriberInterface, EventSubscriber, InsertEvent } from 'typeorm';
 
-import { USER_QUEUE_NAME } from "@user/constants/user.constants";
-import { User } from "@user/entities/user.entity";
-import { IUser } from "@user/interfaces/user.interface";
+import { USER_QUEUE_NAME } from '@user/constants/user.constants';
+import { User } from '@user/entities/user.entity';
+import { IUser } from '@user/interfaces/user.interface';
 
 @EventSubscriber()
 @Injectable()

@@ -1,4 +1,4 @@
-import { IsDefined, IsFQDN, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsDefined, IsFQDN, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateUserDto {
     @IsDefined()

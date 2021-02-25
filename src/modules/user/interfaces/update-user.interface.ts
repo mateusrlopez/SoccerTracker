@@ -1,4 +1,4 @@
-export interface IUserUpdateDto {
+export interface IUserUpdate {
     name?: string;
     password?: string;
     birthdate?: string;

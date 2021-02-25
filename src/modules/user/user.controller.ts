@@ -8,37 +8,37 @@ import {
     Param,
     ParseIntPipe,
     Put,
-} from "@nestjs/common";
+} from '@nestjs/common';
 
-import { UpdateUserDto } from "./dto/update-user.dto";
-import { IUser } from "./interfaces/user.interface";
-import { UserService } from "./user.service";
+import { UpdateUserDto } from './dto/update-user.dto';
+import { IUser } from './interfaces/user.interface';
+import { UserService } from './user.service';
 
-@Controller("users")
+@Controller('users')
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Get()
-    public async index(): Promise<IUser[]> {
+    public async findAll(): Promise<IUser[]> {
         return this.userService.findAll();
     }
 
-    @Get(":id")
-    public async find(@Param("id", ParseIntPipe) id: number): Promise<IUser> {
+    @Get(':id')
+    public async find(@Param('id', ParseIntPipe) id: number): Promise<IUser> {
         return this.userService.findById(id);
     }
 
-    @Put(":id")
+    @Put(':id')
     public async update(
-        @Param("id", ParseIntPipe) id: number,
+        @Param('id', ParseIntPipe) id: number,
         @Body() updateUserDto: UpdateUserDto
     ): Promise<IUser> {
         return this.userService.updateById(id, updateUserDto);
     }
 
-    @Delete(":id")
+    @Delete(':id')
     @HttpCode(HttpStatus.NO_CONTENT)
-    public async destroy(@Param("id", ParseIntPipe) id: number): Promise<void> {
+    public async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
         return this.userService.delete(id);
     }
 }

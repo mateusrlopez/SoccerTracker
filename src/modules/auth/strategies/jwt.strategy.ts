@@ -1,12 +1,12 @@
-import { Injectable } from "@nestjs/common";
-import { PassportStrategy } from "@nestjs/passport";
-import { ExtractJwt, Strategy } from "passport-jwt";
+import { Injectable } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
 
-import { jwtConfig } from "@config/jwt.config";
-import { User } from "@user/entities/user.entity";
+import { jwtConfig } from '@config';
+import { IUser } from '@user/interfaces/user.interface';
 
-import { AuthService } from "../auth.service";
-import { JWTPayload } from "../interfaces/jwt-payload.interface";
+import { AuthService } from '../auth.service';
+import { ITokenPayload } from '../interfaces/token-payload.interface';
 
 @Injectable()
 export class JWTStrategy extends PassportStrategy(Strategy) {
@@ -18,7 +18,7 @@ export class JWTStrategy extends PassportStrategy(Strategy) {
         });
     }
 
-    public async validate(payload: JWTPayload): Promise<User> {
+    public async validate(payload: ITokenPayload): Promise<IUser> {
         return this.authService.retrieveUser(payload.email);
     }
 }
