@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { ICreateUser } from './interfaces/create-user.interface';
+import { IQueryUser } from './interfaces/query-user.interface';
 import { IUserUpdate } from './interfaces/update-user.interface';
 import { IUser } from './interfaces/user.interface';
 import { UserRepository } from './repositories/user.repository';
@@ -17,8 +18,8 @@ export class UserService {
         return this.userRepository.save(createUserDto);
     }
 
-    public async findAll(): Promise<IUser[]> {
-        return this.userRepository.find();
+    public async findAll(queryUserDto: IQueryUser): Promise<IUser[]> {
+        return this.userRepository.find(queryUserDto);
     }
 
     public async findByEmail(email: string, throwException = true): Promise<IUser> {

@@ -23,7 +23,6 @@
     ],
     "rules": {
         "no-console": "off",
-        "sort-keys": "error",
         "class-methods-use-this": "off",
         "no-useless-constructor": "off",
         "prettier/prettier": "error",

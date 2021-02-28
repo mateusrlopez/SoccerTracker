@@ -8,8 +8,10 @@ import {
     Param,
     ParseIntPipe,
     Put,
+    Query,
 } from '@nestjs/common';
 
+import { QueryUserDto } from './dto/query-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { IUser } from './interfaces/user.interface';
 import { UserService } from './user.service';
@@ -19,8 +21,8 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Get()
-    public async findAll(): Promise<IUser[]> {
-        return this.userService.findAll();
+    public async findAll(@Query() queryUserDto: QueryUserDto): Promise<IUser[]> {
+        return this.userService.findAll(queryUserDto);
     }
 
     @Get(':id')

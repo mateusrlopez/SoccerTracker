@@ -1,15 +1,13 @@
 import { Exclude, Expose, Type } from 'class-transformer';
 import { Dayjs } from 'dayjs';
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 
 import * as date from '@helpers/date.helper';
 import * as transformer from '@helpers/transformer.helper';
+import { BaseEntity } from '@shared/base.entity';
 
 @Entity()
-export class User {
-    @PrimaryColumn()
-    public readonly id: number;
-
+export class User extends BaseEntity {
     @Column()
     public name: string;
 
@@ -35,22 +33,6 @@ export class User {
 
     @Column()
     public admin: boolean;
-
-    @CreateDateColumn({
-        name: 'created_at',
-        transformer: transformer.parseTimestamp,
-        type: 'timestamp with time zone',
-    })
-    @Type(() => Date)
-    public readonly createdAt: Dayjs;
-
-    @UpdateDateColumn({
-        name: 'updated_at',
-        transformer: transformer.parseTimestamp,
-        type: 'timestamp with time zone',
-    })
-    @Type(() => Date)
-    public readonly updatedAt: Dayjs;
 
     @Expose()
     public get age(): number {
