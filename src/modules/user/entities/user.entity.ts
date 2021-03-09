@@ -8,8 +8,11 @@ import { BaseEntity } from '@shared/base.entity';
 
 @Entity()
 export class User extends BaseEntity {
-    @Column()
-    public name: string;
+    @Column({ name: 'fist_name' })
+    public firstName: string;
+
+    @Column({ name: 'last_name' })
+    public lastName: string;
 
     @Column()
     public email: string;
@@ -37,5 +40,10 @@ export class User extends BaseEntity {
     @Expose()
     public get age(): number {
         return this.birthdate.diff(date.now(), 'years');
+    }
+
+    @Expose()
+    public get fullName(): string {
+        return `${this.firstName} ${this.lastName}`;
     }
 }

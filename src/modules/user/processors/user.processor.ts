@@ -11,16 +11,16 @@ export class UserProcessor {
 
     @Process()
     public async sendMail(job: Job<IUser>): Promise<void> {
-        const user = job.data;
+        const { email, firstName } = job.data;
 
         await this.mailerService.sendMail({
             context: {
-                name: user.name,
+                name: firstName,
                 url: ``,
             },
             subject: 'E-mail verification at SoccerStats',
             template: 'confirm-email',
-            to: user.email,
+            to: email,
         });
     }
 }

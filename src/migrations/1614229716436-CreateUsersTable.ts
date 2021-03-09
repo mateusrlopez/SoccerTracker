@@ -12,9 +12,14 @@ export class CreateUsersTable1614229716436 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: 'name',
+                        name: 'first_name',
                         type: 'varchar',
-                        length: '60',
+                        length: '25',
+                    },
+                    {
+                        name: 'last_name',
+                        type: 'varchar',
+                        length: '25',
                     },
                     {
                         name: 'email',
@@ -66,12 +71,6 @@ export class CreateUsersTable1614229716436 implements MigrationInterface {
                         columnNames: ['team_id'],
                         referencedTableName: 'teams',
                         referencedColumnNames: ['id'],
-                    },
-                ],
-                indices: [
-                    {
-                        name: 'users_name_index',
-                        columnNames: ['name'],
                     },
                 ],
                 uniques: [

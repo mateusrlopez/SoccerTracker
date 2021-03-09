@@ -1,25 +1,24 @@
-import { IsDefined, IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, Length, MaxLength } from 'class-validator';
 
 import { IsSame } from '@shared/is-same.validator';
 
 export class ResetPasswordDto {
-    @IsDefined()
+    @IsNotEmpty()
     @IsEmail()
     @MaxLength(45)
     public readonly email: string;
 
-    @IsDefined()
+    @IsNotEmpty()
     @IsString()
     @MaxLength(32)
     public readonly token: string;
 
-    @IsDefined()
+    @IsNotEmpty()
     @IsString()
-    @MinLength(8)
-    @MaxLength(40)
+    @Length(8, 40)
     public readonly password: string;
 
-    @IsDefined()
+    @IsNotEmpty()
     @IsString()
     @IsSame('password')
     public readonly passwordConfirmation: string;

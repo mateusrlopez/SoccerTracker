@@ -1,22 +1,40 @@
-import { IsDefined, IsEmail, IsNumber, IsOptional, IsString, IsUrl } from 'class-validator';
+import {
+    IsEmail,
+    IsNotEmpty,
+    IsNumber,
+    IsOptional,
+    IsString,
+    IsUrl,
+    Length,
+    MaxLength,
+} from 'class-validator';
 
-import { UniqueUser } from '../validations/unique-user.validator';
+import { TeamExists } from '@team/validators/team-exists.validator';
+
+import { UniqueUser } from '../validators/unique-user.validator';
 
 export class CreateUserDto {
-    @IsDefined()
+    @IsNotEmpty()
     @IsString()
-    public readonly name: string;
+    @MaxLength(25)
+    public readonly firstName: string;
 
-    @IsDefined()
+    @IsNotEmpty()
     @IsString()
+    @MaxLength(25)
+    public readonly lastName: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @Length(8, 45)
     public readonly password: string;
 
-    @IsDefined()
+    @IsNotEmpty()
     @IsEmail()
     @UniqueUser()
     public readonly email: string;
 
-    @IsDefined()
+    @IsNotEmpty()
     @IsString()
     public readonly birthdate: string;
 
@@ -26,5 +44,6 @@ export class CreateUserDto {
 
     @IsOptional()
     @IsNumber()
+    @TeamExists()
     public readonly teamId: number | null;
 }

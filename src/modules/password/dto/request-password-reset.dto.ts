@@ -1,9 +1,9 @@
-import { IsDefined, IsEmail } from 'class-validator';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 
-import { UserExists } from '@user/validations/user-exists.validator';
+import { UserExists } from '@user/validators/user-exists.validator';
 
 export class RequestPasswordResetDto {
-    @IsDefined()
+    @IsNotEmpty()
     @IsEmail()
     @UserExists()
     public readonly email: string;

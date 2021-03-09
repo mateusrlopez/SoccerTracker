@@ -2,7 +2,9 @@ import { Dayjs } from 'dayjs';
 
 export interface IUser {
     id: number;
-    name: string;
+    firstName: string;
+    lastName: string;
+    fullName: string;
     email: string;
     emailVerified: boolean;
     password: string;

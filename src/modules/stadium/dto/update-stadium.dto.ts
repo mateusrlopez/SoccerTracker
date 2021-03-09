@@ -1,5 +1,29 @@
-import { PartialType } from '@nestjs/mapped-types';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl, MaxLength } from 'class-validator';
 
-import { CreateStadiumDto } from './create-stadium.dto';
+export class UpdateStadiumDto {
+    @IsOptional()
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(35)
+    public readonly name?: string;
 
-export class UpdateStadiumDto extends PartialType(CreateStadiumDto) {}
+    @IsOptional()
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(20)
+    public readonly knownby?: string;
+
+    @IsOptional()
+    @IsNotEmpty()
+    @IsString()
+    public readonly foundationDate?: string;
+
+    @IsOptional()
+    @IsNotEmpty()
+    @IsNumber()
+    public readonly capacity?: number;
+
+    @IsOptional()
+    @IsUrl()
+    public readonly pictureURL?: string | null;
+}

@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { CreateStadiumDto } from './dto/create-stadium.dto';
-import { UpdateStadiumDto } from './dto/update-stadium.dto';
+import { ICreateStadium } from './interfaces/create-stadium.interface';
 import { IStadium } from './interfaces/stadium.interface';
+import { IUpdateStadium } from './interfaces/update-stadium.interface';
 import { StadiumRepository } from './repositories/stadium.repository';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class StadiumService {
         @InjectRepository(StadiumRepository) private readonly stadiumRepository: StadiumRepository
     ) {}
 
-    public async create(createStadiumDto: CreateStadiumDto): Promise<IStadium> {
+    public async create(createStadiumDto: ICreateStadium): Promise<IStadium> {
         return this.stadiumRepository.save(createStadiumDto);
     }
 
@@ -30,7 +30,7 @@ export class StadiumService {
         return stadium;
     }
 
-    public async updateById(id: number, updateStadiumDto: UpdateStadiumDto): Promise<IStadium> {
+    public async updateById(id: number, updateStadiumDto: IUpdateStadium): Promise<IStadium> {
         const stadium = await this.findById(id);
 
         return this.stadiumRepository.save(Object.assign(stadium, updateStadiumDto));

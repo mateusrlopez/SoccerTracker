@@ -35,12 +35,12 @@ export class StadiumController {
         return this.stadiumService.findAll();
     }
 
-    @Get(':id')
+    @Get(':id(\\d+)')
     public async findOne(@Param('id', ParseIntPipe) id: number): Promise<IStadium> {
         return this.stadiumService.findById(id);
     }
 
-    @Put(':id')
+    @Put(':id(\\d+)')
     @UseGuards(AdminGuard)
     public async update(
         @Param('id', ParseIntPipe) id: number,
@@ -49,7 +49,7 @@ export class StadiumController {
         return this.stadiumService.updateById(id, updateStadiumDto);
     }
 
-    @Delete(':id')
+    @Delete(':id(\\d+)')
     @UseGuards(AdminGuard)
     @HttpCode(HttpStatus.NO_CONTENT)
     public async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {

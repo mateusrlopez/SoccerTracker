@@ -1,8 +1,6 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl, MaxLength } from 'class-validator';
 
-import { TeamExists } from '@team/validators/team-exists.validator';
-
-export class UpdateUserDto {
+export class UpdatePlayerDto {
     @IsOptional()
     @IsNotEmpty()
     @IsString()
@@ -13,19 +11,32 @@ export class UpdateUserDto {
     @IsNotEmpty()
     @IsString()
     @MaxLength(25)
+    public readonly middleName?: string;
+
+    @IsOptional()
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(25)
     public readonly lastName?: string;
 
     @IsOptional()
     @IsNotEmpty()
     @IsString()
-    public readonly birthdate?: string;
+    @MaxLength(20)
+    public readonly knownby?: string;
 
     @IsOptional()
+    @IsString()
     @IsUrl()
-    public readonly photoURL?: string | null;
+    public readonly pictureURL?: string | null;
 
     @IsOptional()
+    @IsNotEmpty()
     @IsNumber()
-    @TeamExists()
-    public readonly teamId?: number | null;
+    public readonly height?: number;
+
+    @IsOptional()
+    @IsNotEmpty()
+    @IsString()
+    public readonly birthdate?: string;
 }

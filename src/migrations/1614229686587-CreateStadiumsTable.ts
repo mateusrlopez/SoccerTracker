@@ -22,6 +22,11 @@ export class CreateStadiumsTable1614229686587 implements MigrationInterface {
                         length: '20',
                     },
                     {
+                        name: 'picture_url',
+                        type: 'varchar',
+                        length: '100',
+                    },
+                    {
                         name: 'foundation_date',
                         type: 'date',
                     },

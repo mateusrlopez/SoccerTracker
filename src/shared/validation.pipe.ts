@@ -13,7 +13,10 @@ export class ValidationPipe implements PipeTransform {
             excludeExtraneousValues: true,
         });
 
-        const errors = await validate(object, { stopAtFirstError: true });
+        const errors = await validate(object, {
+            stopAtFirstError: true,
+        });
+
         if (errors.length > 0) {
             throw new BadRequestException();
         }

@@ -8,6 +8,7 @@ import { AuthModule } from '@auth/auth.module';
 import { JwtGuard } from '@auth/guards/jwt.guard';
 import { cacheConfig, queueConfig, mailerConfig, databaseConfig } from '@config';
 import { PasswordModule } from '@password/password.module';
+import { PlayerModule } from '@player/player.module';
 import { GlobalExceptionFilter } from '@shared/exception.filter';
 import { LoggingInterceptor } from '@shared/logging.interceptor';
 import { ValidationPipe } from '@shared/validation.pipe';
@@ -28,6 +29,7 @@ import { UserModule } from '@user/user.module';
         UserModule,
         TeamModule,
         StadiumModule,
+        PlayerModule,
     ],
     providers: [
         Logger,

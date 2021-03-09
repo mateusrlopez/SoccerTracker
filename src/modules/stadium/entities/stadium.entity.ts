@@ -12,6 +12,9 @@ export class Stadium extends BaseEntity {
     @Column()
     public knownby: string;
 
+    @Column({ name: 'picture_url' })
+    public pictureURL: string;
+
     @Column({ name: 'foundation_date', transformer: transformer.parseDate, type: 'date' })
     public foundationDate: Dayjs;
 

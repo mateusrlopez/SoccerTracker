@@ -1,3 +1,3 @@
 export interface IQueryUser {
-    teamId: number;
+    teamId?: number;
 }

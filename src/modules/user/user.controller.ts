@@ -25,12 +25,12 @@ export class UserController {
         return this.userService.findAll(queryUserDto);
     }
 
-    @Get(':id')
+    @Get(':id(\\d+)')
     public async find(@Param('id', ParseIntPipe) id: number): Promise<IUser> {
         return this.userService.findById(id);
     }
 
-    @Put(':id')
+    @Put(':id(\\d+)')
     public async update(
         @Param('id', ParseIntPipe) id: number,
         @Body() updateUserDto: UpdateUserDto
@@ -38,7 +38,7 @@ export class UserController {
         return this.userService.updateById(id, updateUserDto);
     }
 
-    @Delete(':id')
+    @Delete(':id(\\d+)')
     @HttpCode(HttpStatus.NO_CONTENT)
     public async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
         return this.userService.delete(id);

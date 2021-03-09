@@ -11,16 +11,16 @@ export class PasswordConsumer {
 
     @Process()
     public async sendMail(job: Job<IPasswordReset>): Promise<void> {
-        const passwordReset = job.data;
+        const { email, user } = job.data;
 
         await this.mailerService.sendMail({
             context: {
-                name: passwordReset.user.name,
+                name: user.firstName,
                 url: ``,
             },
             subject: 'Password reset at SoccerStats',
             template: 'password-reset',
-            to: passwordReset.email,
+            to: email,
         });
     }
 }

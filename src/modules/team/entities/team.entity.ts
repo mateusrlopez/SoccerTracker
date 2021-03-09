@@ -15,6 +15,9 @@ export class Team extends BaseEntity {
     @Column()
     public initials: string;
 
+    @Column({ name: 'logo_url' })
+    public logoURL: string;
+
     @Column({ name: 'foundation_date', transformer: transformer.parseDate, type: 'date' })
     public foundationDate: Dayjs;
 

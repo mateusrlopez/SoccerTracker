@@ -16,7 +16,7 @@ export class CreatePasswordResetsTable1614229758038 implements MigrationInterfac
                         name: 'token',
                         type: 'char',
                         length: '32',
-                        default: 'md5(random())',
+                        default: 'md5(random()::text)',
                     },
                     {
                         name: 'created_at',

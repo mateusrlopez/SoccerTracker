@@ -5,6 +5,7 @@ export interface ITeam {
     name: string;
     knownby: string;
     initials: string;
+    logoURL: string;
     foundationDate: Dayjs;
     createdAt: Dayjs;
     updatedAt: Dayjs;

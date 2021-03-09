@@ -35,12 +35,12 @@ export class TeamController {
         return this.teamService.findAll();
     }
 
-    @Get(':id')
+    @Get(':id(\\d+)')
     public async findOne(@Param('id', ParseIntPipe) id: number): Promise<ITeam> {
         return this.teamService.findById(id);
     }
 
-    @Put(':id')
+    @Put(':id(\\d+)')
     @UseGuards(AdminGuard)
     public async update(
         @Param('id', ParseIntPipe) id: number,
@@ -49,7 +49,7 @@ export class TeamController {
         return this.teamService.updateById(id, updateTeamDto);
     }
 
-    @Delete(':id')
+    @Delete(':id(\\d+)')
     @UseGuards(AdminGuard)
     @HttpCode(HttpStatus.NO_CONTENT)
     public async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {

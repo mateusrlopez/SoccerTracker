@@ -1,5 +1,6 @@
 export interface IUserUpdate {
-    name?: string;
+    fistName?: string;
+    lastName?: string;
     password?: string;
     birthdate?: string;
     photoURL?: string | null;
