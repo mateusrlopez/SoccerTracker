@@ -9,10 +9,6 @@ import {
     MaxLength,
 } from 'class-validator';
 
-import { TeamExists } from '@team/validators/team-exists.validator';
-
-import { UniqueUser } from '../validators/unique-user.validator';
-
 export class CreateUserDto {
     @IsNotEmpty()
     @IsString()
@@ -31,7 +27,6 @@ export class CreateUserDto {
 
     @IsNotEmpty()
     @IsEmail()
-    @UniqueUser()
     public readonly email: string;
 
     @IsNotEmpty()
@@ -44,6 +39,5 @@ export class CreateUserDto {
 
     @IsOptional()
     @IsNumber()
-    @TeamExists()
     public readonly teamId: number | null;
 }

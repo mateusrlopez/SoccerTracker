@@ -11,20 +11,21 @@
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "isolatedModules": true,
+    "esModuleInterop": true,
     "paths": {
       "@auth/*": ["./src/modules/auth/*"],
       "@config": ["./src/config/"],
-      "@helpers/*": ["./src/helpers/*"],
+      "@helpers/*": ["./src/shared/helpers/*"],
       "@password/*": ["./src/modules/password/*"],
       "@player/*": ["./src/modules/player/*"],
       "@shared/*": ["./src/shared/*"],
       "@stadium/*": ["./src/modules/stadium/*"],
       "@team/*": ["./src/modules/team/*"],
-      "@user/*": ["./src/modules/user/*"]
+      "@user/*": ["./src/modules/user/*"],
+      "@validators/*": ["./src/shared/validators/*"]
     }
   }
 }

@@ -11,6 +11,7 @@ export class ValidationPipe implements PipeTransform {
 
         const object = plainToClass(metatype, value, {
             excludeExtraneousValues: true,
+            strategy: 'exposeAll',
         });
 
         const errors = await validate(object, {
@@ -18,7 +19,7 @@ export class ValidationPipe implements PipeTransform {
         });
 
         if (errors.length > 0) {
-            throw new BadRequestException();
+            throw new BadRequestException(errors[0].toString());
         }
 
         return value;

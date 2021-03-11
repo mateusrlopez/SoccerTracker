@@ -6,6 +6,7 @@ import { IUser } from '@user/interfaces/user.interface';
 
 import { AuthService } from './auth.service';
 import { AuthUser } from './decorators/auth-user.decorator';
+import { Public } from './decorators/public-route.decorator';
 import { JwtGuard } from './guards/jwt.guard';
 import { LocalGuard } from './guards/local.guard';
 
@@ -13,6 +14,7 @@ import { LocalGuard } from './guards/local.guard';
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
+    @Public()
     @Post('register')
     @HttpCode(HttpStatus.CREATED)
     public async register(
@@ -27,6 +29,7 @@ export class AuthController {
         return user;
     }
 
+    @Public()
     @Post('login')
     @UseGuards(LocalGuard)
     public async login(

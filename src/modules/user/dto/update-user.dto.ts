@@ -1,7 +1,5 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl, MaxLength } from 'class-validator';
 
-import { TeamExists } from '@team/validators/team-exists.validator';
-
 export class UpdateUserDto {
     @IsOptional()
     @IsNotEmpty()
@@ -26,6 +24,5 @@ export class UpdateUserDto {
 
     @IsOptional()
     @IsNumber()
-    @TeamExists()
     public readonly teamId?: number | null;
 }

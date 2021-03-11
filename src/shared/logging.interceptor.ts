@@ -28,11 +28,11 @@ export class LoggingInterceptor implements NestInterceptor {
 
         const logContext = {
             baseUrl,
-            body,
+            body: { ...body },
             ip,
             params,
             query,
-            userEmail: request?.user.email,
+            userEmail: request?.user?.email,
         };
 
         delete logContext.body.password;

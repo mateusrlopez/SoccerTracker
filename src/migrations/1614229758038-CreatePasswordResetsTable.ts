@@ -7,7 +7,7 @@ export class CreatePasswordResetsTable1614229758038 implements MigrationInterfac
                 name: 'password_resets',
                 columns: [
                     {
-                        name: 'email',
+                        name: 'user_email',
                         type: 'varchar',
                         length: '45',
                         isPrimary: true,
@@ -27,7 +27,7 @@ export class CreatePasswordResetsTable1614229758038 implements MigrationInterfac
                 foreignKeys: [
                     {
                         name: 'password_resets_users_fk',
-                        columnNames: ['email'],
+                        columnNames: ['user_email'],
                         referencedTableName: 'users',
                         referencedColumnNames: ['email'],
                     },

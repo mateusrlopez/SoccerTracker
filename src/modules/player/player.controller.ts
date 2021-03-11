@@ -37,7 +37,7 @@ export class PlayerController {
 
     @Get(':id(\\d+)')
     public async findOne(@Param('id', ParseIntPipe) id: number): Promise<IPlayer> {
-        return this.playerService.findOne(id);
+        return this.playerService.findById(id);
     }
 
     @Put(':id(\\d+)')

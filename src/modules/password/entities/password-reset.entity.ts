@@ -8,13 +8,12 @@ import { User } from '@user/entities/user.entity';
 @Entity()
 export class PasswordReset {
     @PrimaryColumn()
-    public email: string;
+    public userEmail: string;
 
     @Column()
     public token: string;
 
     @CreateDateColumn({
-        name: 'created_at',
         transformer: transfomer.parseTimestamp,
         type: 'timestamptz',
     })
@@ -22,6 +21,6 @@ export class PasswordReset {
     public readonly createdAt: Dayjs;
 
     @OneToOne(() => User, { eager: true })
-    @JoinColumn({ name: 'email', referencedColumnName: 'email' })
+    @JoinColumn({ referencedColumnName: 'email' })
     public user: User;
 }

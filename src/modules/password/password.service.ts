@@ -17,11 +17,11 @@ export class PasswordService {
     ) {}
 
     public async resetPassword(resetPasswordDto: IResetPassword): Promise<IUser> {
-        const { email, password } = resetPasswordDto;
+        const { userEmail, password } = resetPasswordDto;
 
-        await this.passwordResetRepository.delete({ email });
+        await this.passwordResetRepository.delete({ userEmail });
 
-        return this.userService.updateByEmail(email, { password });
+        return this.userService.updateByEmail(userEmail, { password });
     }
 
     public async createPasswordResetRequest(

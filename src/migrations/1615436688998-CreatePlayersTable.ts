@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateStadiumsTable1614229686587 implements MigrationInterface {
+export class CreatePlayersTable1615436688998 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'stadiums',
+                name: 'players',
                 columns: [
                     {
                         name: 'id',
@@ -12,9 +12,19 @@ export class CreateStadiumsTable1614229686587 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: 'name',
+                        name: 'first_name',
                         type: 'varchar',
-                        length: '45',
+                        length: '25',
+                    },
+                    {
+                        name: 'middle_name',
+                        type: 'varchar',
+                        length: '40',
+                    },
+                    {
+                        name: 'last_name',
+                        type: 'varchar',
+                        length: '25',
                     },
                     {
                         name: 'knownby',
@@ -28,12 +38,12 @@ export class CreateStadiumsTable1614229686587 implements MigrationInterface {
                         isNullable: true,
                     },
                     {
-                        name: 'foundation_date',
-                        type: 'date',
+                        name: 'height',
+                        type: 'int',
                     },
                     {
-                        name: 'capacity',
-                        type: 'bigint',
+                        name: 'birthdate',
+                        type: 'date',
                     },
                     {
                         name: 'created_at',
@@ -46,18 +56,12 @@ export class CreateStadiumsTable1614229686587 implements MigrationInterface {
                         isNullable: true,
                     },
                 ],
-                indices: [
-                    {
-                        name: 'stadiums_knownby_index',
-                        columnNames: ['knownby'],
-                    },
-                ],
             }),
             true
         );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('stadiums', true);
+        await queryRunner.dropTable('players', true);
     }
 }

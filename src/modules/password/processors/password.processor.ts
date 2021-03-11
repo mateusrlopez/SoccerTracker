@@ -11,7 +11,7 @@ export class PasswordConsumer {
 
     @Process()
     public async sendMail(job: Job<IPasswordReset>): Promise<void> {
-        const { email, user } = job.data;
+        const { userEmail, user } = job.data;
 
         await this.mailerService.sendMail({
             context: {
@@ -20,7 +20,7 @@ export class PasswordConsumer {
             },
             subject: 'Password reset at SoccerStats',
             template: 'password-reset',
-            to: email,
+            to: userEmail,
         });
     }
 }

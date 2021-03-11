@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import * as helmet from 'helmet';
+import { useContainer } from 'class-validator';
+import helmet from 'helmet';
 import { WinstonModule } from 'nest-winston';
 
 import { appConfig, corsConfig, loggerConfig } from '@config';
@@ -14,6 +15,8 @@ async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule, {
         logger,
     });
+
+    useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
     app.enableCors(corsConfig);
     app.setGlobalPrefix(routePrefix);

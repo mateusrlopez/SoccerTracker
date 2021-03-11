@@ -10,7 +10,7 @@ export const encrypt: ValueTransformer = {
 
 export const parseDate: ValueTransformer = {
     from: (value: string) => date.parse(value),
-    to: (value: string) => date.parse(value, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+    to: (value: string) => date.parse(value, 'DD/MM/YYYY', 'YYYY-MM-DD').format('YYYY-MM-DD'),
 };
 
 export const parseTimestamp: ValueTransformer = {

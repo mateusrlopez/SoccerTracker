@@ -6,6 +6,7 @@ module.exports = {
     moduleFileExtensions: ['js', 'json', 'ts'],
     moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
     preset: 'ts-jest',
+    setupFiles: ['dotenv/config'],
     testEnvironment: 'node',
     testMatch: ['<rootDir>/src/**/*.spec.ts'],
 };

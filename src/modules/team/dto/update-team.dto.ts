@@ -8,8 +8,6 @@ import {
     MaxLength,
 } from 'class-validator';
 
-import { StadiumExists } from '@stadium/validators/stadium-exists.validator';
-
 export class UpdateTeamDto {
     @IsOptional()
     @IsNotEmpty()
@@ -41,6 +39,5 @@ export class UpdateTeamDto {
     @IsOptional()
     @IsNotEmpty()
     @IsNumber()
-    @StadiumExists()
     public readonly stadiumId?: number;
 }

@@ -20,18 +20,18 @@ export class PlayerService {
         return this.playerRepository.find();
     }
 
-    public async findOne(id: number, throwException = true): Promise<IPlayer> {
+    public async findById(id: number, throwException = true): Promise<IPlayer> {
         const player = await this.playerRepository.findOne(id);
 
         if (throwException && typeof player === 'undefined') {
-            throw new NotFoundException('');
+            throw new NotFoundException(`Player with id ${id} doesn't exists`);
         }
 
         return player;
     }
 
     public async update(id: number, updatePlayerDto: IUpdatePlayer): Promise<IPlayer> {
-        const player = await this.findOne(id);
+        const player = await this.findById(id);
 
         return this.playerRepository.save(Object.assign(player, updatePlayerDto));
     }

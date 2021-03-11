@@ -9,7 +9,6 @@ export abstract class BaseEntity {
     public readonly id: number;
 
     @CreateDateColumn({
-        name: 'created_at',
         transformer: transformer.parseTimestamp,
         type: 'timestamptz',
     })
@@ -17,7 +16,6 @@ export abstract class BaseEntity {
     public createdAt: Dayjs;
 
     @UpdateDateColumn({
-        name: 'updated_at',
         transformer: transformer.parseTimestamp,
         type: 'timestamptz',
     })

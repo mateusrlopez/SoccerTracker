@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 import * as env from '@helpers/env.helper';
+import { SnakeCaseNamingStategy } from '@shared/snake-naming.strategy';
 
 export const databaseConfig: TypeOrmModuleOptions = {
     entities: env.getArrayVariable('TYPEORM_ENTITIES'),
@@ -10,4 +11,5 @@ export const databaseConfig: TypeOrmModuleOptions = {
     synchronize: env.getBooleanVariable('TYPEORM_SYNCHRONIZE'),
     type: env.getVariable('TYPEORM_CONNECTION') as 'postgres',
     url: env.getVariable('TYPEORM_URL'),
+    namingStrategy: new SnakeCaseNamingStategy(),
 };

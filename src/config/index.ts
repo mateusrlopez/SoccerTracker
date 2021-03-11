@@ -1,9 +1,3 @@
-import * as dotenv from 'dotenv';
-
-dotenv.config({
-    path: (process.env.NODE_ENV || 'development') === 'development' ? '.env' : '.env.test',
-});
-
 export { appConfig } from './app.config';
 export { cacheConfig } from './cache.config';
 export { corsConfig } from './cors.config';

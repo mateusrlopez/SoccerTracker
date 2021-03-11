@@ -28,8 +28,8 @@ export class CreateUsersTable1614229716436 implements MigrationInterface {
                     },
                     {
                         name: 'password',
-                        type: 'varchar',
-                        length: '40',
+                        type: 'char',
+                        length: '60',
                     },
                     {
                         name: 'email_verified',
@@ -44,6 +44,7 @@ export class CreateUsersTable1614229716436 implements MigrationInterface {
                         name: 'photo_url',
                         type: 'varchar',
                         length: '100',
+                        isNullable: true,
                     },
                     {
                         name: 'team_id',

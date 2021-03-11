@@ -8,10 +8,10 @@ import { BaseEntity } from '@shared/base.entity';
 
 @Entity()
 export class User extends BaseEntity {
-    @Column({ name: 'fist_name' })
+    @Column()
     public firstName: string;
 
-    @Column({ name: 'last_name' })
+    @Column()
     public lastName: string;
 
     @Column()
@@ -21,17 +21,17 @@ export class User extends BaseEntity {
     @Exclude()
     public password: string;
 
-    @Column({ name: 'email_verified' })
+    @Column()
     public emailVerified: boolean;
 
     @Column({ transformer: transformer.parseDate, type: 'date' })
     @Type(() => Date)
     public birthdate: Dayjs;
 
-    @Column({ name: 'photo_url' })
+    @Column()
     public photoURL: string | null;
 
-    @Column({ name: 'team_id' })
+    @Column()
     public teamId: number | null;
 
     @Column()

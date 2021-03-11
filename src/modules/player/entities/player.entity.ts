@@ -11,20 +11,20 @@ export class Player extends BaseEntity {
     @PrimaryColumn()
     public readonly id: number;
 
-    @Column({ name: 'first_name' })
+    @Column()
     public firstName: string;
 
-    @Column({ name: 'middle_name' })
+    @Column()
     public middleName: string;
 
-    @Column({ name: 'last_name' })
+    @Column()
     public lastName: string;
-
-    @Column({ name: 'picture_url' })
-    public pictureURL: string | null;
 
     @Column()
     public knownby: string;
+
+    @Column()
+    public pictureURL: string | null;
 
     @Column()
     public height: number;
