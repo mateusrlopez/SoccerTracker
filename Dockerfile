@@ -1,10 +1,9 @@
-FROM node
+FROM node:alpine
 
 WORKDIR /
 
-COPY dist .
-COPY package.json .
-COPY yarn.lock .
+COPY ["package.json", "yarn.lock", "./"]
+COPY dist dist/
 
 RUN yarn install --production --no-progress --ignore-scripts
 
