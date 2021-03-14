@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import * as hash from '@helpers/hash.helper';
+import * as hash from '@shared/helpers/hash.helper';
 import { IUser } from '@user/interfaces/user.interface';
 import { UserService } from '@user/user.service';
 

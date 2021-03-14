@@ -1,7 +1,7 @@
 import { MailerOptions } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 
-import * as env from '@helpers/env.helper';
+import * as env from '@shared/helpers/env.helper';
 
 export const mailerConfig: MailerOptions = {
     defaults: {

@@ -1,7 +1,7 @@
 import { CacheModuleOptions } from '@nestjs/common';
 import * as RedisStore from 'cache-manager-redis-store';
 
-import * as env from '@helpers/env.helper';
+import * as env from '@shared/helpers/env.helper';
 
 import { redisConfig } from './redis.config';
 

@@ -1,4 +1,4 @@
-import * as env from '@helpers/env.helper';
+import * as env from '@shared/helpers/env.helper';
 
 export const appConfig = {
     hostname: env.getVariable('APP_HOSTNAME'),

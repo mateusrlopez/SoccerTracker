@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString, Length, MaxLength, Validate } from 'class-validator';
 
-import { IsSame } from '@validators/is-same.validator';
+import { IsSame } from '@shared/validators/is-same.validator';
 
 export class ResetPasswordDto {
     @IsNotEmpty()
@@ -10,7 +10,7 @@ export class ResetPasswordDto {
 
     @IsNotEmpty()
     @IsString()
-    @MaxLength(32)
+    @MaxLength(60)
     public readonly token: string;
 
     @IsNotEmpty()

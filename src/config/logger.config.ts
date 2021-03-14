@@ -1,7 +1,7 @@
 import { WinstonModuleOptions } from 'nest-winston';
 import * as winston from 'winston';
 
-import * as env from '@helpers/env.helper';
+import * as env from '@shared/helpers/env.helper';
 
 export const loggerConfig: WinstonModuleOptions = {
     level: env.getVariable('LOG_LEVEL'),

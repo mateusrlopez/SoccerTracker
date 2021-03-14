@@ -2,7 +2,7 @@ import { Type } from 'class-transformer';
 import { Dayjs } from 'dayjs';
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 
-import * as transfomer from '@helpers/transformer.helper';
+import * as transfomer from '@shared/helpers/transformer.helper';
 import { User } from '@user/entities/user.entity';
 
 @Entity()
@@ -20,7 +20,7 @@ export class PasswordReset {
     @Type(() => Date)
     public readonly createdAt: Dayjs;
 
-    @OneToOne(() => User, { eager: true })
+    @OneToOne(() => User)
     @JoinColumn({ referencedColumnName: 'email' })
-    public user: User;
+    public user: Promise<User>;
 }

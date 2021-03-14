@@ -1,8 +1,8 @@
 import { Dayjs } from 'dayjs';
 import { Column, Entity } from 'typeorm';
 
-import * as transformer from '@helpers/transformer.helper';
 import { BaseEntity } from '@shared/base.entity';
+import * as transformer from '@shared/helpers/transformer.helper';
 
 @Entity()
 export class Stadium extends BaseEntity {

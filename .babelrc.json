@@ -24,14 +24,12 @@
                 "alias": {
                     "@auth": "./src/modules/auth",
                     "@config": "./src/config",
-                    "@helpers": "./src/shared/helpers",
                     "@password-reset": "./src/modules/password-reset",
                     "@player": "./src/modules/player",
                     "@shared": "./src/shared",
                     "@stadium": "./src/modules/stadium",
                     "@team": "./src/modules/team",
                     "@user": "./src/modules/user",
-                    "@validators": "./src/shared/validators"
                 }
             }
         ]

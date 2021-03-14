@@ -11,7 +11,7 @@ export class PasswordResetConsumer {
 
     @Process()
     public async sendMail(job: Job<{ entity: IPasswordReset; token: string }>): Promise<void> {
-        const { user } = job.data.entity;
+        const user = await job.data.entity.user;
         const { token } = job.data;
 
         await this.mailerService.sendMail({

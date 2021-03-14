@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import * as hash from '@helpers/hash.helper';
+import * as hash from '@shared/helpers/hash.helper';
 import { ICreateUser } from '@user/interfaces/create-user.interface';
 import { IUser } from '@user/interfaces/user.interface';
 import { UserService } from '@user/user.service';

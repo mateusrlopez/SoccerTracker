@@ -2,7 +2,7 @@ import { Type } from 'class-transformer';
 import { Dayjs } from 'dayjs';
 import { CreateDateColumn, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 
-import * as transformer from '@helpers/transformer.helper';
+import * as transformer from '@shared/helpers/transformer.helper';
 
 export abstract class BaseEntity {
     @PrimaryColumn()

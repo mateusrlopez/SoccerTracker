@@ -1,6 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-import * as env from '@helpers/env.helper';
+import * as env from '@shared/helpers/env.helper';
 import { SnakeCaseNamingStategy } from '@shared/snake-naming.strategy';
 
 export const databaseConfig: TypeOrmModuleOptions = {

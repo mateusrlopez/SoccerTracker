@@ -19,7 +19,6 @@
       "@auth/*": ["./src/modules/auth/*"],
       "@config/*": ["./src/config/*"],
       "@factories/*": ["./test/factories/*"],
-      "@helpers/*": ["./src/shared/helpers/*"],
       "@mocks/*": ["./test/mocks/*"],
       "@password-reset/*": ["./src/modules/password-reset/*"],
       "@player/*": ["./src/modules/player/*"],
@@ -27,7 +26,6 @@
       "@stadium/*": ["./src/modules/stadium/*"],
       "@team/*": ["./src/modules/team/*"],
       "@user/*": ["./src/modules/user/*"],
-      "@validators/*": ["./src/shared/validators/*"]
     }
   }
 }

@@ -1,4 +1,15 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl, MaxLength } from 'class-validator';
+import {
+    IsNotEmpty,
+    IsNumber,
+    IsOptional,
+    IsString,
+    IsUrl,
+    MaxLength,
+    Validate,
+} from 'class-validator';
+
+import { EntityExists } from '@shared/validators/entity-exists.validator';
+import { Team } from '@team/entities/team.entity';
 
 export class UpdateUserDto {
     @IsOptional()
@@ -24,5 +35,6 @@ export class UpdateUserDto {
 
     @IsOptional()
     @IsNumber()
-    public readonly teamId?: number | null;
+    @Validate(EntityExists, [Team])
+    public readonly teamId?: number;
 }

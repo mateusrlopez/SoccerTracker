@@ -1,6 +1,6 @@
 import { BullModuleOptions } from '@nestjs/bull';
 
-import * as env from '@helpers/env.helper';
+import * as env from '@shared/helpers/env.helper';
 
 import { redisConfig } from './redis.config';
 

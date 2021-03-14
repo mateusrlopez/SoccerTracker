@@ -7,7 +7,14 @@ import {
     IsUrl,
     Length,
     MaxLength,
+    Validate,
 } from 'class-validator';
+
+import { EntityExists } from '@shared/validators/entity-exists.validator';
+import { UniqueEntity } from '@shared/validators/unique-entity.validator';
+import { Team } from '@team/entities/team.entity';
+
+import { User } from '../entities/user.entity';
 
 export class CreateUserDto {
     @IsNotEmpty()
@@ -22,11 +29,12 @@ export class CreateUserDto {
 
     @IsNotEmpty()
     @IsString()
-    @Length(8, 45)
+    @Length(8, 40)
     public readonly password: string;
 
     @IsNotEmpty()
     @IsEmail()
+    @Validate(UniqueEntity, [User, 'email'])
     public readonly email: string;
 
     @IsNotEmpty()
@@ -39,5 +47,6 @@ export class CreateUserDto {
 
     @IsNotEmpty()
     @IsNumber()
+    @Validate(EntityExists, [Team])
     public readonly teamId: number;
 }

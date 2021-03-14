@@ -2,9 +2,9 @@ import { Expose, Type } from 'class-transformer';
 import { Dayjs } from 'dayjs';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-import * as date from '@helpers/date.helper';
-import * as transformer from '@helpers/transformer.helper';
 import { BaseEntity } from '@shared/base.entity';
+import * as date from '@shared/helpers/date.helper';
+import * as transformer from '@shared/helpers/transformer.helper';
 
 @Entity()
 export class Player extends BaseEntity {

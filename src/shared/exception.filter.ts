@@ -1,7 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { Response } from 'express';
 
-import * as date from '@helpers/date.helper';
+import * as date from '@shared/helpers/date.helper';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
