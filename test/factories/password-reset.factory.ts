@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import * as hash from '@helpers/hash.helper';
+import * as hash from '@shared/helpers/hash.helper';
 
 export const requestPasswordResetPayload = {
     userEmail: faker.internet.email(),

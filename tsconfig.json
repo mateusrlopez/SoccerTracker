@@ -25,7 +25,7 @@
       "@shared/*": ["./src/shared/*"],
       "@stadium/*": ["./src/modules/stadium/*"],
       "@team/*": ["./src/modules/team/*"],
-      "@user/*": ["./src/modules/user/*"],
+      "@user/*": ["./src/modules/user/*"]
     }
   }
 }

@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import { format } from '@helpers/date.helper';
+import { format } from '@shared/helpers/date.helper';
 
 export const createTeamPayload = {
     name: faker.name.firstName(),
