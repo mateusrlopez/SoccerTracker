@@ -30,13 +30,15 @@ export class PlayerService {
         return player;
     }
 
-    public async update(id: number, updatePlayerDto: IUpdatePlayer): Promise<IPlayer> {
+    public async updateById(id: number, updatePlayerDto: IUpdatePlayer): Promise<IPlayer> {
         const player = await this.findById(id);
 
         return this.playerRepository.save(Object.assign(player, updatePlayerDto));
     }
 
     public async remove(id: number): Promise<void> {
-        await this.playerRepository.delete(id);
+        const player = await this.findById(id);
+
+        await this.playerRepository.remove(player);
     }
 }

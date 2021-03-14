@@ -7,13 +7,13 @@ import { IUser } from '@user/interfaces/user.interface';
 
 import { RequestPasswordResetDto } from './dto/request-password-reset.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
-import { PasswordService } from './password.service';
+import { PasswordResetService } from './password-reset.service';
 
 @Controller('password')
-export class PasswordController {
+export class PasswordResetController {
     constructor(
         private readonly authService: AuthService,
-        private readonly passwordService: PasswordService
+        private readonly passwordResetService: PasswordResetService
     ) {}
 
     @Public()
@@ -22,7 +22,7 @@ export class PasswordController {
         @Body() resetPasswordDto: ResetPasswordDto,
         @Res({ passthrough: true }) res: Response
     ): Promise<IUser> {
-        const user = await this.passwordService.resetPassword(resetPasswordDto);
+        const user = await this.passwordResetService.resetPassword(resetPasswordDto);
         const token = await this.authService.assignToken(user);
 
         res.append('Authorization', `Bearer ${token}`);
@@ -36,6 +36,6 @@ export class PasswordController {
     public async requestReset(
         @Body() requestPasswordResetDto: RequestPasswordResetDto
     ): Promise<void> {
-        await this.passwordService.createPasswordResetRequest(requestPasswordResetDto);
+        await this.passwordResetService.createPasswordResetRequest(requestPasswordResetDto);
     }
 }

@@ -46,7 +46,7 @@ export class PlayerController {
         @Param('id', ParseIntPipe) id: number,
         @Body() updatePlayerDto: UpdatePlayerDto
     ): Promise<IPlayer> {
-        return this.playerService.update(id, updatePlayerDto);
+        return this.playerService.updateById(id, updatePlayerDto);
     }
 
     @Delete(':id(\\d+)')

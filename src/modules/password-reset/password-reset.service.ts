@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import * as hash from '@helpers/hash.helper';
 import { IUser } from '@user/interfaces/user.interface';
 import { UserService } from '@user/user.service';
 
@@ -9,7 +10,7 @@ import { IResetPassword } from './interfaces/reset-password.interface';
 import { PasswordResetRepository } from './repositories/password-reset.repository';
 
 @Injectable()
-export class PasswordService {
+export class PasswordResetService {
     constructor(
         @InjectRepository(PasswordResetRepository)
         private readonly passwordResetRepository: PasswordResetRepository,
@@ -17,11 +18,17 @@ export class PasswordService {
     ) {}
 
     public async resetPassword(resetPasswordDto: IResetPassword): Promise<IUser> {
-        const { userEmail, password } = resetPasswordDto;
+        const { token, userEmail, password } = resetPasswordDto;
+        const passwordReset = await this.passwordResetRepository.findByUserEmail(userEmail);
 
-        await this.passwordResetRepository.delete({ userEmail });
+        if (typeof passwordReset === 'undefined' || !hash.compare(token, passwordReset.token)) {
+            throw new NotFoundException('');
+        }
 
-        return this.userService.updateByEmail(userEmail, { password });
+        const user = await this.userService.updateByEmail(userEmail, { password });
+        await this.passwordResetRepository.remove(passwordReset);
+
+        return user;
     }
 
     public async createPasswordResetRequest(

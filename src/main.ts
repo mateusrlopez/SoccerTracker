@@ -4,7 +4,9 @@ import { useContainer } from 'class-validator';
 import helmet from 'helmet';
 import { WinstonModule } from 'nest-winston';
 
-import { appConfig, corsConfig, loggerConfig } from '@config';
+import { appConfig } from '@config/app.config';
+import { corsConfig } from '@config/cors.config';
+import { loggerConfig } from '@config/logger.config';
 
 import { AppModule } from './app.module';
 

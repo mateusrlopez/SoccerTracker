@@ -37,6 +37,8 @@ export class StadiumService {
     }
 
     public async remove(id: number): Promise<void> {
-        await this.stadiumRepository.delete(id);
+        const stadium = await this.findById(id);
+
+        await this.stadiumRepository.remove(stadium);
     }
 }

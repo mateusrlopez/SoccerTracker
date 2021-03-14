@@ -11,7 +11,7 @@ export interface IUser {
     birthdate: Dayjs;
     age: number;
     photoURL: string | null;
-    teamId: number | null;
+    teamId: number;
     admin: boolean;
     createdAt: Dayjs;
     updatedAt: Dayjs;

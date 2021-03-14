@@ -32,7 +32,7 @@ export class User extends BaseEntity {
     public photoURL: string | null;
 
     @Column()
-    public teamId: number | null;
+    public teamId: number;
 
     @Column()
     public admin: boolean;

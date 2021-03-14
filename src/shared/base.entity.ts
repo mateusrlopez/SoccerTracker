@@ -20,5 +20,5 @@ export abstract class BaseEntity {
         type: 'timestamptz',
     })
     @Type(() => Date)
-    public updatedAt: Dayjs;
+    public updatedAt: Dayjs | null;
 }

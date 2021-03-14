@@ -37,7 +37,7 @@ export class CreateUserDto {
     @IsUrl()
     public readonly photoURL: string | null;
 
-    @IsOptional()
+    @IsNotEmpty()
     @IsNumber()
-    public readonly teamId: number | null;
+    public readonly teamId: number;
 }

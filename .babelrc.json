@@ -25,7 +25,7 @@
                     "@auth": "./src/modules/auth",
                     "@config": "./src/config",
                     "@helpers": "./src/shared/helpers",
-                    "@password": "./src/modules/password",
+                    "@password-reset": "./src/modules/password-reset",
                     "@player": "./src/modules/player",
                     "@shared": "./src/shared",
                     "@stadium": "./src/modules/stadium",
@@ -37,7 +37,6 @@
         ]
     ],
     "ignore": [
-        "**/*.spec.ts",
         "**/*.d.ts"
     ]
 }

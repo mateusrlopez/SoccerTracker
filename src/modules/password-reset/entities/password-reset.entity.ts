@@ -10,7 +10,7 @@ export class PasswordReset {
     @PrimaryColumn()
     public userEmail: string;
 
-    @Column()
+    @Column({ transformer: transfomer.encrypt })
     public token: string;
 
     @CreateDateColumn({

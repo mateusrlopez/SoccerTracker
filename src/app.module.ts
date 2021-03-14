@@ -6,8 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthModule } from '@auth/auth.module';
 import { JwtGuard } from '@auth/guards/jwt.guard';
-import { cacheConfig, queueConfig, mailerConfig, databaseConfig } from '@config';
-import { PasswordModule } from '@password/password.module';
+import { cacheConfig } from '@config/cache.config';
+import { databaseConfig } from '@config/database.config';
+import { mailerConfig } from '@config/mailer.config';
+import { queueConfig } from '@config/queue.config';
+import { PasswordModule } from '@password-reset/password-reset.module';
 import { PlayerModule } from '@player/player.module';
 import { GlobalExceptionFilter } from '@shared/exception.filter';
 import { LoggingInterceptor } from '@shared/logging.interceptor';

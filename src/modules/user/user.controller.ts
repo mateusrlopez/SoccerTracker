@@ -41,6 +41,6 @@ export class UserController {
     @Delete(':id(\\d+)')
     @HttpCode(HttpStatus.NO_CONTENT)
     public async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
-        return this.userService.delete(id);
+        return this.userService.remove(id);
     }
 }

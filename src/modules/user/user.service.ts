@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { ICreateUser } from './interfaces/create-user.interface';
 import { IQueryUser } from './interfaces/query-user.interface';
-import { IUserUpdate } from './interfaces/update-user.interface';
+import { IUpdateUser } from './interfaces/update-user.interface';
 import { IUser } from './interfaces/user.interface';
 import { UserRepository } from './repositories/user.repository';
 
@@ -42,19 +42,21 @@ export class UserService {
         return user;
     }
 
-    public async updateById(id: number, updateUserDto: IUserUpdate): Promise<IUser> {
+    public async updateById(id: number, updateUserDto: IUpdateUser): Promise<IUser> {
         const user = await this.findById(id);
 
         return this.userRepository.save(Object.assign(user, updateUserDto));
     }
 
-    public async updateByEmail(email: string, updateUserDto: IUserUpdate): Promise<IUser> {
+    public async updateByEmail(email: string, updateUserDto: IUpdateUser): Promise<IUser> {
         const user = await this.findByEmail(email);
 
         return this.userRepository.save(Object.assign(user, updateUserDto));
     }
 
-    public async delete(id: number): Promise<void> {
-        await this.userRepository.delete(id);
+    public async remove(id: number): Promise<void> {
+        const user = await this.findById(id);
+
+        await this.userRepository.remove(user);
     }
 }

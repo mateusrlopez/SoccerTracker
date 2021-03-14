@@ -37,6 +37,8 @@ export class TeamService {
     }
 
     public async remove(id: number): Promise<void> {
-        await this.teamRepository.delete(id);
+        const team = await this.findById(id);
+
+        await this.teamRepository.remove(team);
     }
 }

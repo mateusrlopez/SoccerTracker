@@ -13,10 +13,10 @@ declare global {
             birthdate: Dayjs;
             age: number;
             photoURL: string | null;
-            teamId: number | null;
+            teamId: number;
             admin: true;
             createdAt: Dayjs;
-            updatedAt: Dayjs;
+            updatedAt: Dayjs | null;
         }
     }
 }

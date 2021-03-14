@@ -57,8 +57,7 @@
             "error",
             {
                 "devDependencies": [
-                    "**/*.spec.ts",
-                    "**/*.e2e-spec.ts"
+                    "test/**/*"
                 ]
             }
         ],
