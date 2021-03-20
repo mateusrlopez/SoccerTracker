@@ -1,22 +1,8 @@
-import { Dayjs } from 'dayjs';
+import { IUser } from '@user/interfaces/user.interface';
 
 declare global {
     namespace Express {
-        interface User {
-            id: number;
-            firstName: string;
-            lastName: string;
-            fullName: string;
-            email: string;
-            emailVerified: boolean;
-            password: string;
-            birthdate: Dayjs;
-            age: number;
-            photoURL: string | null;
-            teamId: number;
-            admin: true;
-            createdAt: Dayjs;
-            updatedAt: Dayjs | null;
-        }
+        /* eslint-disable @typescript-eslint/no-empty-interface, @typescript-eslint/naming-convention */
+        interface User extends IUser {}
     }
 }

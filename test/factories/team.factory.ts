@@ -1,54 +1,42 @@
+import { factory } from 'factory-girl';
 import faker from 'faker';
 
-import { format } from '@shared/helpers/date.helper';
+import * as date from '@shared/helpers/date.helper';
+import { CreateTeamDto } from '@team/dto/create-team.dto';
+import { UpdateTeamDto } from '@team/dto/update-team.dto';
+import { Team } from '@team/entities/team.entity';
+import { ICreateTeam } from '@team/interfaces/create-team.interface';
+import { ITeam } from '@team/interfaces/team.interface';
+import { IUpdateTeam } from '@team/interfaces/update-team.interface';
 
-export const createTeamPayload = {
-    name: faker.name.firstName(),
-    knownby: faker.name.firstName(),
-    initials: 'AAA',
+factory.define<ITeam>('Team', Team, {
+    id: faker.random.number(),
+    name: faker.name.findName(),
+    knownby: faker.name.findName(),
+    initials: faker.random.alpha({ count: 3 }),
     logoURL: faker.image.imageUrl(),
-    foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-};
+    stadiumId: faker.random.number(),
+    foundationDate: date.parse(faker.date.past()),
+    createdAt: date.now(),
+    updatedAt: null,
+});
 
-export const updateTeamPayload = {
-    name: faker.name.firstName(),
-    knownby: faker.name.firstName(),
-    initials: 'AAA',
+factory.define<ICreateTeam>('CreateTeamDto', CreateTeamDto, {
+    name: faker.name.findName(),
+    knownby: faker.name.findName(),
+    initials: faker.random.alpha({ count: 3 }),
     logoURL: faker.image.imageUrl(),
-    foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-};
+    stadiumId: faker.random.number(),
+    foundationDate: date.format(faker.date.past()),
+});
 
-export const teamsArray = [
-    {
-        id: 1,
-        name: faker.name.firstName(),
-        knownby: faker.name.firstName(),
-        initials: 'AAA',
-        logoURL: faker.image.imageUrl(),
-        foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-    },
-    {
-        id: 2,
-        name: faker.name.firstName(),
-        knownby: faker.name.firstName(),
-        initials: 'AAA',
-        logoURL: faker.image.imageUrl(),
-        foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-    },
-    {
-        id: 3,
-        name: faker.name.firstName(),
-        knownby: faker.name.firstName(),
-        initials: 'AAA',
-        logoURL: faker.image.imageUrl(),
-        foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-    },
-    {
-        id: 4,
-        name: faker.name.firstName(),
-        knownby: faker.name.firstName(),
-        initials: 'AAA',
-        logoURL: faker.image.imageUrl(),
-        foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-    },
-];
+factory.define<IUpdateTeam>('UpdateTeamDto', UpdateTeamDto, {
+    name: faker.name.findName(),
+    knownby: faker.name.findName(),
+    initials: faker.random.alpha({ count: 3 }),
+    logoURL: faker.image.imageUrl(),
+    stadiumId: faker.random.number(),
+    foundationDate: date.format(faker.date.past()),
+});
+
+export const TeamFactory = factory;

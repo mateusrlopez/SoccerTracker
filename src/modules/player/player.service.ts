@@ -24,7 +24,7 @@ export class PlayerService {
         const player = await this.playerRepository.findOne(id);
 
         if (throwException && typeof player === 'undefined') {
-            throw new NotFoundException(`Player with id ${id} doesn't exists`);
+            throw new NotFoundException(`Player with id ${id} not found`);
         }
 
         return player;
@@ -33,7 +33,7 @@ export class PlayerService {
     public async updateById(id: number, updatePlayerDto: IUpdatePlayer): Promise<IPlayer> {
         const player = await this.findById(id);
 
-        return this.playerRepository.save(Object.assign(player, updatePlayerDto));
+        return this.playerRepository.save({ ...player, ...updatePlayerDto });
     }
 
     public async remove(id: number): Promise<void> {

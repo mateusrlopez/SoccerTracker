@@ -1,47 +1,29 @@
+import { factory } from 'factory-girl';
 import faker from 'faker';
 
-import * as hash from '@shared/helpers/hash.helper';
+import { RequestPasswordResetDto } from '@password-reset/dto/request-password-reset.dto';
+import { ResetPasswordDto } from '@password-reset/dto/reset-password.dto';
+import { PasswordReset } from '@password-reset/entities/password-reset.entity';
+import { IPasswordReset } from '@password-reset/interfaces/password-reset.interface';
+import { IRequestPasswordReset } from '@password-reset/interfaces/request-password-reset.interface';
+import { IResetPassword } from '@password-reset/interfaces/reset-password.interface';
+import * as date from '@shared/helpers/date.helper';
 
-export const requestPasswordResetPayload = {
+factory.define<IPasswordReset>('PasswordReset', PasswordReset, {
     userEmail: faker.internet.email(),
-};
+    token: faker.random.alpha({ count: 60 }),
+    createdAt: date.now(),
+});
 
-export const resetPasswordPayload = {
-    userEmail: 'mateusrlopez@gmail.com',
-    token: 'teste123',
+factory.define<IRequestPasswordReset>('RequestPasswordResetDto', RequestPasswordResetDto, {
+    userEmail: faker.internet.email(),
+});
+
+factory.define<IResetPassword>('ResetPasswordDto', ResetPasswordDto, {
+    userEmail: faker.internet.email(),
+    token: faker.random.alpha({ count: 60 }),
     password: faker.internet.password(),
     passwordConfirmation: faker.internet.password(),
-};
+});
 
-export const invalidTokenResetPasswordPayload = {
-    userEmail: 'mateusrlopez@gmail.com',
-    token: 'teste',
-    password: faker.internet.password(),
-    passwordConfirmation: faker.internet.password(),
-};
-
-export const invalidEmailResetPasswordPayload = {
-    userEmail: 'mateusrlopes',
-    token: 'teste123',
-    password: faker.internet.password(),
-    passwordConfirmation: faker.internet.password(),
-};
-
-export const passwordResetsArray = [
-    {
-        userEmail: 'mateusrlopez@gmail.com',
-        token: hash.encrypt('teste123'),
-    },
-    {
-        userEmail: faker.internet.email(),
-        token: faker.random.word(),
-    },
-    {
-        userEmail: faker.internet.email(),
-        token: faker.random.word(),
-    },
-    {
-        userEmail: faker.internet.email(),
-        token: faker.random.word(),
-    },
-];
+export const PasswordResetFactory = factory;

@@ -13,12 +13,19 @@ dayjs.extend(utc);
 
 dayjs.tz.setDefault(appConfig.timezone);
 
-export function format(date: Date, template: string): string {
-    return dayjs(date).format(template);
+export function format(
+    date: string | Date,
+    parseTemplates: string[] = undefined,
+    formatTemplate = 'YYYY-MM-DD'
+): string {
+    return dayjs(date, parseTemplates).format(formatTemplate);
 }
 
-export function parse(date: string, ...parseFormat: string[]): dayjs.Dayjs {
-    return dayjs(date, parseFormat).tz();
+export function parse(
+    date: string | Date,
+    parseTemplates: string[] = undefined
+): dayjs.Dayjs | null {
+    return date ? dayjs(date, parseTemplates).tz() : null;
 }
 
 export function now(): dayjs.Dayjs {

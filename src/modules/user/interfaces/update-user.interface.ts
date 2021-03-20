@@ -1,7 +1,8 @@
 export interface IUpdateUser {
-    fistName?: string;
+    firstName?: string;
     lastName?: string;
     password?: string;
+    emailVerified?: boolean;
     birthdate?: string;
     photoURL?: string | null;
     teamId?: number | null;

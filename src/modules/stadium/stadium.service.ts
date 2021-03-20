@@ -33,7 +33,7 @@ export class StadiumService {
     public async updateById(id: number, updateStadiumDto: IUpdateStadium): Promise<IStadium> {
         const stadium = await this.findById(id);
 
-        return this.stadiumRepository.save(Object.assign(stadium, updateStadiumDto));
+        return this.stadiumRepository.save({ ...stadium, ...updateStadiumDto });
     }
 
     public async remove(id: number): Promise<void> {

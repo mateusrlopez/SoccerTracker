@@ -1,54 +1,39 @@
+import { factory } from 'factory-girl';
 import faker from 'faker';
 
-import { format } from '@shared/helpers/date.helper';
+import * as date from '@shared/helpers/date.helper';
+import { CreateStadiumDto } from '@stadium/dto/create-stadium.dto';
+import { UpdateStadiumDto } from '@stadium/dto/update-stadium.dto';
+import { Stadium } from '@stadium/entities/stadium.entity';
+import { ICreateStadium } from '@stadium/interfaces/create-stadium.interface';
+import { IStadium } from '@stadium/interfaces/stadium.interface';
+import { IUpdateStadium } from '@stadium/interfaces/update-stadium.interface';
 
-export const createStadiumPayload = {
+factory.define<IStadium>('Stadium', Stadium, {
+    id: faker.random.number(),
     name: faker.name.findName(),
-    knownby: faker.name.firstName(),
-    foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-    capacity: faker.random.number(),
+    knownby: faker.name.findName(),
     pictureURL: faker.image.imageUrl(),
-};
+    foundationDate: date.parse(faker.date.past()),
+    capacity: faker.random.number(),
+    createdAt: date.now(),
+    updatedAt: null,
+});
 
-export const updateStadiumPayload = {
+factory.define<ICreateStadium>('CreateStadiumDto', CreateStadiumDto, {
     name: faker.name.findName(),
-    knownby: faker.name.firstName(),
-    foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-    capacity: faker.random.number(),
+    knownby: faker.name.findName(),
     pictureURL: faker.image.imageUrl(),
-};
+    foundationDate: date.format(faker.date.past()),
+    capacity: faker.random.number(),
+});
 
-export const stadiumsArray = [
-    {
-        id: 1,
-        name: faker.name.findName(),
-        knownby: faker.name.firstName(),
-        foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-        capacity: faker.random.number(),
-        pictureURL: faker.image.imageUrl(),
-    },
-    {
-        id: 2,
-        name: faker.name.findName(),
-        knownby: faker.name.firstName(),
-        foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-        capacity: faker.random.number(),
-        pictureURL: faker.image.imageUrl(),
-    },
-    {
-        id: 3,
-        name: faker.name.findName(),
-        knownby: faker.name.firstName(),
-        foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-        capacity: faker.random.number(),
-        pictureURL: faker.image.imageUrl(),
-    },
-    {
-        id: 4,
-        name: faker.name.findName(),
-        knownby: faker.name.firstName(),
-        foundationDate: format(faker.date.past(), 'YYYY-MM-DD'),
-        capacity: faker.random.number(),
-        pictureURL: faker.image.imageUrl(),
-    },
-];
+factory.define<IUpdateStadium>('UpdateStadiumDto', UpdateStadiumDto, {
+    name: faker.name.findName(),
+    knownby: faker.name.findName(),
+    pictureURL: faker.image.imageUrl(),
+    foundationDate: date.format(faker.date.past()),
+    capacity: faker.random.number(),
+});
+
+export const StadiumFactory = factory;

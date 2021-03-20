@@ -1,3 +1,3 @@
-export const mockJwtService = {
-    signAsync: jest.fn().mockImplementation(value => value),
-};
+export class JWTServiceMock {
+    public async signAsync(): Promise<void> {}
+}

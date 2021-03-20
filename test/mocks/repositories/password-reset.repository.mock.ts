@@ -1,16 +1,5 @@
-import { passwordResetsArray } from '@factories/password-reset.factory';
-import { IRequestPasswordReset } from '@password-reset/interfaces/request-password-reset.interface';
+import { BaseRepositoryMock } from './base.repository.mock';
 
-export const mockPasswordResetRepository = {
-    findByUserEmail: jest
-        .fn()
-        .mockImplementation((userEmail: string) =>
-            passwordResetsArray.find(passwordReset => passwordReset.userEmail === userEmail)
-        ),
-    remove: jest.fn().mockReturnValue(null),
-    save: jest
-        .fn()
-        .mockImplementation(
-            (requestPasswordResetDto: IRequestPasswordReset) => requestPasswordResetDto
-        ),
-};
+export class PasswordResetRepositoryMock extends BaseRepositoryMock {
+    public async findByUserEmailToken(): Promise<void> {}
+}

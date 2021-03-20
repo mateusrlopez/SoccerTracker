@@ -1,61 +1,51 @@
+import { factory } from 'factory-girl';
 import faker from 'faker';
 
-import { format } from '@shared/helpers/date.helper';
+import * as date from '@shared/helpers/date.helper';
+import { CreateUserDto } from '@user/dto/create-user.dto';
+import { QueryUserDto } from '@user/dto/query-user.dto';
+import { UpdateUserDto } from '@user/dto/update-user.dto';
+import { User } from '@user/entities/user.entity';
+import { ICreateUser } from '@user/interfaces/create-user.interface';
+import { IQueryUser } from '@user/interfaces/query-user.interface';
+import { IUpdateUser } from '@user/interfaces/update-user.interface';
+import { IUser } from '@user/interfaces/user.interface';
 
-export const createUserPayload = {
+factory.define<IUser>('User', User, {
+    id: faker.random.number(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    email: faker.internet.email(),
-    birthdate: format(faker.date.past(), 'YYYY-MM-DD'),
     password: faker.internet.password(),
+    email: faker.internet.email(),
+    admin: faker.random.boolean(),
+    emailVerified: faker.random.boolean(),
+    birthdate: date.parse(faker.date.past()),
     photoURL: faker.image.imageUrl(),
     teamId: faker.random.number(),
-};
+    createdAt: date.now(),
+    updatedAt: null,
+});
 
-export const updateUserPayload = {
+factory.define<ICreateUser>('CreateUserDto', CreateUserDto, {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-};
+    password: faker.internet.password(),
+    email: faker.internet.email(),
+    birthdate: date.format(faker.date.past()),
+    photoURL: faker.image.imageUrl(),
+    teamId: faker.random.number(),
+});
 
-export const usersArray = [
-    {
-        id: 1,
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        email: 'mateusrlopez@gmail.com',
-        birthdate: format(faker.date.past(), 'YYYY-MM-DD'),
-        password: faker.internet.password(),
-        photoURL: faker.image.imageUrl(),
-        teamId: 1,
-    },
-    {
-        id: 2,
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        email: faker.internet.email(),
-        birthdate: format(faker.date.past(), 'YYYY-MM-DD'),
-        password: faker.internet.password(),
-        photoURL: faker.image.imageUrl(),
-        teamId: 1,
-    },
-    {
-        id: 3,
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        email: faker.internet.email(),
-        birthdate: format(faker.date.past(), 'YYYY-MM-DD'),
-        password: faker.internet.password(),
-        photoURL: faker.image.imageUrl(),
-        teamId: 2,
-    },
-    {
-        id: 4,
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        email: faker.internet.email(),
-        birthdate: format(faker.date.past(), 'YYYY-MM-DD'),
-        password: faker.internet.password(),
-        photoURL: faker.image.imageUrl(),
-        teamId: 3,
-    },
-];
+factory.define<IUpdateUser>('UpdateUserDto', UpdateUserDto, {
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    birthdate: date.format(faker.date.past()),
+    photoURL: faker.image.imageUrl(),
+    teamId: faker.random.number(),
+});
+
+factory.define<IQueryUser>('QueryUserDto', QueryUserDto, {
+    teamId: faker.random.number(),
+});
+
+export const UserFactory = factory;

@@ -22,16 +22,6 @@ export class UserService {
         return this.userRepository.find(queryUserDto);
     }
 
-    public async findByEmail(email: string, throwException = true): Promise<IUser> {
-        const user = this.userRepository.findByEmail(email);
-
-        if (throwException && typeof user === 'undefined') {
-            throw new NotFoundException(`User with email ${email} not found`);
-        }
-
-        return user;
-    }
-
     public async findById(id: number, throwException = true): Promise<IUser> {
         const user = await this.userRepository.findOne(id);
 
@@ -42,16 +32,26 @@ export class UserService {
         return user;
     }
 
+    public async findByEmail(email: string, throwException = true): Promise<IUser> {
+        const user = await this.userRepository.findByEmail(email);
+
+        if (throwException && typeof user === 'undefined') {
+            throw new NotFoundException(`User with email ${email} not found`);
+        }
+
+        return user;
+    }
+
     public async updateById(id: number, updateUserDto: IUpdateUser): Promise<IUser> {
         const user = await this.findById(id);
 
-        return this.userRepository.save(Object.assign(user, updateUserDto));
+        return this.userRepository.save({ ...user, ...updateUserDto });
     }
 
     public async updateByEmail(email: string, updateUserDto: IUpdateUser): Promise<IUser> {
         const user = await this.findByEmail(email);
 
-        return this.userRepository.save(Object.assign(user, updateUserDto));
+        return this.userRepository.save({ ...user, ...updateUserDto });
     }
 
     public async remove(id: number): Promise<void> {

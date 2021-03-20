@@ -3,5 +3,6 @@ export interface ICreateTeam {
     knownby: string;
     initials: string;
     logoURL: string;
+    stadiumId: number;
     foundationDate: string;
 }

@@ -22,8 +22,8 @@ export class PasswordResetSubscriber implements EntitySubscriberInterface<IPassw
         return PasswordReset;
     }
 
-    public beforeInsert(event: InsertEvent<IPasswordReset>): void {
-        const token = crypto.randomBytes(30).toString('hex');
+    public afterInsert(event: InsertEvent<IPasswordReset>): void {
+        const token = crypto.randomBytes(60).toString('hex');
         const { entity } = event;
 
         entity.token = token;

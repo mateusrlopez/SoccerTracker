@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import * as hash from '@shared/helpers/hash.helper';
 import { IUser } from '@user/interfaces/user.interface';
 import { UserService } from '@user/user.service';
 
@@ -17,23 +16,28 @@ export class PasswordResetService {
         private readonly userService: UserService
     ) {}
 
+    public async createPasswordResetRequest(
+        requestPasswordResetDto: IRequestPasswordReset
+    ): Promise<void> {
+        await this.passwordResetRepository.save(requestPasswordResetDto);
+    }
+
     public async resetPassword(resetPasswordDto: IResetPassword): Promise<IUser> {
         const { token, userEmail, password } = resetPasswordDto;
-        const passwordReset = await this.passwordResetRepository.findByUserEmail(userEmail);
+        const passwordReset = await this.passwordResetRepository.findByUserEmailToken(
+            userEmail,
+            token
+        );
 
-        if (typeof passwordReset === 'undefined' || !hash.compare(token, passwordReset.token)) {
-            throw new NotFoundException('');
+        if (typeof passwordReset === 'undefined') {
+            throw new NotFoundException(
+                `Password reset request with email ${userEmail} and token ${token} not found`
+            );
         }
 
         const user = await this.userService.updateByEmail(userEmail, { password });
         await this.passwordResetRepository.remove(passwordReset);
 
         return user;
-    }
-
-    public async createPasswordResetRequest(
-        requestPasswordResetDto: IRequestPasswordReset
-    ): Promise<void> {
-        await this.passwordResetRepository.save(requestPasswordResetDto);
     }
 }

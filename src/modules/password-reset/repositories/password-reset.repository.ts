@@ -5,7 +5,7 @@ import { IPasswordReset } from '../interfaces/password-reset.interface';
 
 @EntityRepository(PasswordReset)
 export class PasswordResetRepository extends Repository<PasswordReset> {
-    public findByUserEmail(userEmail: string): Promise<IPasswordReset> {
-        return this.findOne({ userEmail });
+    public findByUserEmailToken(userEmail: string, token: string): Promise<IPasswordReset> {
+        return this.findOne({ userEmail, token });
     }
 }
