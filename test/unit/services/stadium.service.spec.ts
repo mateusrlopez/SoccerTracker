@@ -34,8 +34,8 @@ describe('StadiumService', () => {
 
     describe('create', () => {
         it('should return the created stadium', async () => {
-            const createStadiumDto = await StadiumFactory.build<ICreateStadium>('CreateStadiumDto');
-            const stadium = await StadiumFactory.build<IStadium>('Stadium');
+            const createStadiumDto = await StadiumFactory.attrs<ICreateStadium>('CreateStadiumDto');
+            const stadium = await StadiumFactory.attrs<IStadium>('Stadium');
 
             const stadiumRepositorySaveSpy = jest
                 .spyOn(stadiumRepository, 'save')
@@ -52,7 +52,7 @@ describe('StadiumService', () => {
 
     describe('findAll', () => {
         it('should return all the stadiums', async () => {
-            const stadiums = await StadiumFactory.buildMany<IStadium>('Stadium', 10);
+            const stadiums = await StadiumFactory.attrsMany<IStadium>('Stadium', 10);
 
             const stadiumRepositoryFindSpy = jest
                 .spyOn(stadiumRepository, 'find')
@@ -69,7 +69,7 @@ describe('StadiumService', () => {
     describe('findById', () => {
         it('should return a stadium by id', async () => {
             const id = 1;
-            const stadium = await StadiumFactory.build<IStadium>('Stadium');
+            const stadium = await StadiumFactory.attrs<IStadium>('Stadium');
 
             const stadiumRepositoryFindOneSpy = jest
                 .spyOn(stadiumRepository, 'findOne')
@@ -120,8 +120,8 @@ describe('StadiumService', () => {
     describe('updateById', () => {
         it('should return the updated stadium', async () => {
             const id = 1;
-            const updateStadiumDto = await StadiumFactory.build<IUpdateStadium>('UpdateStadiumDto');
-            const stadium = await StadiumFactory.build<IStadium>('Stadium');
+            const updateStadiumDto = await StadiumFactory.attrs<IUpdateStadium>('UpdateStadiumDto');
+            const stadium = await StadiumFactory.attrs<IStadium>('Stadium');
 
             const stadiumRepositoryFindOneSpy = jest
                 .spyOn(stadiumRepository, 'findOne')
@@ -147,8 +147,8 @@ describe('StadiumService', () => {
 
         it('should throw an error on stadium not found', async () => {
             const id = 1;
-            const updateStadiumDto = await StadiumFactory.build<IUpdateStadium>('UpdateStadiumDto');
-            const stadium = await StadiumFactory.build<IStadium>('Stadium');
+            const updateStadiumDto = await StadiumFactory.attrs<IUpdateStadium>('UpdateStadiumDto');
+            const stadium = await StadiumFactory.attrs<IStadium>('Stadium');
 
             const stadiumRepositoryFindOneSpy = jest
                 .spyOn(stadiumRepository, 'findOne')
@@ -175,7 +175,7 @@ describe('StadiumService', () => {
     describe('remove', () => {
         it('should return undefined', async () => {
             const id = 1;
-            const stadium = await StadiumFactory.build<IStadium>('Stadium');
+            const stadium = await StadiumFactory.attrs<IStadium>('Stadium');
 
             const stadiumRepositoryFindOneSpy = jest
                 .spyOn(stadiumRepository, 'findOne')

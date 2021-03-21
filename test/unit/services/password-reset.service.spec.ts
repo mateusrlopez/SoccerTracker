@@ -46,8 +46,8 @@ describe('PasswordResetService', () => {
 
     describe('createPasswordResetRequest', () => {
         it('should return undefined', async () => {
-            const passwordReset = await PasswordResetFactory.build<IPasswordReset>('PasswordReset');
-            const requestPasswordResetDto = await PasswordResetFactory.build<IRequestPasswordReset>(
+            const passwordReset = await PasswordResetFactory.attrs<IPasswordReset>('PasswordReset');
+            const requestPasswordResetDto = await PasswordResetFactory.attrs<IRequestPasswordReset>(
                 'RequestPasswordResetDto'
             );
 
@@ -68,9 +68,9 @@ describe('PasswordResetService', () => {
 
     describe('resetPassword', () => {
         it('should return the updated user', async () => {
-            const user = await UserFactory.build<IUser>('User');
-            const passwordReset = await PasswordResetFactory.build<IPasswordReset>('PasswordReset');
-            const resetPasswordDto = await PasswordResetFactory.build<IResetPassword>(
+            const user = await UserFactory.attrs<IUser>('User');
+            const passwordReset = await PasswordResetFactory.attrs<IPasswordReset>('PasswordReset');
+            const resetPasswordDto = await PasswordResetFactory.attrs<IResetPassword>(
                 'ResetPasswordDto'
             );
             const { token, userEmail, password } = resetPasswordDto;
@@ -105,15 +105,15 @@ describe('PasswordResetService', () => {
             expect(userRepositoryFindByEmailSpy).toHaveBeenCalledWith(userEmail);
 
             expect(userRepositorySaveSpy).toHaveBeenCalledTimes(1);
-            expect(userRepositorySaveSpy).toHaveBeenCalledWith({ password });
+            expect(userRepositorySaveSpy).toHaveBeenCalledWith({ ...user, password });
 
             expect(passwordResetRepositoryRemoveSpy).toHaveBeenCalledTimes(1);
             expect(passwordResetRepositoryRemoveSpy).toHaveBeenCalledWith(passwordReset);
         });
 
         it('should throw an error on password-reset not found', async () => {
-            const user = await UserFactory.build<IUser>('User');
-            const resetPasswordDto = await PasswordResetFactory.build<IResetPassword>(
+            const user = await UserFactory.attrs<IUser>('User');
+            const resetPasswordDto = await PasswordResetFactory.attrs<IResetPassword>(
                 'ResetPasswordDto'
             );
             const { token, userEmail } = resetPasswordDto;
@@ -157,9 +157,9 @@ describe('PasswordResetService', () => {
         });
 
         it('should throw an error on user not found', async () => {
-            const user = await UserFactory.build<IUser>('User');
-            const passwordReset = await PasswordResetFactory.build<IPasswordReset>('PasswordReset');
-            const resetPasswordDto = await PasswordResetFactory.build<IResetPassword>(
+            const user = await UserFactory.attrs<IUser>('User');
+            const passwordReset = await PasswordResetFactory.attrs<IPasswordReset>('PasswordReset');
+            const resetPasswordDto = await PasswordResetFactory.attrs<IResetPassword>(
                 'ResetPasswordDto'
             );
             const { token, userEmail } = resetPasswordDto;

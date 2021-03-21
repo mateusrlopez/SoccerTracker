@@ -34,8 +34,8 @@ describe('TeamService', () => {
 
     describe('create', () => {
         it('should return the created team', async () => {
-            const createTeamDto = await TeamFactory.build<ICreateTeam>('CreateTeamDto');
-            const team = await TeamFactory.build<ITeam>('Team');
+            const createTeamDto = await TeamFactory.attrs<ICreateTeam>('CreateTeamDto');
+            const team = await TeamFactory.attrs<ITeam>('Team');
 
             const teamRepositorySaveSpy = jest
                 .spyOn(teamRepository, 'save')
@@ -52,7 +52,7 @@ describe('TeamService', () => {
 
     describe('findAll', () => {
         it('should return all teams', async () => {
-            const teams = await TeamFactory.buildMany<ITeam>('Team', 10);
+            const teams = await TeamFactory.attrsMany<ITeam>('Team', 10);
 
             const teamRepositoryFindSpy = jest
                 .spyOn(teamRepository, 'find')
@@ -69,7 +69,7 @@ describe('TeamService', () => {
     describe('findById', () => {
         it('should return a team by id', async () => {
             const id = 1;
-            const team = await TeamFactory.build<ITeam>('Team');
+            const team = await TeamFactory.attrs<ITeam>('Team');
 
             const teamRepositoryFindByIdSpy = jest
                 .spyOn(teamRepository, 'findOne')
@@ -120,8 +120,8 @@ describe('TeamService', () => {
     describe('updateById', () => {
         it('should return updated team by id', async () => {
             const id = 1;
-            const updateTeamDto = await TeamFactory.build<IUpdateTeam>('UpdateTeamDto');
-            const team = await TeamFactory.build<ITeam>('Team');
+            const updateTeamDto = await TeamFactory.attrs<IUpdateTeam>('UpdateTeamDto');
+            const team = await TeamFactory.attrs<ITeam>('Team');
 
             const teamRepositoryFindByIdSpy = jest
                 .spyOn(teamRepository, 'findOne')
@@ -144,8 +144,8 @@ describe('TeamService', () => {
 
         it('should throw an error on team not found', async () => {
             const id = 1;
-            const updateTeamDto = await TeamFactory.build<IUpdateTeam>('UpdateTeamDto');
-            const team = await TeamFactory.build<ITeam>('Team');
+            const updateTeamDto = await TeamFactory.attrs<IUpdateTeam>('UpdateTeamDto');
+            const team = await TeamFactory.attrs<ITeam>('Team');
 
             const teamRepositoryFindByIdSpy = jest
                 .spyOn(teamRepository, 'findOne')
@@ -172,7 +172,7 @@ describe('TeamService', () => {
     describe('remove', () => {
         it('should return undefined', async () => {
             const id = 1;
-            const team = await TeamFactory.build<ITeam>('Team');
+            const team = await TeamFactory.attrs<ITeam>('Team');
 
             const teamRepositoryFindByIdSpy = jest
                 .spyOn(teamRepository, 'findOne')

@@ -35,8 +35,8 @@ describe('UserService', () => {
 
     describe('create', () => {
         it('should return the created user', async () => {
-            const createUserDto = await UserFactory.build<ICreateUser>('CreateUserDto');
-            const user = await UserFactory.build<IUser>('User');
+            const createUserDto = await UserFactory.attrs<ICreateUser>('CreateUserDto');
+            const user = await UserFactory.attrs<IUser>('User');
 
             const userRepositorySaveSpy = jest
                 .spyOn(userRepository, 'save')
@@ -53,7 +53,7 @@ describe('UserService', () => {
 
     describe('findAll', () => {
         it('should return all users', async () => {
-            const users = await UserFactory.buildMany<IUser>('User', 10);
+            const users = await UserFactory.attrsMany<IUser>('User', 10);
 
             const userRepositoryFindSpy = jest
                 .spyOn(userRepository, 'find')
@@ -68,8 +68,8 @@ describe('UserService', () => {
         });
 
         it('should filter users by query', async () => {
-            const userQueryDto = await UserFactory.build<IQueryUser>('QueryUserDto');
-            const users = await UserFactory.buildMany<IUser>('User', 10);
+            const userQueryDto = await UserFactory.attrs<IQueryUser>('QueryUserDto');
+            const users = await UserFactory.attrsMany<IUser>('User', 10);
 
             const userRepositoryFindSpy = jest
                 .spyOn(userRepository, 'find')
@@ -87,7 +87,7 @@ describe('UserService', () => {
     describe('findById', () => {
         it('should return an user by id', async () => {
             const id = 1;
-            const user = await UserFactory.build<IUser>('User');
+            const user = await UserFactory.attrs<IUser>('User');
 
             const userRepositoryFindByIdSpy = jest
                 .spyOn(userRepository, 'findOne')
@@ -138,7 +138,7 @@ describe('UserService', () => {
     describe('findByEmail', () => {
         it('should return an user by email', async () => {
             const email = 'mateusrlopez@gmail.com';
-            const user = await UserFactory.build<IUser>('User');
+            const user = await UserFactory.attrs<IUser>('User');
 
             const userRepositoryFindByEmailSpy = jest
                 .spyOn(userRepository, 'findByEmail')
@@ -189,8 +189,8 @@ describe('UserService', () => {
     describe('updateById', () => {
         it('should return the updated user', async () => {
             const id = 1;
-            const updateUserDto = await UserFactory.build<IUpdateUser>('UpdateUserDto');
-            const user = await UserFactory.build<IUser>('User');
+            const updateUserDto = await UserFactory.attrs<IUpdateUser>('UpdateUserDto');
+            const user = await UserFactory.attrs<IUser>('User');
 
             const userRepositoryFindByIdSpy = jest
                 .spyOn(userRepository, 'findOne')
@@ -213,8 +213,8 @@ describe('UserService', () => {
 
         it('should throw an error on user not found', async () => {
             const id = 1;
-            const updateUserDto = await UserFactory.build<IUpdateUser>('UpdateUserDto');
-            const user = await UserFactory.build<IUser>('User');
+            const updateUserDto = await UserFactory.attrs<IUpdateUser>('UpdateUserDto');
+            const user = await UserFactory.attrs<IUser>('User');
 
             const userRepositoryFindByIdSpy = jest
                 .spyOn(userRepository, 'findOne')
@@ -241,8 +241,8 @@ describe('UserService', () => {
     describe('updateByEmail', () => {
         it('should return the updated user', async () => {
             const email = 'mateusrlopez@gmail.com';
-            const updateUserDto = await UserFactory.build<IUpdateUser>('UpdateUserDto');
-            const user = await UserFactory.build<IUser>('User');
+            const updateUserDto = await UserFactory.attrs<IUpdateUser>('UpdateUserDto');
+            const user = await UserFactory.attrs<IUser>('User');
 
             const userRepositoryFindByEmailSpy = jest
                 .spyOn(userRepository, 'findByEmail')
@@ -265,8 +265,8 @@ describe('UserService', () => {
 
         it('should throw an error on user not found', async () => {
             const email = 'mateusrlopez@gmail.com';
-            const updateUserDto = await UserFactory.build<IUpdateUser>('UpdateUserDto');
-            const user = await UserFactory.build<IUser>('User');
+            const updateUserDto = await UserFactory.attrs<IUpdateUser>('UpdateUserDto');
+            const user = await UserFactory.attrs<IUser>('User');
 
             const userRepositoryFindByEmailSpy = jest
                 .spyOn(userRepository, 'findByEmail')
@@ -293,7 +293,7 @@ describe('UserService', () => {
     describe('remove', () => {
         it('should return undefined', async () => {
             const id = 1;
-            const user = await UserFactory.build<IUser>('User');
+            const user = await UserFactory.attrs<IUser>('User');
 
             const userRepositoryFindByIdSpy = jest
                 .spyOn(userRepository, 'findOne')

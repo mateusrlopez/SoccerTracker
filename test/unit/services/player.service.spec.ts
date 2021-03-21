@@ -34,8 +34,8 @@ describe('PlayerService', () => {
 
     describe('create', () => {
         it('should return the created player', async () => {
-            const createPlayerDto = await PlayerFactory.build<ICreatePlayer>('CreatePlayerDto');
-            const player = await PlayerFactory.build<IPlayer>('Player');
+            const createPlayerDto = await PlayerFactory.attrs<ICreatePlayer>('CreatePlayerDto');
+            const player = await PlayerFactory.attrs<IPlayer>('Player');
 
             const playerRepositorySaveSpy = jest
                 .spyOn(playerRepository, 'save')
@@ -52,7 +52,7 @@ describe('PlayerService', () => {
 
     describe('findAll', () => {
         it('should return all the players', async () => {
-            const players = await PlayerFactory.buildMany<IPlayer>('Player', 10);
+            const players = await PlayerFactory.attrsMany<IPlayer>('Player', 10);
 
             const playerRepositoryFindSpy = jest
                 .spyOn(playerRepository, 'find')
@@ -69,7 +69,7 @@ describe('PlayerService', () => {
     describe('findById', () => {
         it('should return player by id', async () => {
             const id = 1;
-            const player = await PlayerFactory.build<IPlayer>('Player');
+            const player = await PlayerFactory.attrs<IPlayer>('Player');
 
             const playerRepositoryFindOneSpy = jest
                 .spyOn(playerRepository, 'findOne')
@@ -120,8 +120,8 @@ describe('PlayerService', () => {
     describe('updateById', () => {
         it('should return updated player by id', async () => {
             const id = 1;
-            const updatePlayerDto = await PlayerFactory.build<IUpdatePlayer>('UpdatePlayerDto');
-            const player = await PlayerFactory.build<IPlayer>('Player');
+            const updatePlayerDto = await PlayerFactory.attrs<IUpdatePlayer>('UpdatePlayerDto');
+            const player = await PlayerFactory.attrs<IPlayer>('Player');
 
             const playerRepositoryFindOneSpy = jest
                 .spyOn(playerRepository, 'findOne')
@@ -144,8 +144,8 @@ describe('PlayerService', () => {
 
         it('should throw an error on player not found', async () => {
             const id = 1;
-            const updatePlayerDto = await PlayerFactory.build<IUpdatePlayer>('UpdatePlayerDto');
-            const player = await PlayerFactory.build<IPlayer>('Player');
+            const updatePlayerDto = await PlayerFactory.attrs<IUpdatePlayer>('UpdatePlayerDto');
+            const player = await PlayerFactory.attrs<IPlayer>('Player');
 
             const playerRepositoryFindOneSpy = jest
                 .spyOn(playerRepository, 'findOne')
@@ -172,7 +172,7 @@ describe('PlayerService', () => {
     describe('remove', () => {
         it('should return undefined', async () => {
             const id = 1;
-            const player = await PlayerFactory.build<IPlayer>('Player');
+            const player = await PlayerFactory.attrs<IPlayer>('Player');
 
             const playerRepositoryFindOneSpy = jest
                 .spyOn(playerRepository, 'findOne')
@@ -195,7 +195,7 @@ describe('PlayerService', () => {
 
         it('should throw an error on player not found', async () => {
             const id = 1;
-            const player = await PlayerFactory.build<IPlayer>('Player');
+            const player = await PlayerFactory.attrs<IPlayer>('Player');
 
             const playerRepositoryFindOneSpy = jest
                 .spyOn(playerRepository, 'findOne')
