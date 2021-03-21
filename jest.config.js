@@ -3,6 +3,8 @@ const { compilerOptions } = require('./tsconfig');
 
 module.exports = {
     clearMocks: true,
+    collectCoverageFrom: ['<rootDir>/src/**'],
+    coverageDirectory: '<rootDir>/test/coverage',
     displayName: 'Unit Tests',
     moduleFileExtensions: ['js', 'json', 'ts'],
     moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),

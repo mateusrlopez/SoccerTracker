@@ -88,6 +88,7 @@
     "postinstall": "husky install",
     "start": "node dist/main.js",
     "test": "cross-env NODE_ENV=test DOTENV_CONFIG_PATH=.env.test jest",
+    "test:coverage": "cross-env NODE_ENV=test DOTENV_CONFIG_PATH=.env.test jest --coverage",
     "test:e2e": "cross-env NODE_ENV=test DOTENV_CONFIG_PATH=.env.test jest -c test/jest.config.js --passWithNoTests",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   }
