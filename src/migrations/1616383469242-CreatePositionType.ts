@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 export class CreatePositionType1616383469242 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(
-            `CREATE TYPE position_enum AS ENUM('Goalkeeper', 'Defender', 'Midfielder', 'Foward')"`
+            `CREATE TYPE position_enum AS ENUM('Goalkeeper', 'Defender', 'Midfielder', 'Foward')`
         );
     }
 
