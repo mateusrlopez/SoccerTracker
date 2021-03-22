@@ -3,6 +3,8 @@ import { Dayjs } from 'dayjs';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 import { BaseEntity } from '@shared/base.entity';
+import { Position } from '@shared/enums/poisition.enum';
+import { PreferredFoot } from '@shared/enums/preferred-foot.enum';
 import * as date from '@shared/helpers/date.helper';
 import * as transformer from '@shared/helpers/transformer.helper';
 
@@ -28,6 +30,15 @@ export class Player extends BaseEntity {
 
     @Column()
     public height: number;
+
+    @Column()
+    public shirtNumber: number | null;
+
+    @Column({ type: 'enum', enum: Position })
+    public position: Position;
+
+    @Column({ type: 'enum', enum: PreferredFoot })
+    public preferredFoot: PreferredFoot;
 
     @Column({ transformer: transformer.parseDate, type: 'date' })
     @Type(() => Date)

@@ -14,17 +14,14 @@ export class CreateStadiumsTable1614229686587 implements MigrationInterface {
                     {
                         name: 'name',
                         type: 'varchar',
-                        length: '45',
                     },
                     {
                         name: 'knownby',
                         type: 'varchar',
-                        length: '20',
                     },
                     {
                         name: 'picture_url',
                         type: 'varchar',
-                        length: '100',
                         isNullable: true,
                     },
                     {

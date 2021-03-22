@@ -14,12 +14,10 @@ export class CreateTeamsTable1614229696204 implements MigrationInterface {
                     {
                         name: 'name',
                         type: 'varchar',
-                        length: '45',
                     },
                     {
                         name: 'knownby',
                         type: 'varchar',
-                        length: '20',
                     },
                     {
                         name: 'initials',
@@ -29,7 +27,6 @@ export class CreateTeamsTable1614229696204 implements MigrationInterface {
                     {
                         name: 'logo_url',
                         type: 'varchar',
-                        length: '100',
                         isNullable: true,
                     },
                     {

@@ -3,5 +3,5 @@ export interface ICreateStadium {
     knownby: string;
     foundationDate: string;
     capacity: number;
-    pictureURL: string | null;
+    pictureURL?: string;
 }

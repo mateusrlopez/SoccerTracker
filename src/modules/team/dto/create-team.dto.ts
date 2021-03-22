@@ -1,38 +1,27 @@
-import {
-    IsNotEmpty,
-    IsNumber,
-    IsOptional,
-    IsString,
-    IsUrl,
-    Length,
-    MaxLength,
-} from 'class-validator';
+import { IsDefined, IsNumber, IsString, IsUrl, Length } from 'class-validator';
 
 export class CreateTeamDto {
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
-    @MaxLength(25)
     public readonly name: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
-    @MaxLength(25)
     public readonly knownby: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
     @Length(3, 3)
     public readonly initials: string;
 
-    @IsOptional()
     @IsUrl()
-    public readonly logoURL: string | null;
+    public readonly logoURL?: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
     public readonly foundationDate: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsNumber()
     public readonly stadiumId: number;
 }

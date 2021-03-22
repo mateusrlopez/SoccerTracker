@@ -1,25 +1,26 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl, MaxLength } from 'class-validator';
+import { IsDefined, IsNotEmpty, IsNumber, IsString, IsUrl } from 'class-validator';
 
 export class CreateStadiumDto {
+    @IsDefined()
     @IsNotEmpty()
     @IsString()
-    @MaxLength(35)
     public readonly name: string;
 
+    @IsDefined()
     @IsNotEmpty()
     @IsString()
-    @MaxLength(20)
     public readonly knownby: string;
 
+    @IsDefined()
     @IsNotEmpty()
     @IsString()
     public readonly foundationDate: string;
 
+    @IsDefined()
     @IsNotEmpty()
     @IsNumber()
     public readonly capacity: number;
 
-    @IsOptional()
     @IsUrl()
-    public readonly pictureURL: string | null;
+    public readonly pictureURL?: string;
 }

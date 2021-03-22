@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreatePlayersTable1615436688998 implements MigrationInterface {
+export class CreatePlayersTable1616384360546 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
@@ -14,27 +14,22 @@ export class CreatePlayersTable1615436688998 implements MigrationInterface {
                     {
                         name: 'first_name',
                         type: 'varchar',
-                        length: '25',
                     },
                     {
                         name: 'middle_name',
                         type: 'varchar',
-                        length: '40',
                     },
                     {
                         name: 'last_name',
                         type: 'varchar',
-                        length: '25',
                     },
                     {
                         name: 'knownby',
                         type: 'varchar',
-                        length: '20',
                     },
                     {
                         name: 'picture_url',
                         type: 'varchar',
-                        length: '100',
                         isNullable: true,
                     },
                     {
@@ -44,6 +39,24 @@ export class CreatePlayersTable1615436688998 implements MigrationInterface {
                     {
                         name: 'birthdate',
                         type: 'date',
+                    },
+                    {
+                        name: 'position',
+                        type: 'position_enum',
+                    },
+                    {
+                        name: 'preferred_foot',
+                        type: 'preferred_foot_enum',
+                    },
+                    {
+                        name: 'shirt_number',
+                        type: 'int',
+                        isNullable: true,
+                    },
+                    {
+                        name: 'team_id',
+                        type: 'int',
+                        isNullable: true,
                     },
                     {
                         name: 'created_at',

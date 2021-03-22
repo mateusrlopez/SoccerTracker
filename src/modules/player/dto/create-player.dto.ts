@@ -1,36 +1,45 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl, MaxLength } from 'class-validator';
+import { IsDefined, IsEnum, IsNumber, IsString, IsUrl } from 'class-validator';
+
+import { Position } from '@shared/enums/poisition.enum';
+import { PreferredFoot } from '@shared/enums/preferred-foot.enum';
 
 export class CreatePlayerDto {
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
-    @MaxLength(25)
     public readonly firstName: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
-    @MaxLength(25)
     public readonly middleName: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
-    @MaxLength(25)
     public readonly lastName: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
-    @MaxLength(20)
     public readonly knownby: string;
 
-    @IsOptional()
     @IsString()
     @IsUrl()
-    public readonly pictureURL: string | null;
+    public readonly pictureURL?: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsNumber()
     public readonly height: number;
 
-    @IsNotEmpty()
+    @IsNumber()
+    public readonly shirtNumber?: number;
+
+    @IsDefined()
+    @IsEnum(Position)
+    public readonly position: Position;
+
+    @IsDefined()
+    @IsEnum(PreferredFoot)
+    public readonly preferredFoot: PreferredFoot;
+
+    @IsDefined()
     @IsString()
     public readonly birthdate: string;
 }

@@ -1,12 +1,10 @@
 import {
+    IsDefined,
     IsEmail,
-    IsNotEmpty,
     IsNumber,
-    IsOptional,
     IsString,
     IsUrl,
-    Length,
-    MaxLength,
+    MinLength,
     Validate,
 } from 'class-validator';
 
@@ -17,35 +15,32 @@ import { Team } from '@team/entities/team.entity';
 import { User } from '../entities/user.entity';
 
 export class CreateUserDto {
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
-    @MaxLength(25)
     public readonly firstName: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
-    @MaxLength(25)
     public readonly lastName: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
-    @Length(8, 40)
+    @MinLength(8)
     public readonly password: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsEmail()
     @Validate(UniqueEntity, [User, 'email'])
     public readonly email: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsString()
     public readonly birthdate: string;
 
-    @IsOptional()
     @IsUrl()
-    public readonly photoURL: string | null;
+    public readonly photoURL?: string;
 
-    @IsNotEmpty()
+    @IsDefined()
     @IsNumber()
     @Validate(EntityExists, [Team])
     public readonly teamId: number;

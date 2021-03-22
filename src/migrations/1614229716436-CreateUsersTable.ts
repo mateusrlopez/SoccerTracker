@@ -14,17 +14,14 @@ export class CreateUsersTable1614229716436 implements MigrationInterface {
                     {
                         name: 'first_name',
                         type: 'varchar',
-                        length: '25',
                     },
                     {
                         name: 'last_name',
                         type: 'varchar',
-                        length: '25',
                     },
                     {
                         name: 'email',
                         type: 'varchar',
-                        length: '45',
                     },
                     {
                         name: 'password',
@@ -43,7 +40,6 @@ export class CreateUsersTable1614229716436 implements MigrationInterface {
                     {
                         name: 'photo_url',
                         type: 'varchar',
-                        length: '100',
                         isNullable: true,
                     },
                     {

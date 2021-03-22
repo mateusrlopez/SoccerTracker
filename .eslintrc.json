@@ -26,6 +26,7 @@
     "class-methods-use-this": "off",
     "no-useless-constructor": "off",
     "prettier/prettier": "error",
+    "no-shadow": "off",
     "import-helpers/order-imports": [
       "warn",
       {
@@ -88,7 +89,8 @@
           "match": true
         }
       }
-    ]
+    ],
+    "@typescript-eslint/no-shadow": "error"
   },
   "settings": {
     "import/resolver": {

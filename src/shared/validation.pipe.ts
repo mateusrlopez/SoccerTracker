@@ -15,6 +15,7 @@ export class ValidationPipe implements PipeTransform {
         });
 
         const errors = await validate(object, {
+            skipMissingProperties: true,
             stopAtFirstError: true,
         });
 

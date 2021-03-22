@@ -4,6 +4,6 @@ export interface ICreateUser {
     email: string;
     password: string;
     birthdate: string;
-    photoURL: string | null;
-    teamId: number | null;
+    photoURL?: string;
+    teamId: number;
 }

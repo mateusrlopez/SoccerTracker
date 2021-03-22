@@ -1,9 +1,15 @@
+import { Position } from '@shared/enums/poisition.enum';
+import { PreferredFoot } from '@shared/enums/preferred-foot.enum';
+
 export interface ICreatePlayer {
     firstName: string;
     middleName: string;
     lastName: string;
     knownby: string;
-    pictureURL: string | null;
+    pictureURL?: string;
+    shirtNumber?: number;
+    position: Position;
+    preferredFoot: PreferredFoot;
     height: number;
     birthdate: string;
 }

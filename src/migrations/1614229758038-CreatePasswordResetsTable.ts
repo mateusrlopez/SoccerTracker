@@ -9,7 +9,6 @@ export class CreatePasswordResetsTable1614229758038 implements MigrationInterfac
                     {
                         name: 'user_email',
                         type: 'varchar',
-                        length: '45',
                         isPrimary: true,
                     },
                     {

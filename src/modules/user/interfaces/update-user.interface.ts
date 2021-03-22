@@ -4,6 +4,6 @@ export interface IUpdateUser {
     password?: string;
     emailVerified?: boolean;
     birthdate?: string;
-    photoURL?: string | null;
-    teamId?: number | null;
+    photoURL?: string;
+    teamId?: number;
 }
