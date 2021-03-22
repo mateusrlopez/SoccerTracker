@@ -2,6 +2,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { BullModule } from '@nestjs/bull';
 import { CacheModule, ClassSerializerInterceptor, Logger, Module } from '@nestjs/common';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthModule } from '@auth/auth.module';
@@ -26,6 +27,7 @@ import { UserModule } from '@user/user.module';
         BullModule.forRoot(queueConfig),
         CacheModule.register(cacheConfig),
         MailerModule.forRoot(mailerConfig),
+        ScheduleModule.forRoot(),
         TypeOrmModule.forRoot(databaseConfig),
         AuthModule,
         PasswordModule,

@@ -201,4 +201,18 @@ describe('PasswordResetService', () => {
             }
         });
     });
+
+    describe('deleteExpiredRequests', () => {
+        it('should return undefined', async () => {
+            const passwordResetRepositoryDeleteExpiredRequestsSpy = jest
+                .spyOn(passwordResetRepository, 'deleteExpiredRequests')
+                .mockResolvedValue(undefined);
+
+            const returnedValue = await passwordResetService.deleteExpiredRequests();
+
+            expect(returnedValue).not.toBeDefined();
+
+            expect(passwordResetRepositoryDeleteExpiredRequestsSpy).toHaveBeenCalledTimes(1);
+        });
+    });
 });

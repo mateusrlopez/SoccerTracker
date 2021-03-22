@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { IUser } from '@user/interfaces/user.interface';
@@ -39,5 +40,10 @@ export class PasswordResetService {
         await this.passwordResetRepository.remove(passwordReset);
 
         return user;
+    }
+
+    @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+    public async deleteExpiredRequests(): Promise<void> {
+        await this.passwordResetRepository.deleteExpiredRequests();
     }
 }
