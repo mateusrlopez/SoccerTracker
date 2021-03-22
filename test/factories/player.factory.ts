@@ -26,12 +26,8 @@ factory.define<IPlayer>('Player', Player, {
         'Defender',
         'Midfielder',
         'Foward',
-    ]) as keyof typeof Position,
-    preferredFoot: faker.random.arrayElement([
-        'Left',
-        'Right',
-        'Both',
-    ]) as keyof typeof PreferredFoot,
+    ]) as Position,
+    preferredFoot: faker.random.arrayElement(['Left', 'Right', 'Both']) as PreferredFoot,
     createdAt: date.now(),
     updatedAt: null,
 });
@@ -49,12 +45,8 @@ factory.define<ICreatePlayer>('CreatePlayerDto', CreatePlayerDto, {
         'Defender',
         'Midfielder',
         'Foward',
-    ]) as keyof typeof Position,
-    preferredFoot: faker.random.arrayElement([
-        'Left',
-        'Right',
-        'Both',
-    ]) as keyof typeof PreferredFoot,
+    ]) as Position,
+    preferredFoot: faker.random.arrayElement(['Left', 'Right', 'Both']) as PreferredFoot,
     birthdate: date.format(faker.date.past()),
 });
 
@@ -71,12 +63,8 @@ factory.define<IUpdatePlayer>('UpdatePlayerDto', UpdatePlayerDto, {
         'Defender',
         'Midfielder',
         'Foward',
-    ]) as keyof typeof Position,
-    preferredFoot: faker.random.arrayElement([
-        'Left',
-        'Right',
-        'Both',
-    ]) as keyof typeof PreferredFoot,
+    ]) as Position,
+    preferredFoot: faker.random.arrayElement(['Left', 'Right', 'Both']) as PreferredFoot,
     birthdate: date.format(faker.date.past()),
 });
 
