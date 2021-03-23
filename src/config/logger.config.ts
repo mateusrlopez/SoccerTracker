@@ -3,7 +3,7 @@ import * as winston from 'winston';
 
 import * as env from '@shared/helpers/env.helper';
 
-export const loggerConfig: WinstonModuleOptions = {
+export const LoggerConfig: WinstonModuleOptions = {
     level: env.getVariable('LOG_LEVEL'),
     levels: winston.config.npm.levels,
     transports: [

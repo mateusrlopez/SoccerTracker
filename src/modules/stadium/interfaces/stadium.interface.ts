@@ -1,12 +1,11 @@
 import { Dayjs } from 'dayjs';
 
-export interface IStadium {
-    id: number;
+import { IBaseEntity } from '@shared/base-entity.interface';
+
+export interface IStadium extends IBaseEntity {
     name: string;
     knownby: string;
     pictureURL: string;
     foundationDate: Dayjs;
     capacity: number;
-    createdAt: Dayjs;
-    updatedAt: Dayjs;
 }

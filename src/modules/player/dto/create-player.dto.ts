@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsNumber, IsString, IsUrl } from 'class-validator';
 
-import { Position } from '@shared/enums/poisition.enum';
-import { PreferredFoot } from '@shared/enums/preferred-foot.enum';
+import { Position } from '../enums/poisition.enum';
+import { PreferredFoot } from '../enums/preferred-foot.enum';
 
 export class CreatePlayerDto {
     @IsDefined()

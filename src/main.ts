@@ -4,15 +4,15 @@ import { useContainer } from 'class-validator';
 import helmet from 'helmet';
 import { WinstonModule } from 'nest-winston';
 
-import { appConfig } from '@config/app.config';
-import { corsConfig } from '@config/cors.config';
-import { loggerConfig } from '@config/logger.config';
+import { AppConfig } from '@config/app.config';
+import { CorsConfig } from '@config/cors.config';
+import { LoggerConfig } from '@config/logger.config';
 
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-    const { hostname, port, routePrefix } = appConfig;
-    const logger = WinstonModule.createLogger(loggerConfig);
+    const { hostname, port, routePrefix } = AppConfig;
+    const logger = WinstonModule.createLogger(LoggerConfig);
 
     const app = await NestFactory.create<NestExpressApplication>(AppModule, {
         logger,
@@ -20,7 +20,7 @@ async function bootstrap() {
 
     useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-    app.enableCors(corsConfig);
+    app.enableCors(CorsConfig);
     app.setGlobalPrefix(routePrefix);
 
     app.use(helmet());

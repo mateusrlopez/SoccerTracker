@@ -19,6 +19,7 @@
       "@auth/*": ["./src/modules/auth/*"],
       "@config/*": ["./src/config/*"],
       "@factories/*": ["./test/factories/*"],
+      "@manager/*": ["./src/modules/manager/*"],
       "@mocks/*": ["./test/mocks/*"],
       "@password-reset/*": ["./src/modules/password-reset/*"],
       "@player/*": ["./src/modules/player/*"],

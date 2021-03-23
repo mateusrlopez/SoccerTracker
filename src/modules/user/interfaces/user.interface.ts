@@ -1,7 +1,8 @@
 import { Dayjs } from 'dayjs';
 
-export interface IUser {
-    id: number;
+import { IBaseEntity } from '@shared/base-entity.interface';
+
+export interface IUser extends IBaseEntity {
     firstName: string;
     lastName: string;
     fullName: string;
@@ -13,6 +14,4 @@ export interface IUser {
     photoURL: string | null;
     teamId: number;
     admin: boolean;
-    createdAt: Dayjs;
-    updatedAt: Dayjs;
 }

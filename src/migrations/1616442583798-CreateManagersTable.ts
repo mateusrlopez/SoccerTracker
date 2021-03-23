@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreatePlayersTable1616384360546 implements MigrationInterface {
+export class CreateManagersTable1616442583798 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'players',
+                name: 'managers',
                 columns: [
                     {
                         name: 'id',
@@ -33,25 +33,8 @@ export class CreatePlayersTable1616384360546 implements MigrationInterface {
                         isNullable: true,
                     },
                     {
-                        name: 'height',
-                        type: 'int',
-                    },
-                    {
                         name: 'birthdate',
                         type: 'date',
-                    },
-                    {
-                        name: 'position',
-                        type: 'position_enum',
-                    },
-                    {
-                        name: 'preferred_foot',
-                        type: 'preferred_foot_enum',
-                    },
-                    {
-                        name: 'shirt_number',
-                        type: 'int',
-                        isNullable: true,
                     },
                     {
                         name: 'team_id',
@@ -71,7 +54,7 @@ export class CreatePlayersTable1616384360546 implements MigrationInterface {
                 ],
                 foreignKeys: [
                     {
-                        name: 'players_teams_fk',
+                        name: 'managers_team_fk',
                         columnNames: ['team_id'],
                         referencedTableName: 'teams',
                         referencedColumnNames: ['id'],
@@ -83,6 +66,6 @@ export class CreatePlayersTable1616384360546 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('players', true);
+        await queryRunner.dropTable('managers');
     }
 }

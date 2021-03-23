@@ -2,13 +2,13 @@ import { BullModuleOptions } from '@nestjs/bull';
 
 import * as env from '@shared/helpers/env.helper';
 
-import { redisConfig } from './redis.config';
+import { RedisConfig } from './redis.config';
 
-export const queueConfig: BullModuleOptions = {
+export const QueueConfig: BullModuleOptions = {
     redis: {
         db: env.getNumericVariable('QUEUE_DB'),
-        host: redisConfig.host,
-        password: redisConfig.password,
-        port: redisConfig.port,
+        host: RedisConfig.host,
+        password: RedisConfig.password,
+        port: RedisConfig.port,
     },
 };

@@ -1,13 +1,12 @@
 import { Dayjs } from 'dayjs';
 
-export interface ITeam {
-    id: number;
+import { IBaseEntity } from '@shared/base-entity.interface';
+
+export interface ITeam extends IBaseEntity {
     name: string;
     knownby: string;
     initials: string;
     logoURL: string;
     stadiumId: number;
     foundationDate: Dayjs;
-    createdAt: Dayjs;
-    updatedAt: Dayjs;
 }

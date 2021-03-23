@@ -4,14 +4,14 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 
-import { appConfig } from '@config/app.config';
+import { AppConfig } from '@config/app.config';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(relativeTime);
 dayjs.extend(timezone);
 dayjs.extend(utc);
 
-dayjs.tz.setDefault(appConfig.timezone);
+dayjs.tz.setDefault(AppConfig.timezone);
 
 export function format(
     date: string | Date,

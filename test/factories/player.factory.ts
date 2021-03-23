@@ -4,11 +4,11 @@ import faker from 'faker';
 import { CreatePlayerDto } from '@player/dto/create-player.dto';
 import { UpdatePlayerDto } from '@player/dto/update-player.dto';
 import { Player } from '@player/entities/player.entity';
+import { Position } from '@player/enums/poisition.enum';
+import { PreferredFoot } from '@player/enums/preferred-foot.enum';
 import { ICreatePlayer } from '@player/interfaces/create-player.interface';
 import { IPlayer } from '@player/interfaces/player.interface';
 import { IUpdatePlayer } from '@player/interfaces/update-player.interface';
-import { Position } from '@shared/enums/poisition.enum';
-import { PreferredFoot } from '@shared/enums/preferred-foot.enum';
 import * as date from '@shared/helpers/date.helper';
 
 factory.define<IPlayer>('Player', Player, {

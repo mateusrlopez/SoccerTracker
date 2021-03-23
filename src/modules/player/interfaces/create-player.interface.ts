@@ -1,5 +1,5 @@
-import { Position } from '@shared/enums/poisition.enum';
-import { PreferredFoot } from '@shared/enums/preferred-foot.enum';
+import { Position } from '../enums/poisition.enum';
+import { PreferredFoot } from '../enums/preferred-foot.enum';
 
 export interface ICreatePlayer {
     firstName: string;

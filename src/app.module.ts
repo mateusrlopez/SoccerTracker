@@ -7,10 +7,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthModule } from '@auth/auth.module';
 import { JwtGuard } from '@auth/guards/jwt.guard';
-import { cacheConfig } from '@config/cache.config';
-import { databaseConfig } from '@config/database.config';
-import { mailerConfig } from '@config/mailer.config';
-import { queueConfig } from '@config/queue.config';
+import { CacheConfig } from '@config/cache.config';
+import { DatabaseConfig } from '@config/database.config';
+import { MailerConfig } from '@config/mailer.config';
+import { QueueConfig } from '@config/queue.config';
+import { ManagerModule } from '@manager/manager.module';
 import { PasswordModule } from '@password-reset/password-reset.module';
 import { PlayerModule } from '@player/player.module';
 import { GlobalExceptionFilter } from '@shared/exception.filter';
@@ -24,17 +25,18 @@ import { UserModule } from '@user/user.module';
     controllers: [],
     exports: [],
     imports: [
-        BullModule.forRoot(queueConfig),
-        CacheModule.register(cacheConfig),
-        MailerModule.forRoot(mailerConfig),
+        BullModule.forRoot(QueueConfig),
+        CacheModule.register(CacheConfig),
+        MailerModule.forRoot(MailerConfig),
         ScheduleModule.forRoot(),
-        TypeOrmModule.forRoot(databaseConfig),
+        TypeOrmModule.forRoot(DatabaseConfig),
         AuthModule,
         PasswordModule,
         UserModule,
         TeamModule,
         StadiumModule,
         PlayerModule,
+        ManagerModule,
     ],
     providers: [
         Logger,

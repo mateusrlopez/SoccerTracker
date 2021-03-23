@@ -4,7 +4,7 @@ import * as path from 'path';
 
 import * as env from '@shared/helpers/env.helper';
 
-export const mailerConfig: MailerOptions = {
+export const MailerConfig: MailerOptions = {
     defaults: {
         from: env.getVariable('MAIL_FROM'),
     },

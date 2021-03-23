@@ -3,7 +3,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as env from '@shared/helpers/env.helper';
 import { SnakeCaseNamingStategy } from '@shared/snake-naming.strategy';
 
-export const databaseConfig: TypeOrmModuleOptions = {
+export const DatabaseConfig: TypeOrmModuleOptions = {
     entities: env.getArrayVariable('TYPEORM_ENTITIES'),
     migrations: env.getArrayVariable('TYPEORM_MIGRATIONS'),
     migrationsRun: env.getBooleanVariable('TYPEORM_MIGRATIONS_RUN'),
