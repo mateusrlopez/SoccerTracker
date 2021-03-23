@@ -14,7 +14,7 @@ export class PasswordResetRepository extends Repository<PasswordReset> {
     public deleteExpiredRequests(): Promise<DeleteResult> {
         return this.createQueryBuilder()
             .delete()
-            .where('created_at < :date', { date: date.now().format('YYYY-MM-DD') })
+            .where('created_at < :date', { date: date.now().toFormat('yyyy-MM-dd') })
             .execute();
     }
 }
