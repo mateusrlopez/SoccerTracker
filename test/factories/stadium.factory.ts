@@ -1,5 +1,5 @@
 import { factory } from 'factory-girl';
-import faker from 'faker';
+import * as faker from 'faker';
 
 import * as date from '@shared/helpers/date.helper';
 import { CreateStadiumDto } from '@stadium/dto/create-stadium.dto';
@@ -14,7 +14,7 @@ factory.define<IStadium>('Stadium', Stadium, {
     name: faker.name.findName(),
     knownby: faker.name.findName(),
     pictureURL: faker.image.imageUrl(),
-    foundationDate: date.parse(faker.date.past()),
+    foundationDate: date.parseFromJsDate(faker.date.past()),
     capacity: faker.random.number(),
     createdAt: date.now(),
     updatedAt: null,
@@ -24,7 +24,7 @@ factory.define<ICreateStadium>('CreateStadiumDto', CreateStadiumDto, {
     name: faker.name.findName(),
     knownby: faker.name.findName(),
     pictureURL: faker.image.imageUrl(),
-    foundationDate: date.format(faker.date.past()),
+    foundationDate: date.parseFromJsDate(faker.date.past()).toFormat('yyyy-MM-dd'),
     capacity: faker.random.number(),
 });
 
@@ -32,7 +32,7 @@ factory.define<IUpdateStadium>('UpdateStadiumDto', UpdateStadiumDto, {
     name: faker.name.findName(),
     knownby: faker.name.findName(),
     pictureURL: faker.image.imageUrl(),
-    foundationDate: date.format(faker.date.past()),
+    foundationDate: date.parseFromJsDate(faker.date.past()).toFormat('yyyy-MM-dd'),
     capacity: faker.random.number(),
 });
 

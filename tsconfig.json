@@ -14,7 +14,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "isolatedModules": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "paths": {
       "@auth/*": ["./src/modules/auth/*"],
       "@config/*": ["./src/config/*"],

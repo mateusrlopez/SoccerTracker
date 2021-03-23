@@ -1,4 +1,4 @@
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 
 import { IBaseEntity } from '@shared/base-entity.interface';
 
@@ -8,5 +8,5 @@ export interface ITeam extends IBaseEntity {
     initials: string;
     logoURL: string;
     stadiumId: number;
-    foundationDate: Dayjs;
+    foundationDate: DateTime;
 }

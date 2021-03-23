@@ -1,10 +1,10 @@
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 
 import { IUser } from '@user/interfaces/user.interface';
 
 export interface IPasswordReset {
     userEmail: string;
     token: string;
-    createdAt: Dayjs;
+    createdAt: DateTime;
     user: Promise<IUser>;
 }

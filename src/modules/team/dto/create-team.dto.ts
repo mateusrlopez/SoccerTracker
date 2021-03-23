@@ -1,4 +1,6 @@
-import { IsDefined, IsNumber, IsString, IsUrl, Length } from 'class-validator';
+import { IsDefined, IsNumber, IsString, IsUrl, Length, Validate } from 'class-validator';
+
+import { ValidDate } from '@shared/validators/valid-date.validator';
 
 export class CreateTeamDto {
     @IsDefined()
@@ -19,6 +21,7 @@ export class CreateTeamDto {
 
     @IsDefined()
     @IsString()
+    @Validate(ValidDate)
     public readonly foundationDate: string;
 
     @IsDefined()

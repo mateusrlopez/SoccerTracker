@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
 
 import { EntityExists } from '@shared/validators/entity-exists.validator';
+import { ValidDate } from '@shared/validators/valid-date.validator';
 import { Team } from '@team/entities/team.entity';
 
 export class UpdateUserDto {
@@ -14,6 +15,7 @@ export class UpdateUserDto {
 
     @IsNotEmpty()
     @IsString()
+    @Validate(ValidDate)
     public readonly birthdate?: string;
 
     @IsUrl()

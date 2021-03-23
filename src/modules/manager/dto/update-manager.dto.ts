@@ -1,4 +1,6 @@
-import { IsNotEmpty, IsNumber, IsString, IsUrl } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
+
+import { ValidDate } from '@shared/validators/valid-date.validator';
 
 export class UpdateManagerDto {
     @IsNotEmpty()
@@ -18,6 +20,7 @@ export class UpdateManagerDto {
 
     @IsNotEmpty()
     @IsString()
+    @Validate(ValidDate)
     public birthdate?: string;
 
     @IsNumber()

@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { useContainer } from 'class-validator';
-import helmet from 'helmet';
+import * as helmet from 'helmet';
 import { WinstonModule } from 'nest-winston';
 
 import { AppConfig } from '@config/app.config';

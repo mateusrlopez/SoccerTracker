@@ -10,6 +10,7 @@ import {
 
 import { EntityExists } from '@shared/validators/entity-exists.validator';
 import { UniqueEntity } from '@shared/validators/unique-entity.validator';
+import { ValidDate } from '@shared/validators/valid-date.validator';
 import { Team } from '@team/entities/team.entity';
 
 import { User } from '../entities/user.entity';
@@ -35,6 +36,7 @@ export class CreateUserDto {
 
     @IsDefined()
     @IsString()
+    @Validate(ValidDate)
     public readonly birthdate: string;
 
     @IsUrl()

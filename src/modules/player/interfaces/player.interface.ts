@@ -1,4 +1,4 @@
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 
 import { IBaseEntity } from '@shared/base-entity.interface';
 
@@ -16,6 +16,6 @@ export interface IPlayer extends IBaseEntity {
     shirtNumber: number | null;
     position: Position;
     preferredFoot: PreferredFoot;
-    birthdate: Dayjs;
+    birthdate: DateTime;
     age: number;
 }

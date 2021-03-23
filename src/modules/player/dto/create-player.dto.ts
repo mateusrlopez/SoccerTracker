@@ -1,4 +1,6 @@
-import { IsDefined, IsEnum, IsNumber, IsString, IsUrl } from 'class-validator';
+import { IsDefined, IsEnum, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
+
+import { ValidDate } from '@shared/validators/valid-date.validator';
 
 import { Position } from '../enums/poisition.enum';
 import { PreferredFoot } from '../enums/preferred-foot.enum';
@@ -41,5 +43,6 @@ export class CreatePlayerDto {
 
     @IsDefined()
     @IsString()
+    @Validate(ValidDate)
     public readonly birthdate: string;
 }

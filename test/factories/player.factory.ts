@@ -1,5 +1,5 @@
 import { factory } from 'factory-girl';
-import faker from 'faker';
+import * as faker from 'faker';
 
 import { CreatePlayerDto } from '@player/dto/create-player.dto';
 import { UpdatePlayerDto } from '@player/dto/update-player.dto';
@@ -19,7 +19,7 @@ factory.define<IPlayer>('Player', Player, {
     knownby: faker.name.findName(),
     pictureURL: faker.image.imageUrl(),
     height: faker.random.number(),
-    birthdate: date.parse(faker.date.past()),
+    birthdate: date.parseFromJsDate(faker.date.past()),
     shirtNumber: faker.random.number(),
     position: faker.random.arrayElement([
         'Goalkeeper',
@@ -47,7 +47,7 @@ factory.define<ICreatePlayer>('CreatePlayerDto', CreatePlayerDto, {
         'Foward',
     ]) as Position,
     preferredFoot: faker.random.arrayElement(['Left', 'Right', 'Both']) as PreferredFoot,
-    birthdate: date.format(faker.date.past()),
+    birthdate: date.parseFromJsDate(faker.date.past()).toFormat('yyyy-MM-dd'),
 });
 
 factory.define<IUpdatePlayer>('UpdatePlayerDto', UpdatePlayerDto, {
@@ -65,7 +65,7 @@ factory.define<IUpdatePlayer>('UpdatePlayerDto', UpdatePlayerDto, {
         'Foward',
     ]) as Position,
     preferredFoot: faker.random.arrayElement(['Left', 'Right', 'Both']) as PreferredFoot,
-    birthdate: date.format(faker.date.past()),
+    birthdate: date.parseFromJsDate(faker.date.past()).toFormat('yyyy-MM-dd'),
 });
 
 export const PlayerFactory = factory;

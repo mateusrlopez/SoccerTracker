@@ -1,4 +1,4 @@
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 import { Column, Entity } from 'typeorm';
 
 import { BaseEntity } from '@shared/base.entity';
@@ -18,8 +18,8 @@ export class Team extends BaseEntity {
     @Column()
     public logoURL: string;
 
-    @Column({ transformer: transformer.parseDate, type: 'date' })
-    public foundationDate: Dayjs;
+    @Column({ transformer: transformer.parseDateTimestamp, type: 'date' })
+    public foundationDate: DateTime;
 
     @Column()
     public stadiumId: number;

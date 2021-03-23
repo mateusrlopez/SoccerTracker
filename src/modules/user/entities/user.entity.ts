@@ -1,5 +1,5 @@
 import { Exclude, Expose, Type } from 'class-transformer';
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 import { Column, Entity } from 'typeorm';
 
 import { BaseEntity } from '@shared/base.entity';
@@ -24,9 +24,9 @@ export class User extends BaseEntity {
     @Column()
     public emailVerified: boolean;
 
-    @Column({ transformer: transformer.parseDate, type: 'date' })
+    @Column({ transformer: transformer.parseDateTimestamp, type: 'date' })
     @Type(() => Date)
-    public birthdate: Dayjs;
+    public birthdate: DateTime;
 
     @Column()
     public photoURL: string | null;
@@ -39,7 +39,7 @@ export class User extends BaseEntity {
 
     @Expose()
     public get age(): number {
-        return this.birthdate.diff(date.now(), 'years');
+        return date.age(this.birthdate);
     }
 
     @Expose()

@@ -1,7 +1,7 @@
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 
 export interface IBaseEntity {
     id: number;
-    createdAt: Dayjs;
-    updatedAt: Dayjs | null;
+    createdAt: DateTime;
+    updatedAt: DateTime | null;
 }

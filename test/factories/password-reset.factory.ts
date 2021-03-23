@@ -1,5 +1,5 @@
 import { factory } from 'factory-girl';
-import faker from 'faker';
+import * as faker from 'faker';
 
 import { RequestPasswordResetDto } from '@password-reset/dto/request-password-reset.dto';
 import { ResetPasswordDto } from '@password-reset/dto/reset-password.dto';

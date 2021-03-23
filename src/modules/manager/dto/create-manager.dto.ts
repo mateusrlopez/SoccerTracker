@@ -1,4 +1,6 @@
-import { IsDefined, IsNumber, IsString, IsUrl } from 'class-validator';
+import { IsDefined, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
+
+import { ValidDate } from '@shared/validators/valid-date.validator';
 
 export class CreateManagerDto {
     @IsDefined()
@@ -18,6 +20,7 @@ export class CreateManagerDto {
 
     @IsDefined()
     @IsString()
+    @Validate(ValidDate)
     public birthdate: string;
 
     @IsNumber()

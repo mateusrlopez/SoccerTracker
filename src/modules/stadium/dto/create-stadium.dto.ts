@@ -1,23 +1,23 @@
-import { IsDefined, IsNotEmpty, IsNumber, IsString, IsUrl } from 'class-validator';
+import { IsDefined, IsNotEmpty, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
+
+import { ValidDate } from '@shared/validators/valid-date.validator';
 
 export class CreateStadiumDto {
     @IsDefined()
-    @IsNotEmpty()
     @IsString()
     public readonly name: string;
 
     @IsDefined()
-    @IsNotEmpty()
     @IsString()
     public readonly knownby: string;
 
     @IsDefined()
     @IsNotEmpty()
     @IsString()
+    @Validate(ValidDate)
     public readonly foundationDate: string;
 
     @IsDefined()
-    @IsNotEmpty()
     @IsNumber()
     public readonly capacity: number;
 

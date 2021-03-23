@@ -1,4 +1,4 @@
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 
 import { IBaseEntity } from '@shared/base-entity.interface';
 
@@ -9,7 +9,7 @@ export interface IUser extends IBaseEntity {
     email: string;
     emailVerified: boolean;
     password: string;
-    birthdate: Dayjs;
+    birthdate: DateTime;
     age: number;
     photoURL: string | null;
     teamId: number;

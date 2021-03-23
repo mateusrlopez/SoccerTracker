@@ -1,5 +1,5 @@
 import { factory } from 'factory-girl';
-import faker from 'faker';
+import * as faker from 'faker';
 
 import * as date from '@shared/helpers/date.helper';
 import { CreateUserDto } from '@user/dto/create-user.dto';
@@ -19,7 +19,7 @@ factory.define<IUser>('User', User, {
     email: faker.internet.email(),
     admin: faker.random.boolean(),
     emailVerified: faker.random.boolean(),
-    birthdate: date.parse(faker.date.past()),
+    birthdate: date.parseFromJsDate(faker.date.past()),
     photoURL: faker.image.imageUrl(),
     teamId: faker.random.number(),
     createdAt: date.now(),
@@ -31,7 +31,7 @@ factory.define<ICreateUser>('CreateUserDto', CreateUserDto, {
     lastName: faker.name.lastName(),
     password: faker.internet.password(),
     email: faker.internet.email(),
-    birthdate: date.format(faker.date.past()),
+    birthdate: date.parseFromJsDate(faker.date.past()).toFormat('yyyy-MM-dd'),
     photoURL: faker.image.imageUrl(),
     teamId: faker.random.number(),
 });
@@ -39,7 +39,7 @@ factory.define<ICreateUser>('CreateUserDto', CreateUserDto, {
 factory.define<IUpdateUser>('UpdateUserDto', UpdateUserDto, {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    birthdate: date.format(faker.date.past()),
+    birthdate: date.parseFromJsDate(faker.date.past()).toFormat('yyyy-MM-dd'),
     photoURL: faker.image.imageUrl(),
     teamId: faker.random.number(),
 });

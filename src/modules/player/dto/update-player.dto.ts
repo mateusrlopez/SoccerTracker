@@ -1,4 +1,6 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsString, IsUrl } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
+
+import { ValidDate } from '@shared/validators/valid-date.validator';
 
 import { Position } from '../enums/poisition.enum';
 import { PreferredFoot } from '../enums/preferred-foot.enum';
@@ -41,5 +43,6 @@ export class UpdatePlayerDto {
 
     @IsNotEmpty()
     @IsString()
+    @Validate(ValidDate)
     public readonly birthdate?: string;
 }

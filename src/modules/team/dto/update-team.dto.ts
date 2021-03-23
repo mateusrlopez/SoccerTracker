@@ -1,4 +1,6 @@
-import { IsNotEmpty, IsNumber, IsString, IsUrl, Length } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, IsUrl, Length, Validate } from 'class-validator';
+
+import { ValidDate } from '@shared/validators/valid-date.validator';
 
 export class UpdateTeamDto {
     @IsNotEmpty()
@@ -19,6 +21,7 @@ export class UpdateTeamDto {
 
     @IsNotEmpty()
     @IsString()
+    @Validate(ValidDate)
     public readonly foundationDate?: string;
 
     @IsNotEmpty()

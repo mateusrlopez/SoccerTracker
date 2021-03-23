@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 
 import * as transfomer from '@shared/helpers/transformer.helper';
@@ -14,11 +14,11 @@ export class PasswordReset {
     public token: string;
 
     @CreateDateColumn({
-        transformer: transfomer.parseTimestamp,
+        transformer: transfomer.parseDateTimestamp,
         type: 'timestamptz',
     })
     @Type(() => Date)
-    public readonly createdAt: Dayjs;
+    public readonly createdAt: DateTime;
 
     @OneToOne(() => User)
     @JoinColumn({ referencedColumnName: 'email' })

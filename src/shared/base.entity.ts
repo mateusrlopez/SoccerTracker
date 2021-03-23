@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 import { CreateDateColumn, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 
 import * as transformer from '@shared/helpers/transformer.helper';
@@ -9,16 +9,16 @@ export abstract class BaseEntity {
     public readonly id: number;
 
     @CreateDateColumn({
-        transformer: transformer.parseTimestamp,
+        transformer: transformer.parseDateTimestamp,
         type: 'timestamptz',
     })
     @Type(() => Date)
-    public createdAt: Dayjs;
+    public createdAt: DateTime;
 
     @UpdateDateColumn({
-        transformer: transformer.parseTimestamp,
+        transformer: transformer.parseDateTimestamp,
         type: 'timestamptz',
     })
     @Type(() => Date)
-    public updatedAt: Dayjs | null;
+    public updatedAt: DateTime | null;
 }

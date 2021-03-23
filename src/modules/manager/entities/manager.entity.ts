@@ -1,5 +1,5 @@
 import { Expose, Type } from 'class-transformer';
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 import { Column, Entity } from 'typeorm';
 
 import { BaseEntity } from '@shared/base.entity';
@@ -20,15 +20,15 @@ export class Manager extends BaseEntity {
     @Column()
     public pictureURL: string | null;
 
-    @Column({ transformer: transformer.parseDate, type: 'date' })
+    @Column({ transformer: transformer.parseDateTimestamp, type: 'date' })
     @Type(() => Date)
-    public birthdate: Dayjs;
+    public birthdate: DateTime;
 
     @Column()
     public teamId: number;
 
     @Expose()
     public get age(): number {
-        return this.birthdate.diff(date.now(), 'days');
+        return date.age(this.birthdate);
     }
 }
