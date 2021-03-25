@@ -37,16 +37,16 @@ describe('TeamService', () => {
             const createTeamDto = await TeamFactory.attrs<ICreateTeam>('CreateTeamDto');
             const team = await TeamFactory.attrs<ITeam>('Team');
 
-            const teamRepositorySaveSpy = jest
-                .spyOn(teamRepository, 'save')
+            const teamRepositoryCreateAndSaveSpy = jest
+                .spyOn(teamRepository, 'createAndSave')
                 .mockResolvedValue(team);
 
             const createdTeam = await teamService.create(createTeamDto);
 
             expect(createdTeam).toEqual(team);
 
-            expect(teamRepositorySaveSpy).toHaveBeenCalledTimes(1);
-            expect(teamRepositorySaveSpy).toHaveBeenCalledWith(createTeamDto);
+            expect(teamRepositoryCreateAndSaveSpy).toHaveBeenCalledTimes(1);
+            expect(teamRepositoryCreateAndSaveSpy).toHaveBeenCalledWith(createTeamDto);
         });
     });
 

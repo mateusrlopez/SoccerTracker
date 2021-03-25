@@ -1,8 +1,9 @@
+import { Transform } from 'class-transformer';
 import { DateTime } from 'luxon';
 import { Column, Entity } from 'typeorm';
 
 import { BaseEntity } from '@shared/base.entity';
-import * as transformer from '@shared/helpers/transformer.helper';
+import { TransformerHelper } from '@shared/helpers/transformer.helper';
 
 @Entity()
 export class Stadium extends BaseEntity {
@@ -12,10 +13,11 @@ export class Stadium extends BaseEntity {
     @Column()
     public knownby: string;
 
-    @Column()
-    public pictureURL: string;
+    @Column({ default: null })
+    public pictureURL: string | null;
 
-    @Column({ transformer: transformer.parseDateTimestamp, type: 'date' })
+    @Column({ transformer: TransformerHelper.parseDate, type: 'date' })
+    @Transform(({ value }) => value.toFormat('yyyy-MM-dd'))
     public foundationDate: DateTime;
 
     @Column()

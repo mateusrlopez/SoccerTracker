@@ -2,11 +2,11 @@ import { MailerOptions } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import * as path from 'path';
 
-import * as env from '@shared/helpers/env.helper';
+import { EnvHelper } from '@shared/helpers/env.helper';
 
 export const MailerConfig: MailerOptions = {
     defaults: {
-        from: env.getVariable('MAIL_FROM'),
+        from: EnvHelper.getVariable('MAIL_FROM'),
     },
     template: {
         adapter: new HandlebarsAdapter(),
@@ -17,12 +17,12 @@ export const MailerConfig: MailerOptions = {
     },
     transport: {
         auth: {
-            password: env.getVariable('MAIL_PASSWORD'),
-            user: env.getVariable('MAIL_USER'),
+            password: EnvHelper.getVariable('MAIL_PASSWORD'),
+            user: EnvHelper.getVariable('MAIL_USER'),
         },
-        host: env.getVariable('MAIL_HOST'),
+        host: EnvHelper.getVariable('MAIL_HOST'),
         ignoreTLS: true,
-        port: env.getNumericVariable('MAIL_PORT'),
+        port: EnvHelper.getNumericVariable('MAIL_PORT'),
         secure: false,
     },
 };

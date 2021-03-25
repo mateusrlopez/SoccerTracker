@@ -51,8 +51,8 @@ describe('PasswordResetService', () => {
                 'RequestPasswordResetDto'
             );
 
-            const passwordResetRepositorySaveSpy = jest
-                .spyOn(passwordResetRepository, 'save')
+            const passwordResetRepositoryCreateAndSaveSpy = jest
+                .spyOn(passwordResetRepository, 'createAndSave')
                 .mockResolvedValue(passwordReset);
 
             const returnedValue = await passwordResetService.createPasswordResetRequest(
@@ -61,8 +61,10 @@ describe('PasswordResetService', () => {
 
             expect(returnedValue).not.toBeDefined();
 
-            expect(passwordResetRepositorySaveSpy).toHaveBeenCalledTimes(1);
-            expect(passwordResetRepositorySaveSpy).toHaveBeenCalledWith(requestPasswordResetDto);
+            expect(passwordResetRepositoryCreateAndSaveSpy).toHaveBeenCalledTimes(1);
+            expect(passwordResetRepositoryCreateAndSaveSpy).toHaveBeenCalledWith(
+                requestPasswordResetDto
+            );
         });
     });
 
@@ -75,8 +77,8 @@ describe('PasswordResetService', () => {
             );
             const { token, userEmail, password } = resetPasswordDto;
 
-            const passwordResetRepositoryFindByUserEmailTokenSpy = jest
-                .spyOn(passwordResetRepository, 'findByUserEmailToken')
+            const passwordResetRepositoryFindByUserEmailAndTokenSpy = jest
+                .spyOn(passwordResetRepository, 'findByUserEmailAndToken')
                 .mockResolvedValue(passwordReset);
 
             const passwordResetRepositoryRemoveSpy = jest
@@ -95,8 +97,8 @@ describe('PasswordResetService', () => {
 
             expect(returnedUser).toEqual(user);
 
-            expect(passwordResetRepositoryFindByUserEmailTokenSpy).toHaveBeenCalledTimes(1);
-            expect(passwordResetRepositoryFindByUserEmailTokenSpy).toHaveBeenCalledWith(
+            expect(passwordResetRepositoryFindByUserEmailAndTokenSpy).toHaveBeenCalledTimes(1);
+            expect(passwordResetRepositoryFindByUserEmailAndTokenSpy).toHaveBeenCalledWith(
                 userEmail,
                 token
             );
@@ -118,8 +120,8 @@ describe('PasswordResetService', () => {
             );
             const { token, userEmail } = resetPasswordDto;
 
-            const passwordResetRepositoryFindByUserEmailTokenSpy = jest
-                .spyOn(passwordResetRepository, 'findByUserEmailToken')
+            const passwordResetRepositoryFindByUserEmailAndTokenSpy = jest
+                .spyOn(passwordResetRepository, 'findByUserEmailAndToken')
                 .mockResolvedValue(undefined);
 
             const passwordResetRepositoryRemoveSpy = jest
@@ -142,8 +144,8 @@ describe('PasswordResetService', () => {
                     `Password reset request with email ${userEmail} and token ${token} not found`
                 );
             } finally {
-                expect(passwordResetRepositoryFindByUserEmailTokenSpy).toHaveBeenCalledTimes(1);
-                expect(passwordResetRepositoryFindByUserEmailTokenSpy).toHaveBeenCalledWith(
+                expect(passwordResetRepositoryFindByUserEmailAndTokenSpy).toHaveBeenCalledTimes(1);
+                expect(passwordResetRepositoryFindByUserEmailAndTokenSpy).toHaveBeenCalledWith(
                     userEmail,
                     token
                 );
@@ -164,8 +166,8 @@ describe('PasswordResetService', () => {
             );
             const { token, userEmail } = resetPasswordDto;
 
-            const passwordResetRepositoryFindByUserEmailTokenSpy = jest
-                .spyOn(passwordResetRepository, 'findByUserEmailToken')
+            const passwordResetRepositoryFindByUserEmailAndTokenSpy = jest
+                .spyOn(passwordResetRepository, 'findByUserEmailAndToken')
                 .mockResolvedValue(passwordReset);
 
             const passwordResetRepositoryRemoveSpy = jest
@@ -186,8 +188,8 @@ describe('PasswordResetService', () => {
                 expect(error).toBeInstanceOf(NotFoundException);
                 expect(error.message).toEqual(`User with email ${userEmail} not found`);
             } finally {
-                expect(passwordResetRepositoryFindByUserEmailTokenSpy).toHaveBeenCalledTimes(1);
-                expect(passwordResetRepositoryFindByUserEmailTokenSpy).toHaveBeenCalledWith(
+                expect(passwordResetRepositoryFindByUserEmailAndTokenSpy).toHaveBeenCalledTimes(1);
+                expect(passwordResetRepositoryFindByUserEmailAndTokenSpy).toHaveBeenCalledWith(
                     userEmail,
                     token
                 );

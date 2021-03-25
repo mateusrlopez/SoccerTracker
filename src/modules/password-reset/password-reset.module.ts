@@ -8,7 +8,7 @@ import { UserModule } from '@user/user.module';
 import { PASSWORD_RESET_QUEUE_NAME } from './constants/password-reset.constants';
 import { PasswordResetController } from './password-reset.controller';
 import { PasswordResetService } from './password-reset.service';
-import { PasswordResetConsumer } from './processors/password-reset.processor';
+import { PasswordResetProcessor } from './processors/password-reset.processor';
 import { PasswordResetRepository } from './repositories/password-reset.repository';
 import { PasswordResetSubscriber } from './subscribers/password-reset.subscriber';
 
@@ -21,6 +21,6 @@ import { PasswordResetSubscriber } from './subscribers/password-reset.subscriber
         AuthModule,
         UserModule,
     ],
-    providers: [PasswordResetConsumer, PasswordResetSubscriber, PasswordResetService],
+    providers: [PasswordResetProcessor, PasswordResetSubscriber, PasswordResetService],
 })
 export class PasswordModule {}

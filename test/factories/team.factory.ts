@@ -1,7 +1,7 @@
 import { factory } from 'factory-girl';
 import * as faker from 'faker';
 
-import * as date from '@shared/helpers/date.helper';
+import { DateHelper } from '@shared/helpers/date.helper';
 import { CreateTeamDto } from '@team/dto/create-team.dto';
 import { UpdateTeamDto } from '@team/dto/update-team.dto';
 import { Team } from '@team/entities/team.entity';
@@ -16,8 +16,8 @@ factory.define<ITeam>('Team', Team, {
     initials: faker.random.alpha({ count: 3 }),
     logoURL: faker.image.imageUrl(),
     stadiumId: faker.random.number(),
-    foundationDate: date.parseFromJsDate(faker.date.past()),
-    createdAt: date.now(),
+    foundationDate: DateHelper.parseFromJsDate(faker.date.past()),
+    createdAt: DateHelper.now(),
     updatedAt: null,
 });
 
@@ -27,7 +27,7 @@ factory.define<ICreateTeam>('CreateTeamDto', CreateTeamDto, {
     initials: faker.random.alpha({ count: 3 }),
     logoURL: faker.image.imageUrl(),
     stadiumId: faker.random.number(),
-    foundationDate: date.parseFromJsDate(faker.date.past()).toFormat('yyyy-MM-dd'),
+    foundationDate: DateHelper.parseFromJsDate(faker.date.past()),
 });
 
 factory.define<IUpdateTeam>('UpdateTeamDto', UpdateTeamDto, {
@@ -36,7 +36,7 @@ factory.define<IUpdateTeam>('UpdateTeamDto', UpdateTeamDto, {
     initials: faker.random.alpha({ count: 3 }),
     logoURL: faker.image.imageUrl(),
     stadiumId: faker.random.number(),
-    foundationDate: date.parseFromJsDate(faker.date.past()).toFormat('yyyy-MM-dd'),
+    foundationDate: DateHelper.parseFromJsDate(faker.date.past()),
 });
 
 export const TeamFactory = factory;

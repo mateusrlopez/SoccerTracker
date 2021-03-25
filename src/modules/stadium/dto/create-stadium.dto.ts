@@ -1,5 +1,8 @@
-import { IsDefined, IsNotEmpty, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsDefined, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
+import { DateTime } from 'luxon';
 
+import { DateHelper } from '@shared/helpers/date.helper';
 import { ValidDate } from '@shared/validators/valid-date.validator';
 
 export class CreateStadiumDto {
@@ -12,10 +15,9 @@ export class CreateStadiumDto {
     public readonly knownby: string;
 
     @IsDefined()
-    @IsNotEmpty()
-    @IsString()
+    @Transform(({ value }) => DateHelper.parseFromSQLDate(value))
     @Validate(ValidDate)
-    public readonly foundationDate: string;
+    public readonly foundationDate: DateTime;
 
     @IsDefined()
     @IsNumber()

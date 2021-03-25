@@ -1,7 +1,7 @@
 import { factory } from 'factory-girl';
 import * as faker from 'faker';
 
-import * as date from '@shared/helpers/date.helper';
+import { DateHelper } from '@shared/helpers/date.helper';
 import { CreateUserDto } from '@user/dto/create-user.dto';
 import { QueryUserDto } from '@user/dto/query-user.dto';
 import { UpdateUserDto } from '@user/dto/update-user.dto';
@@ -19,10 +19,10 @@ factory.define<IUser>('User', User, {
     email: faker.internet.email(),
     admin: faker.random.boolean(),
     emailVerified: faker.random.boolean(),
-    birthdate: date.parseFromJsDate(faker.date.past()),
+    birthdate: DateHelper.parseFromJsDate(faker.date.past()),
     photoURL: faker.image.imageUrl(),
     teamId: faker.random.number(),
-    createdAt: date.now(),
+    createdAt: DateHelper.now(),
     updatedAt: null,
 });
 
@@ -31,7 +31,7 @@ factory.define<ICreateUser>('CreateUserDto', CreateUserDto, {
     lastName: faker.name.lastName(),
     password: faker.internet.password(),
     email: faker.internet.email(),
-    birthdate: date.parseFromJsDate(faker.date.past()).toFormat('yyyy-MM-dd'),
+    birthdate: DateHelper.parseFromJsDate(faker.date.past()),
     photoURL: faker.image.imageUrl(),
     teamId: faker.random.number(),
 });
@@ -39,7 +39,7 @@ factory.define<ICreateUser>('CreateUserDto', CreateUserDto, {
 factory.define<IUpdateUser>('UpdateUserDto', UpdateUserDto, {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    birthdate: date.parseFromJsDate(faker.date.past()).toFormat('yyyy-MM-dd'),
+    birthdate: DateHelper.parseFromJsDate(faker.date.past()),
     photoURL: faker.image.imageUrl(),
     teamId: faker.random.number(),
 });

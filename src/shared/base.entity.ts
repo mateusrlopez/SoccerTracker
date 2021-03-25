@@ -1,24 +1,24 @@
-import { Type } from 'class-transformer';
+import { Transform } from 'class-transformer';
 import { DateTime } from 'luxon';
-import { CreateDateColumn, PrimaryColumn, UpdateDateColumn } from 'typeorm';
+import { CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-import * as transformer from '@shared/helpers/transformer.helper';
+import { TransformerHelper } from '@shared/helpers/transformer.helper';
 
 export abstract class BaseEntity {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     public readonly id: number;
 
     @CreateDateColumn({
-        transformer: transformer.parseDateTimestamp,
+        transformer: TransformerHelper.parseGeneratedTimestamp,
         type: 'timestamptz',
     })
-    @Type(() => Date)
+    @Transform(({ value }) => value.toFormat('yyyy-MM-dd HH:mm:ss'))
     public createdAt: DateTime;
 
     @UpdateDateColumn({
-        transformer: transformer.parseDateTimestamp,
+        transformer: TransformerHelper.parseGeneratedTimestamp,
         type: 'timestamptz',
     })
-    @Type(() => Date)
+    @Transform(({ value }) => (value ? value.toFormat('yyyy-MM-dd HH:mm:ss') : value))
     public updatedAt: DateTime | null;
 }

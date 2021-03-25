@@ -1,5 +1,8 @@
+import { Transform } from 'class-transformer';
 import { IsDefined, IsEnum, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
+import { DateTime } from 'luxon';
 
+import { DateHelper } from '@shared/helpers/date.helper';
 import { ValidDate } from '@shared/validators/valid-date.validator';
 
 import { Position } from '../enums/poisition.enum';
@@ -42,7 +45,7 @@ export class CreatePlayerDto {
     public readonly preferredFoot: PreferredFoot;
 
     @IsDefined()
-    @IsString()
+    @Transform(({ value }) => DateHelper.parseFromSQLDate(value))
     @Validate(ValidDate)
-    public readonly birthdate: string;
+    public readonly birthdate: DateTime;
 }

@@ -1,7 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { Response } from 'express';
 
-import * as date from '@shared/helpers/date.helper';
+import { DateHelper } from '@shared/helpers/date.helper';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -16,7 +16,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
         response.status(status).json({
             status,
-            timestamp: date.now().format('YYYY-MM-DD HH:mm:ss'),
+            timestamp: DateHelper.now().toFormat('yyyy-MM-dd HH:mm:ss'),
         });
     }
 }

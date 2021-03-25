@@ -1,10 +1,10 @@
-import { Exclude, Expose, Type } from 'class-transformer';
+import { Exclude, Expose, Transform } from 'class-transformer';
 import { DateTime } from 'luxon';
 import { Column, Entity } from 'typeorm';
 
 import { BaseEntity } from '@shared/base.entity';
-import * as date from '@shared/helpers/date.helper';
-import * as transformer from '@shared/helpers/transformer.helper';
+import { DateHelper } from '@shared/helpers/date.helper';
+import { TransformerHelper } from '@shared/helpers/transformer.helper';
 
 @Entity()
 export class User extends BaseEntity {
@@ -17,29 +17,29 @@ export class User extends BaseEntity {
     @Column()
     public email: string;
 
-    @Column({ transformer: transformer.encrypt })
+    @Column({ transformer: TransformerHelper.encrypt })
     @Exclude()
     public password: string;
 
-    @Column()
+    @Column({ default: false })
     public emailVerified: boolean;
 
-    @Column({ transformer: transformer.parseDateTimestamp, type: 'date' })
-    @Type(() => Date)
+    @Column({ transformer: TransformerHelper.parseDate, type: 'date' })
+    @Transform(({ value }) => value.toFormat('yyyy-MM-dd'))
     public birthdate: DateTime;
 
-    @Column()
+    @Column({ default: null })
     public photoURL: string | null;
 
     @Column()
     public teamId: number;
 
-    @Column()
+    @Column({ default: false })
     public admin: boolean;
 
     @Expose()
     public get age(): number {
-        return date.age(this.birthdate);
+        return DateHelper.age(this.birthdate);
     }
 
     @Expose()

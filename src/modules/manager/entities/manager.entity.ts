@@ -1,10 +1,10 @@
-import { Expose, Type } from 'class-transformer';
+import { Expose, Transform } from 'class-transformer';
 import { DateTime } from 'luxon';
 import { Column, Entity } from 'typeorm';
 
 import { BaseEntity } from '@shared/base.entity';
-import * as date from '@shared/helpers/date.helper';
-import * as transformer from '@shared/helpers/transformer.helper';
+import { DateHelper } from '@shared/helpers/date.helper';
+import { TransformerHelper } from '@shared/helpers/transformer.helper';
 
 @Entity()
 export class Manager extends BaseEntity {
@@ -17,18 +17,18 @@ export class Manager extends BaseEntity {
     @Column()
     public lastName: string;
 
-    @Column()
+    @Column({ default: null })
     public pictureURL: string | null;
 
-    @Column({ transformer: transformer.parseDateTimestamp, type: 'date' })
-    @Type(() => Date)
+    @Column({ transformer: TransformerHelper.parseDate, type: 'date' })
+    @Transform(({ value }) => value.toFormat('yyyy-MM-dd'))
     public birthdate: DateTime;
 
-    @Column()
-    public teamId: number;
+    @Column({ default: null })
+    public teamId: number | null;
 
     @Expose()
     public get age(): number {
-        return date.age(this.birthdate);
+        return DateHelper.age(this.birthdate);
     }
 }

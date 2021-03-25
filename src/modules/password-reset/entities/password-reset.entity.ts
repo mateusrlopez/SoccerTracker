@@ -1,8 +1,8 @@
-import { Type } from 'class-transformer';
+import { Transform } from 'class-transformer';
 import { DateTime } from 'luxon';
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 
-import * as transfomer from '@shared/helpers/transformer.helper';
+import { TransformerHelper } from '@shared/helpers/transformer.helper';
 import { User } from '@user/entities/user.entity';
 
 @Entity()
@@ -14,10 +14,10 @@ export class PasswordReset {
     public token: string;
 
     @CreateDateColumn({
-        transformer: transfomer.parseDateTimestamp,
+        transformer: TransformerHelper.parseGeneratedTimestamp,
         type: 'timestamptz',
     })
-    @Type(() => Date)
+    @Transform(({ value }) => value.toFormat('yyyy-MM-dd HH:mm:ss'))
     public readonly createdAt: DateTime;
 
     @OneToOne(() => User)

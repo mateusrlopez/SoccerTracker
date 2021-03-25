@@ -1,8 +1,9 @@
+import { Transform } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
+import { DateTime } from 'luxon';
 
-import { EntityExists } from '@shared/validators/entity-exists.validator';
+import { DateHelper } from '@shared/helpers/date.helper';
 import { ValidDate } from '@shared/validators/valid-date.validator';
-import { Team } from '@team/entities/team.entity';
 
 export class UpdateUserDto {
     @IsNotEmpty()
@@ -14,14 +15,13 @@ export class UpdateUserDto {
     public readonly lastName?: string;
 
     @IsNotEmpty()
-    @IsString()
+    @Transform(({ value }) => DateHelper.parseFromSQLDate(value))
     @Validate(ValidDate)
-    public readonly birthdate?: string;
+    public readonly birthdate?: DateTime;
 
     @IsUrl()
     public readonly photoURL?: string;
 
     @IsNumber()
-    @Validate(EntityExists, [Team])
     public readonly teamId?: number;
 }

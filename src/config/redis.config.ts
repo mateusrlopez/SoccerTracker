@@ -1,7 +1,7 @@
-import * as env from '@shared/helpers/env.helper';
+import { EnvHelper } from '@shared/helpers/env.helper';
 
 export const RedisConfig = {
-    host: env.getVariable('REDIS_HOST'),
-    password: env.getVariable('REDIS_PASSWORD'),
-    port: env.getNumericVariable('REDIS_PORT'),
+    host: EnvHelper.getVariable('REDIS_HOST'),
+    password: EnvHelper.getVariable('REDIS_PASSWORD'),
+    port: EnvHelper.getNumericVariable('REDIS_PORT'),
 };

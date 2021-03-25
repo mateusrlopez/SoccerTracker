@@ -1,5 +1,5 @@
-import * as env from '@shared/helpers/env.helper';
+import { EnvHelper } from '@shared/helpers/env.helper';
 
 export const JwtConfig = {
-    secret: env.getVariable('JWT_KEY'),
+    secret: EnvHelper.getVariable('JWT_KEY'),
 };

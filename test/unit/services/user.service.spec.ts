@@ -38,16 +38,16 @@ describe('UserService', () => {
             const createUserDto = await UserFactory.attrs<ICreateUser>('CreateUserDto');
             const user = await UserFactory.attrs<IUser>('User');
 
-            const userRepositorySaveSpy = jest
-                .spyOn(userRepository, 'save')
+            const userRepositoryCreateAndSaveSpy = jest
+                .spyOn(userRepository, 'createAndSave')
                 .mockResolvedValue(user);
 
             const createdUser = await userService.create(createUserDto);
 
             expect(createdUser).toEqual(user);
 
-            expect(userRepositorySaveSpy).toHaveBeenCalledTimes(1);
-            expect(userRepositorySaveSpy).toHaveBeenCalledWith(createUserDto);
+            expect(userRepositoryCreateAndSaveSpy).toHaveBeenCalledTimes(1);
+            expect(userRepositoryCreateAndSaveSpy).toHaveBeenCalledWith(createUserDto);
         });
     });
 

@@ -20,12 +20,12 @@ export class PasswordResetService {
     public async createPasswordResetRequest(
         requestPasswordResetDto: IRequestPasswordReset
     ): Promise<void> {
-        await this.passwordResetRepository.save(requestPasswordResetDto);
+        await this.passwordResetRepository.createAndSave(requestPasswordResetDto);
     }
 
     public async resetPassword(resetPasswordDto: IResetPassword): Promise<IUser> {
         const { token, userEmail, password } = resetPasswordDto;
-        const passwordReset = await this.passwordResetRepository.findByUserEmailToken(
+        const passwordReset = await this.passwordResetRepository.findByUserEmailAndToken(
             userEmail,
             token
         );

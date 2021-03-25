@@ -1,9 +1,11 @@
+import { DateTime } from 'luxon';
+
 export interface IUpdateUser {
     firstName?: string;
     lastName?: string;
     password?: string;
     emailVerified?: boolean;
-    birthdate?: string;
+    birthdate?: DateTime;
     photoURL?: string;
     teamId?: number;
 }

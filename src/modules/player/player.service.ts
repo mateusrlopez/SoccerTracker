@@ -13,7 +13,7 @@ export class PlayerService {
     ) {}
 
     public async create(createPlayerDto: ICreatePlayer): Promise<IPlayer> {
-        return this.playerRepository.save(createPlayerDto);
+        return this.playerRepository.createAndSave(createPlayerDto);
     }
 
     public async findAll(): Promise<IPlayer[]> {

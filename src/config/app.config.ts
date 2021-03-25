@@ -1,8 +1,9 @@
-import * as env from '@shared/helpers/env.helper';
+import { EnvHelper } from '@shared/helpers/env.helper';
 
 export const AppConfig = {
-    hostname: env.getVariable('APP_HOSTNAME'),
-    port: env.getNumericVariable('APP_PORT'),
-    routePrefix: env.getVariable('APP_ROUTE_PREFIX'),
-    timezone: env.getVariable('APP_TIMEZONE'),
+    nodeEnv: EnvHelper.getVariable('NODE_ENV'),
+    hostname: EnvHelper.getVariable('APP_HOSTNAME'),
+    port: EnvHelper.getNumericVariable('APP_PORT'),
+    routePrefix: EnvHelper.getVariable('APP_ROUTE_PREFIX'),
+    timezone: EnvHelper.getVariable('APP_TIMEZONE'),
 };

@@ -1,7 +1,7 @@
 import { MailerModule } from '@nestjs-modules/mailer';
 import { BullModule } from '@nestjs/bull';
-import { CacheModule, ClassSerializerInterceptor, Logger, Module } from '@nestjs/common';
-import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { CacheModule, Logger, Module } from '@nestjs/common';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -16,7 +16,6 @@ import { PasswordModule } from '@password-reset/password-reset.module';
 import { PlayerModule } from '@player/player.module';
 import { GlobalExceptionFilter } from '@shared/exception.filter';
 import { LoggingInterceptor } from '@shared/logging.interceptor';
-import { ValidationPipe } from '@shared/validation.pipe';
 import { StadiumModule } from '@stadium/stadium.module';
 import { TeamModule } from '@team/team.module';
 import { UserModule } from '@user/user.module';
@@ -51,14 +50,6 @@ import { UserModule } from '@user/user.module';
         {
             provide: APP_INTERCEPTOR,
             useClass: LoggingInterceptor,
-        },
-        {
-            provide: APP_INTERCEPTOR,
-            useClass: ClassSerializerInterceptor,
-        },
-        {
-            provide: APP_PIPE,
-            useClass: ValidationPipe,
         },
     ],
 })

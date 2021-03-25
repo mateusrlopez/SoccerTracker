@@ -13,7 +13,7 @@ export class StadiumService {
     ) {}
 
     public async create(createStadiumDto: ICreateStadium): Promise<IStadium> {
-        return this.stadiumRepository.save(createStadiumDto);
+        return this.stadiumRepository.createAndSave(createStadiumDto);
     }
 
     public async findAll(): Promise<IStadium[]> {

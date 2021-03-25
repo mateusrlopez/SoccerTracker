@@ -7,12 +7,12 @@ import { PasswordReset } from '@password-reset/entities/password-reset.entity';
 import { IPasswordReset } from '@password-reset/interfaces/password-reset.interface';
 import { IRequestPasswordReset } from '@password-reset/interfaces/request-password-reset.interface';
 import { IResetPassword } from '@password-reset/interfaces/reset-password.interface';
-import * as date from '@shared/helpers/date.helper';
+import { DateHelper } from '@shared/helpers/date.helper';
 
 factory.define<IPasswordReset>('PasswordReset', PasswordReset, {
     userEmail: faker.internet.email(),
     token: faker.random.alpha({ count: 60 }),
-    createdAt: date.now(),
+    createdAt: DateHelper.now(),
 });
 
 factory.define<IRequestPasswordReset>('RequestPasswordResetDto', RequestPasswordResetDto, {

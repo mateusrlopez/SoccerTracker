@@ -37,16 +37,16 @@ describe('PlayerService', () => {
             const createPlayerDto = await PlayerFactory.attrs<ICreatePlayer>('CreatePlayerDto');
             const player = await PlayerFactory.attrs<IPlayer>('Player');
 
-            const playerRepositorySaveSpy = jest
-                .spyOn(playerRepository, 'save')
+            const playerRepositoryCreateAndSaveSpy = jest
+                .spyOn(playerRepository, 'createAndSave')
                 .mockResolvedValue(player);
 
             const createdPlayer = await playerService.create(createPlayerDto);
 
             expect(createdPlayer).toEqual(player);
 
-            expect(playerRepositorySaveSpy).toHaveBeenCalledTimes(1);
-            expect(playerRepositorySaveSpy).toHaveBeenCalledWith(createPlayerDto);
+            expect(playerRepositoryCreateAndSaveSpy).toHaveBeenCalledTimes(1);
+            expect(playerRepositoryCreateAndSaveSpy).toHaveBeenCalledWith(createPlayerDto);
         });
     });
 

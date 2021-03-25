@@ -24,14 +24,14 @@ export class LoggingInterceptor implements NestInterceptor {
     }
 
     private log(request: Request): void {
-        const { baseUrl, body, ip, params, query } = request;
+        const { body, ip, params, query, url } = request;
 
         const logContext = {
-            baseUrl,
             body: { ...body },
             ip,
             params,
             query,
+            url,
             userEmail: request?.user?.email,
         };
 

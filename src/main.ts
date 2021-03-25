@@ -1,6 +1,6 @@
-import { NestFactory } from '@nestjs/core';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { useContainer } from 'class-validator';
 import * as helmet from 'helmet';
 import { WinstonModule } from 'nest-winston';
 
@@ -18,7 +18,13 @@ async function bootstrap() {
         logger,
     });
 
-    useContainer(app.select(AppModule), { fallbackOnErrors: true });
+    app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: true, transform: true }));
+    app.useGlobalInterceptors(
+        new ClassSerializerInterceptor(app.get(Reflector), {
+            strategy: 'exposeAll',
+            excludeExtraneousValues: false,
+        })
+    );
 
     app.enableCors(CorsConfig);
     app.setGlobalPrefix(routePrefix);
@@ -29,4 +35,5 @@ async function bootstrap() {
         logger.log(`Application started at port ${port}`);
     });
 }
+
 bootstrap();

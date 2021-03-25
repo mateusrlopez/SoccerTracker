@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { USER_QUEUE_NAME } from './constants/user.constants';
+import { UserProcessor } from './processors/user.processor';
 import { UserRepository } from './repositories/user.repository';
 import { UserSubscriber } from './subscribers/user.subscriber';
 import { UserController } from './user.controller';
@@ -15,6 +16,6 @@ import { UserService } from './user.service';
         BullModule.registerQueue({ name: USER_QUEUE_NAME }),
         TypeOrmModule.forFeature([UserRepository]),
     ],
-    providers: [UserService, UserSubscriber],
+    providers: [UserService, UserSubscriber, UserProcessor],
 })
 export class UserModule {}

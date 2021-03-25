@@ -1,5 +1,7 @@
+import { Transform } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsString, IsUrl, Length, Validate } from 'class-validator';
 
+import { DateHelper } from '@shared/helpers/date.helper';
 import { ValidDate } from '@shared/validators/valid-date.validator';
 
 export class UpdateTeamDto {
@@ -20,7 +22,7 @@ export class UpdateTeamDto {
     public readonly logoURL?: string;
 
     @IsNotEmpty()
-    @IsString()
+    @Transform(({ value }) => DateHelper.parseFromSQLDate(value))
     @Validate(ValidDate)
     public readonly foundationDate?: string;
 

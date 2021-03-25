@@ -6,7 +6,7 @@ import { AuthService } from '@auth/auth.service';
 import { UserFactory } from '@factories/user.factory';
 import { UserRepositoryMock } from '@mocks/repositories/user.repository.mock';
 import { JWTServiceMock } from '@mocks/services/jwt.service.mock';
-import * as hash from '@shared/helpers/hash.helper';
+import { HashHelper } from '@shared/helpers/hash.helper';
 import { ICreateUser } from '@user/interfaces/create-user.interface';
 import { IUser } from '@user/interfaces/user.interface';
 import { UserRepository } from '@user/repositories/user.repository';
@@ -43,16 +43,16 @@ describe('AuthService', () => {
             const user = await UserFactory.attrs<IUser>('User');
             const createUserDto = await UserFactory.attrs<ICreateUser>('CreateUserDto');
 
-            const userRepositorySaveSpy = jest
-                .spyOn(userRepository, 'save')
+            const userRepositoryCreateAndSaveSpy = jest
+                .spyOn(userRepository, 'createAndSave')
                 .mockResolvedValue(user);
 
             const returnedUser = await authService.register(createUserDto);
 
             expect(returnedUser).toEqual(user);
 
-            expect(userRepositorySaveSpy).toHaveBeenCalledTimes(1);
-            expect(userRepositorySaveSpy).toHaveBeenCalledWith(createUserDto);
+            expect(userRepositoryCreateAndSaveSpy).toHaveBeenCalledTimes(1);
+            expect(userRepositoryCreateAndSaveSpy).toHaveBeenCalledWith(createUserDto);
         });
     });
 
@@ -61,7 +61,7 @@ describe('AuthService', () => {
             const email = 'mateusrlopez@gmail.com';
             const password = 'test';
             const user = await UserFactory.attrs<IUser>('User', {
-                password: hash.encrypt(password),
+                password: HashHelper.encrypt(password),
             });
 
             const userRepositoryFindByEmailSpy = jest

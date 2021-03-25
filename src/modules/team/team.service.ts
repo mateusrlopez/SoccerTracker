@@ -13,7 +13,7 @@ export class TeamService {
     ) {}
 
     public async create(createTeamDto: ICreateTeam): Promise<ITeam> {
-        return this.teamRepository.save(createTeamDto);
+        return this.teamRepository.createAndSave(createTeamDto);
     }
 
     public async findAll(): Promise<ITeam[]> {

@@ -6,7 +6,7 @@ import { PASSWORD_RESET_QUEUE_NAME } from '../constants/password-reset.constants
 import { IPasswordReset } from '../interfaces/password-reset.interface';
 
 @Processor(PASSWORD_RESET_QUEUE_NAME)
-export class PasswordResetConsumer {
+export class PasswordResetProcessor {
     constructor(private readonly mailerService: MailerService) {}
 
     @Process()

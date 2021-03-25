@@ -13,7 +13,7 @@ export class ManagerService {
     ) {}
 
     public async create(createManagerDto: ICreateManager): Promise<IManager> {
-        return this.managerRepository.save(createManagerDto);
+        return this.managerRepository.createAndSave(createManagerDto);
     }
 
     public async findAll(): Promise<IManager[]> {

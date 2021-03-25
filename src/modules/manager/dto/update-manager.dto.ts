@@ -1,5 +1,8 @@
+import { Transform } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsString, IsUrl, Validate } from 'class-validator';
+import { DateTime } from 'luxon';
 
+import { DateHelper } from '@shared/helpers/date.helper';
 import { ValidDate } from '@shared/validators/valid-date.validator';
 
 export class UpdateManagerDto {
@@ -19,9 +22,9 @@ export class UpdateManagerDto {
     public pictureURL?: string;
 
     @IsNotEmpty()
-    @IsString()
+    @Transform(({ value }) => DateHelper.parseFromSQLDate(value))
     @Validate(ValidDate)
-    public birthdate?: string;
+    public birthdate?: DateTime;
 
     @IsNumber()
     public teamId?: number;

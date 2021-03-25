@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import {
     IsDefined,
     IsEmail,
@@ -7,13 +8,10 @@ import {
     MinLength,
     Validate,
 } from 'class-validator';
+import { DateTime } from 'luxon';
 
-import { EntityExists } from '@shared/validators/entity-exists.validator';
-import { UniqueEntity } from '@shared/validators/unique-entity.validator';
+import { DateHelper } from '@shared/helpers/date.helper';
 import { ValidDate } from '@shared/validators/valid-date.validator';
-import { Team } from '@team/entities/team.entity';
-
-import { User } from '../entities/user.entity';
 
 export class CreateUserDto {
     @IsDefined()
@@ -31,19 +29,17 @@ export class CreateUserDto {
 
     @IsDefined()
     @IsEmail()
-    @Validate(UniqueEntity, [User, 'email'])
     public readonly email: string;
 
     @IsDefined()
-    @IsString()
+    @Transform(({ value }) => DateHelper.parseFromSQLDate(value))
     @Validate(ValidDate)
-    public readonly birthdate: string;
+    public readonly birthdate: DateTime;
 
     @IsUrl()
     public readonly photoURL?: string;
 
     @IsDefined()
     @IsNumber()
-    @Validate(EntityExists, [Team])
     public readonly teamId: number;
 }

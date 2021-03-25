@@ -1,1 +1,1 @@
-export const USER_QUEUE_NAME = 'user';
+export const USER_QUEUE_NAME = 'user_queue';

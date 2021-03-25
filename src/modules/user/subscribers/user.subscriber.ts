@@ -1,5 +1,6 @@
 import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
+import { InjectConnection } from '@nestjs/typeorm';
 import { Queue } from 'bull';
 import { Connection, EntitySubscriberInterface, EventSubscriber, InsertEvent } from 'typeorm';
 
@@ -12,7 +13,7 @@ import { IUser } from '@user/interfaces/user.interface';
 export class UserSubscriber implements EntitySubscriberInterface<IUser> {
     constructor(
         @InjectQueue(USER_QUEUE_NAME) private readonly userQueue: Queue,
-        private readonly connection: Connection
+        @InjectConnection() private readonly connection: Connection
     ) {
         this.connection.subscribers.push(this);
     }
@@ -21,7 +22,7 @@ export class UserSubscriber implements EntitySubscriberInterface<IUser> {
         return User;
     }
 
-    public afterInsert(event: InsertEvent<IUser>): void {
-        this.userQueue.add(event.entity);
+    public async afterInsert(event: InsertEvent<IUser>): Promise<void> {
+        await this.userQueue.add(event.entity);
     }
 }

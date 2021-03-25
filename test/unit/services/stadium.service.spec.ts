@@ -37,16 +37,16 @@ describe('StadiumService', () => {
             const createStadiumDto = await StadiumFactory.attrs<ICreateStadium>('CreateStadiumDto');
             const stadium = await StadiumFactory.attrs<IStadium>('Stadium');
 
-            const stadiumRepositorySaveSpy = jest
-                .spyOn(stadiumRepository, 'save')
+            const stadiumRepositoryCreateAndSaveSpy = jest
+                .spyOn(stadiumRepository, 'createAndSave')
                 .mockResolvedValue(stadium);
 
             const createdStadium = await stadiumService.create(createStadiumDto);
 
             expect(createdStadium).toEqual(stadium);
 
-            expect(stadiumRepositorySaveSpy).toHaveBeenCalledTimes(1);
-            expect(stadiumRepositorySaveSpy).toHaveBeenCalledWith(createStadiumDto);
+            expect(stadiumRepositoryCreateAndSaveSpy).toHaveBeenCalledTimes(1);
+            expect(stadiumRepositoryCreateAndSaveSpy).toHaveBeenCalledWith(createStadiumDto);
         });
     });
 

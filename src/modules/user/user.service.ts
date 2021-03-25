@@ -15,7 +15,7 @@ export class UserService {
     ) {}
 
     public async create(createUserDto: ICreateUser): Promise<IUser> {
-        return this.userRepository.save(createUserDto);
+        return this.userRepository.createAndSave(createUserDto);
     }
 
     public async findAll(queryUserDto: IQueryUser): Promise<IUser[]> {
@@ -45,13 +45,13 @@ export class UserService {
     public async updateById(id: number, updateUserDto: IUpdateUser): Promise<IUser> {
         const user = await this.findById(id);
 
-        return this.userRepository.save({ ...user, ...updateUserDto });
+        return this.userRepository.save(Object.assign(user, updateUserDto));
     }
 
     public async updateByEmail(email: string, updateUserDto: IUpdateUser): Promise<IUser> {
         const user = await this.findByEmail(email);
 
-        return this.userRepository.save({ ...user, ...updateUserDto });
+        return this.userRepository.save(Object.assign(user, updateUserDto));
     }
 
     public async remove(id: number): Promise<void> {

@@ -1,4 +1,6 @@
 export abstract class BaseRepositoryMock {
+    public async createAndSave(): Promise<void> {}
+
     public async save(): Promise<void> {}
 
     public async find(): Promise<void> {}
