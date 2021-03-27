@@ -7,5 +7,6 @@ export interface IUpdateUser {
     emailVerified?: boolean;
     birthdate?: DateTime;
     photoURL?: string;
+    bio?: string;
     teamId?: number;
 }

@@ -14,9 +14,10 @@ factory.define<ITeam>('Team', Team, {
     name: faker.name.findName(),
     knownby: faker.name.findName(),
     initials: faker.random.alpha({ count: 3 }),
-    logoURL: faker.image.imageUrl(),
-    stadiumId: faker.random.number(),
     foundationDate: DateHelper.parseFromJsDate(faker.date.past()),
+    logoURL: faker.image.imageUrl(),
+    bio: faker.random.words(30),
+    stadiumId: faker.random.number(),
     createdAt: DateHelper.now(),
     updatedAt: null,
 });
@@ -25,18 +26,20 @@ factory.define<ICreateTeam>('CreateTeamDto', CreateTeamDto, {
     name: faker.name.findName(),
     knownby: faker.name.findName(),
     initials: faker.random.alpha({ count: 3 }),
-    logoURL: faker.image.imageUrl(),
-    stadiumId: faker.random.number(),
     foundationDate: DateHelper.parseFromJsDate(faker.date.past()),
+    logoURL: faker.image.imageUrl(),
+    bio: faker.random.words(30),
+    stadiumId: faker.random.number(),
 });
 
 factory.define<IUpdateTeam>('UpdateTeamDto', UpdateTeamDto, {
     name: faker.name.findName(),
     knownby: faker.name.findName(),
     initials: faker.random.alpha({ count: 3 }),
-    logoURL: faker.image.imageUrl(),
-    stadiumId: faker.random.number(),
     foundationDate: DateHelper.parseFromJsDate(faker.date.past()),
+    logoURL: faker.image.imageUrl(),
+    bio: faker.random.words(30),
+    stadiumId: faker.random.number(),
 });
 
 export const TeamFactory = factory;

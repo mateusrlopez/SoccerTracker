@@ -24,18 +24,23 @@ export class CreateUsersTable1614229716436 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
-                        name: 'password',
-                        type: 'char',
-                        length: '60',
-                    },
-                    {
                         name: 'email_verified',
                         type: 'boolean',
                         default: false,
                     },
                     {
+                        name: 'password',
+                        type: 'char',
+                        length: '60',
+                    },
+                    {
                         name: 'birthdate',
                         type: 'date',
+                    },
+                    {
+                        name: 'admin',
+                        type: 'boolean',
+                        default: false,
                     },
                     {
                         name: 'photo_url',
@@ -43,13 +48,13 @@ export class CreateUsersTable1614229716436 implements MigrationInterface {
                         isNullable: true,
                     },
                     {
-                        name: 'team_id',
-                        type: 'int',
+                        name: 'bio',
+                        type: 'text',
+                        isNullable: true,
                     },
                     {
-                        name: 'admin',
-                        type: 'boolean',
-                        default: false,
+                        name: 'team_id',
+                        type: 'int',
                     },
                     {
                         name: 'created_at',

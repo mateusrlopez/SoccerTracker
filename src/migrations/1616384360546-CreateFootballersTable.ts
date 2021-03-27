@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreatePlayersTable1616384360546 implements MigrationInterface {
+export class CreateFootballersTable1616384360546 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'players',
+                name: 'footballers',
                 columns: [
                     {
                         name: 'id',
@@ -28,17 +28,16 @@ export class CreatePlayersTable1616384360546 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
-                        name: 'picture_url',
-                        type: 'varchar',
-                        isNullable: true,
+                        name: 'birthdate',
+                        type: 'date',
                     },
                     {
                         name: 'height',
                         type: 'int',
                     },
                     {
-                        name: 'birthdate',
-                        type: 'date',
+                        name: 'weight',
+                        type: 'real',
                     },
                     {
                         name: 'position',
@@ -47,6 +46,20 @@ export class CreatePlayersTable1616384360546 implements MigrationInterface {
                     {
                         name: 'preferred_foot',
                         type: 'preferred_foot_enum',
+                    },
+                    {
+                        name: 'function',
+                        type: 'function_enum',
+                    },
+                    {
+                        name: 'picture_url',
+                        type: 'varchar',
+                        isNullable: true,
+                    },
+                    {
+                        name: 'bio',
+                        type: 'text',
+                        isNullable: true,
                     },
                     {
                         name: 'shirt_number',
@@ -71,7 +84,7 @@ export class CreatePlayersTable1616384360546 implements MigrationInterface {
                 ],
                 foreignKeys: [
                     {
-                        name: 'players_teams_fk',
+                        name: 'footballers_teams_fk',
                         columnNames: ['team_id'],
                         referencedTableName: 'teams',
                         referencedColumnNames: ['id'],
@@ -83,6 +96,6 @@ export class CreatePlayersTable1616384360546 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('players', true);
+        await queryRunner.dropTable('footballers', true);
     }
 }

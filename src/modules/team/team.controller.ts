@@ -26,8 +26,8 @@ export class TeamController {
     @Post()
     @UseGuards(AdminGuard)
     @HttpCode(HttpStatus.CREATED)
-    public async create(@Body() createUserDto: CreateTeamDto): Promise<ITeam> {
-        return this.teamService.create(createUserDto);
+    public async create(@Body() createTeamDto: CreateTeamDto): Promise<ITeam> {
+        return this.teamService.create(createTeamDto);
     }
 
     @Get()

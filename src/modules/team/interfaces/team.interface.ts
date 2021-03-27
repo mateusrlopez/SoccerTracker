@@ -6,7 +6,8 @@ export interface ITeam extends IBaseEntity {
     name: string;
     knownby: string;
     initials: string;
-    logoURL: string | null;
-    stadiumId: number;
     foundationDate: DateTime;
+    logoURL: string;
+    bio: string;
+    stadiumId: number;
 }

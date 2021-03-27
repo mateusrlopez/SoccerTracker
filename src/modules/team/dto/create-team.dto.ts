@@ -1,10 +1,13 @@
 import { Transform } from 'class-transformer';
 import { IsDefined, IsNumber, IsString, IsUrl, Length, Validate } from 'class-validator';
+import { DateTime } from 'luxon';
 
 import { DateHelper } from '@shared/helpers/date.helper';
 import { ValidDate } from '@shared/validators/valid-date.validator';
 
-export class CreateTeamDto {
+import { ICreateTeam } from '../interfaces/create-team.interface';
+
+export class CreateTeamDto implements ICreateTeam {
     @IsDefined()
     @IsString()
     public readonly name: string;
@@ -18,13 +21,16 @@ export class CreateTeamDto {
     @Length(3, 3)
     public readonly initials: string;
 
-    @IsUrl()
-    public readonly logoURL?: string;
-
     @IsDefined()
     @Transform(({ value }) => DateHelper.parseFromSQLDate(value))
     @Validate(ValidDate)
-    public readonly foundationDate: string;
+    public readonly foundationDate: DateTime;
+
+    @IsUrl()
+    public readonly logoURL?: string;
+
+    @IsString()
+    public readonly bio?: string;
 
     @IsDefined()
     @IsNumber()

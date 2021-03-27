@@ -2,20 +2,24 @@ import { DateTime } from 'luxon';
 
 import { IBaseEntity } from '@shared/base-entity.interface';
 
-import { Position } from '../enums/poisition.enum';
+import { Function } from '../enums/function.enum';
+import { Position } from '../enums/position.enum';
 import { PreferredFoot } from '../enums/preferred-foot.enum';
 
-export interface IPlayer extends IBaseEntity {
+export interface IFootballer extends IBaseEntity {
     firstName: string;
     middleName: string;
     lastName: string;
     knownby: string;
-    pictureURL: string | null;
+    birthdate: DateTime;
     height: number;
-    teamId: number | null;
-    shirtNumber: number | null;
+    weight: number;
     position: Position;
     preferredFoot: PreferredFoot;
-    birthdate: DateTime;
+    function: Function;
+    pictureURL: string;
+    bio: string;
+    shirtNumber: number;
+    teamId: number;
     age: number;
 }

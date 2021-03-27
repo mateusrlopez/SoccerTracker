@@ -11,17 +11,18 @@ export class PasswordResetProcessor {
 
     @Process()
     public async sendMail(job: Job<{ entity: IPasswordReset; token: string }>): Promise<void> {
-        const user = await job.data.entity.user;
+        const { email, firstName } = await job.data.entity.user;
         const { token } = job.data;
 
         await this.mailerService.sendMail({
             context: {
-                name: user.firstName,
-                url: `?token=${token}&email=${user.email}`,
+                name: firstName,
+                email,
+                token,
             },
             subject: 'Password reset at SoccerStats',
             template: 'password-reset',
-            to: user.email,
+            to: email,
         });
     }
 }

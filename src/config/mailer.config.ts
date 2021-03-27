@@ -4,6 +4,8 @@ import * as path from 'path';
 
 import { EnvHelper } from '@shared/helpers/env.helper';
 
+import { AppConfig } from './app.config';
+
 export const MailerConfig: MailerOptions = {
     defaults: {
         from: EnvHelper.getVariable('MAIL_FROM'),
@@ -16,10 +18,13 @@ export const MailerConfig: MailerOptions = {
         },
     },
     transport: {
-        auth: {
-            password: EnvHelper.getVariable('MAIL_PASSWORD'),
-            user: EnvHelper.getVariable('MAIL_USER'),
-        },
+        auth:
+            AppConfig.nodeEnv === 'production'
+                ? {
+                      password: EnvHelper.getVariable('MAIL_PASSWORD'),
+                      user: EnvHelper.getVariable('MAIL_USER'),
+                  }
+                : null,
         host: EnvHelper.getVariable('MAIL_HOST'),
         ignoreTLS: true,
         port: EnvHelper.getNumericVariable('MAIL_PORT'),

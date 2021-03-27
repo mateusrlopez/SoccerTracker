@@ -5,7 +5,9 @@ import { IBaseEntity } from '@shared/base-entity.interface';
 export interface IStadium extends IBaseEntity {
     name: string;
     knownby: string;
-    pictureURL: string | null;
+    pictureURL: string;
     foundationDate: DateTime;
+    address: string;
     capacity: number;
+    bio: string;
 }

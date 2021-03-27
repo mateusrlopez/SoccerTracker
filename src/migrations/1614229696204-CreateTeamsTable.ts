@@ -25,13 +25,18 @@ export class CreateTeamsTable1614229696204 implements MigrationInterface {
                         length: '3',
                     },
                     {
+                        name: 'foundation_date',
+                        type: 'date',
+                    },
+                    {
                         name: 'logo_url',
                         type: 'varchar',
                         isNullable: true,
                     },
                     {
-                        name: 'foundation_date',
-                        type: 'date',
+                        name: 'bio',
+                        type: 'text',
+                        isNullable: true,
                     },
                     {
                         name: 'stadium_id',

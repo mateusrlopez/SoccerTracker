@@ -15,7 +15,9 @@ factory.define<IStadium>('Stadium', Stadium, {
     knownby: faker.name.findName(),
     pictureURL: faker.image.imageUrl(),
     foundationDate: DateHelper.parseFromJsDate(faker.date.past()),
+    address: faker.address.streetAddress(),
     capacity: faker.random.number(),
+    bio: faker.random.words(30),
     createdAt: DateHelper.now(),
     updatedAt: null,
 });
@@ -25,7 +27,9 @@ factory.define<ICreateStadium>('CreateStadiumDto', CreateStadiumDto, {
     knownby: faker.name.findName(),
     pictureURL: faker.image.imageUrl(),
     foundationDate: DateHelper.parseFromJsDate(faker.date.past()),
+    address: faker.address.streetAddress(),
     capacity: faker.random.number(),
+    bio: faker.random.words(30),
 });
 
 factory.define<IUpdateStadium>('UpdateStadiumDto', UpdateStadiumDto, {
@@ -33,7 +37,9 @@ factory.define<IUpdateStadium>('UpdateStadiumDto', UpdateStadiumDto, {
     knownby: faker.name.findName(),
     pictureURL: faker.image.imageUrl(),
     foundationDate: DateHelper.parseFromJsDate(faker.date.past()),
+    address: faker.address.streetAddress(),
     capacity: faker.random.number(),
+    bio: faker.random.words(30),
 });
 
 export const StadiumFactory = factory;

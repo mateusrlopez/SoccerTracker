@@ -29,8 +29,17 @@ export class CreateStadiumsTable1614229686587 implements MigrationInterface {
                         type: 'date',
                     },
                     {
+                        name: 'address',
+                        type: 'varchar',
+                    },
+                    {
                         name: 'capacity',
-                        type: 'bigint',
+                        type: 'int',
+                    },
+                    {
+                        name: 'bio',
+                        type: 'text',
+                        isNullable: true,
                     },
                     {
                         name: 'created_at',

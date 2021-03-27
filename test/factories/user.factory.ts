@@ -17,9 +17,10 @@ factory.define<IUser>('User', User, {
     lastName: faker.name.lastName(),
     password: faker.internet.password(),
     email: faker.internet.email(),
-    admin: faker.random.boolean(),
     emailVerified: faker.random.boolean(),
     birthdate: DateHelper.parseFromJsDate(faker.date.past()),
+    admin: faker.random.boolean(),
+    bio: faker.random.words(30),
     photoURL: faker.image.imageUrl(),
     teamId: faker.random.number(),
     createdAt: DateHelper.now(),
@@ -39,7 +40,9 @@ factory.define<ICreateUser>('CreateUserDto', CreateUserDto, {
 factory.define<IUpdateUser>('UpdateUserDto', UpdateUserDto, {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
+    emailVerified: faker.random.boolean(),
     birthdate: DateHelper.parseFromJsDate(faker.date.past()),
+    bio: faker.random.words(30),
     photoURL: faker.image.imageUrl(),
     teamId: faker.random.number(),
 });

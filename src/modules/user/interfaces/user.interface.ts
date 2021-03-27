@@ -11,7 +11,8 @@ export interface IUser extends IBaseEntity {
     password: string;
     birthdate: DateTime;
     age: number;
-    photoURL: string | null;
-    teamId: number;
     admin: boolean;
+    bio: string;
+    photoURL: string;
+    teamId: number;
 }

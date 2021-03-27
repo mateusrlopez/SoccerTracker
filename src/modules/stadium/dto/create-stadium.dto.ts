@@ -5,7 +5,9 @@ import { DateTime } from 'luxon';
 import { DateHelper } from '@shared/helpers/date.helper';
 import { ValidDate } from '@shared/validators/valid-date.validator';
 
-export class CreateStadiumDto {
+import { ICreateStadium } from '../interfaces/create-stadium.interface';
+
+export class CreateStadiumDto implements ICreateStadium {
     @IsDefined()
     @IsString()
     public readonly name: string;
@@ -19,10 +21,17 @@ export class CreateStadiumDto {
     @Validate(ValidDate)
     public readonly foundationDate: DateTime;
 
+    @IsUrl()
+    public readonly pictureURL?: string;
+
+    @IsDefined()
+    @IsString()
+    public readonly address: string;
+
     @IsDefined()
     @IsNumber()
     public readonly capacity: number;
 
-    @IsUrl()
-    public readonly pictureURL?: string;
+    @IsString()
+    public readonly bio?: string;
 }

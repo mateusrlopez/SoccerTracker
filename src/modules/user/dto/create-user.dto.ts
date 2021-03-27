@@ -13,7 +13,9 @@ import { DateTime } from 'luxon';
 import { DateHelper } from '@shared/helpers/date.helper';
 import { ValidDate } from '@shared/validators/valid-date.validator';
 
-export class CreateUserDto {
+import { ICreateUser } from '../interfaces/create-user.interface';
+
+export class CreateUserDto implements ICreateUser {
     @IsDefined()
     @IsString()
     public readonly firstName: string;

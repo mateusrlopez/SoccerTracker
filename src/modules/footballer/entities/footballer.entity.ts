@@ -6,11 +6,13 @@ import { BaseEntity } from '@shared/base.entity';
 import { DateHelper } from '@shared/helpers/date.helper';
 import { TransformerHelper } from '@shared/helpers/transformer.helper';
 
-import { Position } from '../enums/poisition.enum';
+import { Function } from '../enums/function.enum';
+import { Position } from '../enums/position.enum';
 import { PreferredFoot } from '../enums/preferred-foot.enum';
+import { IFootballer } from '../interfaces/footballer.interface';
 
 @Entity()
-export class Player extends BaseEntity {
+export class Footballer extends BaseEntity implements IFootballer {
     @Column()
     public firstName: string;
 
@@ -23,14 +25,15 @@ export class Player extends BaseEntity {
     @Column()
     public knownby: string;
 
-    @Column({ default: null })
-    public pictureURL: string | null;
+    @Column({ transformer: TransformerHelper.parseDate, type: 'date' })
+    @Transform(({ value }) => value.toFormat('yyyy-MM-dd'))
+    public birthdate: DateTime;
 
     @Column()
     public height: number;
 
-    @Column({ default: null })
-    public shirtNumber: number | null;
+    @Column()
+    public weight: number;
 
     @Column({ type: 'enum', enum: Position })
     public position: Position;
@@ -38,12 +41,20 @@ export class Player extends BaseEntity {
     @Column({ type: 'enum', enum: PreferredFoot })
     public preferredFoot: PreferredFoot;
 
-    @Column({ default: null })
-    public teamId: number | null;
+    @Column({ type: 'enum', enum: Function })
+    public function: Function;
 
-    @Column({ transformer: TransformerHelper.parseDate, type: 'date' })
-    @Transform(({ value }) => value.toFormat('yyyy-MM-dd'))
-    public birthdate: DateTime;
+    @Column({ default: null })
+    public pictureURL: string;
+
+    @Column({ default: null })
+    public bio: string;
+
+    @Column({ default: null })
+    public shirtNumber: number;
+
+    @Column({ default: null })
+    public teamId: number;
 
     @Expose()
     public get age(): number {

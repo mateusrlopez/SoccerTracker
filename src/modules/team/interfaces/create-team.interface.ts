@@ -4,7 +4,8 @@ export interface ICreateTeam {
     name: string;
     knownby: string;
     initials: string;
-    logoURL?: string;
-    stadiumId: number;
     foundationDate: DateTime;
+    logoURL?: string;
+    bio?: string;
+    stadiumId: number;
 }
