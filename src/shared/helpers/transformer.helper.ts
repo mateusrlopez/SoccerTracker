@@ -17,10 +17,16 @@ export class TransformerHelper {
         to: (value: DateTime) => value.toFormat('yyyy-MM-dd'),
     };
 
+    public static readonly parseTimestamp: ValueTransformer = {
+        from: (value: string) =>
+            DateHelper.parseFromDatabaseTimestamp(value)?.setZone(AppConfig.timezone),
+        to: (value: DateTime) => value.toFormat('yyyy-MM-dd HH:mm:ss z'),
+    };
+
     public static readonly parseGeneratedTimestamp: ValueTransformer = {
         from: (value: string) =>
-            DateHelper.parseFromSQLTimestamp(value)?.setZone(AppConfig.timezone),
+            DateHelper.parseFromDatabaseTimestamp(value)?.setZone(AppConfig.timezone),
         to: (value: string) =>
-            DateHelper.parseFromSQLTimestamp(value)?.toFormat('yyyy-MM-dd HH:mm:ss z'),
+            DateHelper.parseFromDatabaseTimestamp(value)?.toFormat('yyyy-MM-dd HH:mm:ss z'),
     };
 }

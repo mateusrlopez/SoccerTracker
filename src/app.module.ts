@@ -12,6 +12,7 @@ import { DatabaseConfig } from '@config/database.config';
 import { MailerConfig } from '@config/mailer.config';
 import { QueueConfig } from '@config/queue.config';
 import { FootballerModule } from '@footballer/footballer.module';
+import { MatchModule } from '@match/match.module';
 import { PasswordModule } from '@password-reset/password-reset.module';
 import { GlobalExceptionFilter } from '@shared/exception.filter';
 import { LoggingInterceptor } from '@shared/logging.interceptor';
@@ -34,6 +35,7 @@ import { UserModule } from '@user/user.module';
         TeamModule,
         StadiumModule,
         FootballerModule,
+        MatchModule,
     ],
     providers: [
         Logger,

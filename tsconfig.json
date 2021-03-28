@@ -19,6 +19,7 @@
       "@auth/*": ["./src/modules/auth/*"],
       "@config/*": ["./src/config/*"],
       "@factories/*": ["./test/factories/*"],
+      "@match/*": ["./src/modules/match/*"],
       "@mocks/*": ["./test/mocks/*"],
       "@password-reset/*": ["./src/modules/password-reset/*"],
       "@footballer/*": ["src/modules/footballer/*"],

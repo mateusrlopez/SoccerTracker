@@ -13,7 +13,11 @@ export abstract class DateHelper {
         return DateTime.fromSQL(date);
     }
 
-    public static parseFromSQLTimestamp(timestamp: string | undefined): DateTime {
+    public static parseFromUserGivenTimestamp(timestamp: string): DateTime {
+        return DateTime.fromFormat(timestamp, 'yyyy-MM-dd HH:mm:ss z');
+    }
+
+    public static parseFromDatabaseTimestamp(timestamp: string | undefined): DateTime {
         return typeof timestamp === 'undefined' || timestamp === null
             ? null
             : DateTime.fromJSDate(new Date(timestamp));
