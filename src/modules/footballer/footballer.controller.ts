@@ -19,7 +19,7 @@ import { UpdateFootballerDto } from './dto/update-footballer.dto';
 import { FootballerService } from './footballer.service';
 import { IFootballer } from './interfaces/footballer.interface';
 
-@Controller('footballer')
+@Controller('footballers')
 export class FootballerController {
     constructor(private readonly footballerService: FootballerService) {}
 

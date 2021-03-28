@@ -19,6 +19,6 @@ export abstract class BaseEntity {
         transformer: TransformerHelper.parseGeneratedTimestamp,
         type: 'timestamptz',
     })
-    @Transform(({ value }) => (value ? value.toFormat('yyyy-MM-dd HH:mm:ss') : value))
-    public updatedAt: DateTime | null;
+    @Transform(({ value }) => (value ? value.toFormat('yyyy-MM-dd HH:mm:ss') : null))
+    public updatedAt: DateTime;
 }

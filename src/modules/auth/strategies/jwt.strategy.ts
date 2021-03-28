@@ -6,7 +6,6 @@ import { JwtConfig } from '@config/jwt.config';
 import { IUser } from '@user/interfaces/user.interface';
 
 import { AuthService } from '../auth.service';
-import { ITokenPayload } from '../interfaces/token-payload.interface';
 
 @Injectable()
 export class JWTStrategy extends PassportStrategy(Strategy) {
@@ -18,7 +17,7 @@ export class JWTStrategy extends PassportStrategy(Strategy) {
         });
     }
 
-    public async validate(payload: ITokenPayload): Promise<IUser> {
-        return this.authService.retrieveUser(payload.email);
+    public async validate(payload: string): Promise<IUser> {
+        return this.authService.retrieveUser(payload);
     }
 }

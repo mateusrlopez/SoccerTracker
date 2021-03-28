@@ -19,7 +19,7 @@ import { UpdateTeamDto } from './dto/update-team.dto';
 import { ITeam } from './interfaces/team.interface';
 import { TeamService } from './team.service';
 
-@Controller('team')
+@Controller('teams')
 export class TeamController {
     constructor(private readonly teamService: TeamService) {}
 

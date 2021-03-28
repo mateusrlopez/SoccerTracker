@@ -7,7 +7,6 @@ import { IUser } from '@user/interfaces/user.interface';
 import { AuthService } from './auth.service';
 import { AuthUser } from './decorators/auth-user.decorator';
 import { Public } from './decorators/public-route.decorator';
-import { JwtGuard } from './guards/jwt.guard';
 import { LocalGuard } from './guards/local.guard';
 
 @Controller('auth')
@@ -44,7 +43,6 @@ export class AuthController {
     }
 
     @Get('me')
-    @UseGuards(JwtGuard)
     public async me(@AuthUser() user: IUser): Promise<IUser> {
         return user;
     }

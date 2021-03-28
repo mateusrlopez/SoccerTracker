@@ -30,7 +30,8 @@ services:
       - "8025:8025"
     container_name: mailhog_container
     restart: always
-    command: ["-storage=maildir", "-maildir-path=/maildir"]
+    environment:
+      MH_STORAGE: maildir
     volumes:
       - mailhog:/maildir
 

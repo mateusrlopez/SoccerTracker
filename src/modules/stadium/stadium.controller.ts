@@ -19,7 +19,7 @@ import { UpdateStadiumDto } from './dto/update-stadium.dto';
 import { IStadium } from './interfaces/stadium.interface';
 import { StadiumService } from './stadium.service';
 
-@Controller('stadium')
+@Controller('stadiums')
 export class StadiumController {
     constructor(private readonly stadiumService: StadiumService) {}
 
