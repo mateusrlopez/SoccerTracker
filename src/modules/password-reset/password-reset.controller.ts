@@ -9,7 +9,7 @@ import { RequestPasswordResetDto } from './dto/request-password-reset.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { PasswordResetService } from './password-reset.service';
 
-@Controller('password')
+@Controller('password-reset')
 export class PasswordResetController {
     constructor(
         private readonly authService: AuthService,

@@ -6,5 +6,5 @@ export interface IPasswordReset {
     userEmail: string;
     token: string;
     createdAt: DateTime;
-    user: Promise<IUser>;
+    user: IUser;
 }

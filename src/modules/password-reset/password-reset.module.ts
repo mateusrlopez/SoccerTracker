@@ -14,13 +14,13 @@ import { PasswordResetSubscriber } from './subscribers/password-reset.subscriber
 
 @Module({
     controllers: [PasswordResetController],
-    exports: [],
+    exports: [PasswordResetService],
     imports: [
         BullModule.registerQueue({ name: PASSWORD_RESET_QUEUE_NAME }),
         TypeOrmModule.forFeature([PasswordResetRepository]),
         AuthModule,
         UserModule,
     ],
-    providers: [PasswordResetProcessor, PasswordResetSubscriber, PasswordResetService],
+    providers: [PasswordResetService, PasswordResetSubscriber, PasswordResetProcessor],
 })
 export class PasswordModule {}

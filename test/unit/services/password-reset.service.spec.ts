@@ -46,10 +46,16 @@ describe('PasswordResetService', () => {
 
     describe('createPasswordResetRequest', () => {
         it('should return undefined', async () => {
+            const user = await UserFactory.attrs<IUser>('User');
             const passwordReset = await PasswordResetFactory.attrs<IPasswordReset>('PasswordReset');
             const requestPasswordResetDto = await PasswordResetFactory.attrs<IRequestPasswordReset>(
                 'RequestPasswordResetDto'
             );
+            const { userEmail } = requestPasswordResetDto;
+
+            const userRepositoryFindByEmailSpy = jest
+                .spyOn(userRepository, 'findByEmail')
+                .mockResolvedValue(user);
 
             const passwordResetRepositoryCreateAndSaveSpy = jest
                 .spyOn(passwordResetRepository, 'createAndSave')
@@ -61,10 +67,11 @@ describe('PasswordResetService', () => {
 
             expect(returnedValue).not.toBeDefined();
 
+            expect(userRepositoryFindByEmailSpy).toHaveBeenCalledTimes(1);
+            expect(userRepositoryFindByEmailSpy).toHaveBeenCalledWith(userEmail);
+
             expect(passwordResetRepositoryCreateAndSaveSpy).toHaveBeenCalledTimes(1);
-            expect(passwordResetRepositoryCreateAndSaveSpy).toHaveBeenCalledWith(
-                requestPasswordResetDto
-            );
+            expect(passwordResetRepositoryCreateAndSaveSpy).toHaveBeenCalledWith({ user });
         });
     });
 

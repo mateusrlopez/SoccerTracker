@@ -10,8 +10,8 @@ export class PasswordResetProcessor {
     constructor(private readonly mailerService: MailerService) {}
 
     @Process()
-    public async sendMail(job: Job<{ entity: IPasswordReset; token: string }>): Promise<void> {
-        const { email, firstName } = await job.data.entity.user;
+    public async sendMail(job: Job<IPasswordReset>): Promise<void> {
+        const { email, firstName } = job.data.user;
         const { token } = job.data;
 
         await this.mailerService.sendMail({

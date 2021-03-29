@@ -1,6 +1,6 @@
 import { DeleteResult, EntityRepository, Repository } from 'typeorm';
 
-import { IRequestPasswordReset } from '@password-reset/interfaces/request-password-reset.interface';
+import { ICreatePasswordReset } from '@password-reset/interfaces/create-password-reset.interface';
 import { DateHelper } from '@shared/helpers/date.helper';
 
 import { PasswordReset } from '../entities/password-reset.entity';
@@ -8,8 +8,8 @@ import { IPasswordReset } from '../interfaces/password-reset.interface';
 
 @EntityRepository(PasswordReset)
 export class PasswordResetRepository extends Repository<PasswordReset> {
-    public createAndSave(createUserDto: IRequestPasswordReset): Promise<IPasswordReset> {
-        const entity = this.create(createUserDto);
+    public createAndSave(createPasswordResetDto: ICreatePasswordReset): Promise<IPasswordReset> {
+        const entity = this.create(createPasswordResetDto);
         return this.save(entity);
     }
 

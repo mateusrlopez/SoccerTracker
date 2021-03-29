@@ -13,8 +13,7 @@ export class CreatePasswordResetsTable1614229758038 implements MigrationInterfac
                     },
                     {
                         name: 'token',
-                        type: 'char',
-                        length: '60',
+                        type: 'uuid',
                     },
                     {
                         name: 'created_at',
@@ -28,6 +27,7 @@ export class CreatePasswordResetsTable1614229758038 implements MigrationInterfac
                         columnNames: ['user_email'],
                         referencedTableName: 'users',
                         referencedColumnNames: ['email'],
+                        onDelete: 'cascade',
                     },
                 ],
             }),
