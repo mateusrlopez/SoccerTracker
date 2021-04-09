@@ -9,3 +9,6 @@ node_modules
 # IDE specific
 .idea
 .vscode
+
+# Coverage tests
+coverage

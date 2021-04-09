@@ -11,7 +11,7 @@ import { IPasswordReset } from '../interfaces/password-reset.interface';
 
 @EventSubscriber()
 @Injectable()
-export class PasswordResetSubscriber implements EntitySubscriberInterface<IPasswordReset> {
+export class PasswordResetSubscriber implements EntitySubscriberInterface<PasswordReset> {
     constructor(
         @InjectQueue(PASSWORD_RESET_QUEUE_NAME) private readonly passwordResetQueue: Queue,
         @InjectConnection() private readonly connection: Connection

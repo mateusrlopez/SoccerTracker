@@ -10,7 +10,7 @@ import { IUser } from '@user/interfaces/user.interface';
 
 @EventSubscriber()
 @Injectable()
-export class UserSubscriber implements EntitySubscriberInterface<IUser> {
+export class UserSubscriber implements EntitySubscriberInterface<User> {
     constructor(
         @InjectQueue(USER_QUEUE_NAME) private readonly userQueue: Queue,
         @InjectConnection() private readonly connection: Connection
