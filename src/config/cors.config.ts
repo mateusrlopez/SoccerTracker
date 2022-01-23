@@ -1,8 +1,14 @@
-import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
+import { registerAs } from '@nestjs/config';
+import { get } from 'env-var';
 
-import { EnvHelper } from '@shared/helpers/env.helper';
+export interface ICorsConfig {
+    headers: string[];
+    methods: string[];
+    origin: string[];
+}
 
-export const CorsConfig: CorsOptions = {
-    exposedHeaders: EnvHelper.getArrayVariable('CORS_EXPOSED_HEADERS'),
-    origin: EnvHelper.getVariable('CORS_ORIGIN'),
-};
+export const CorsConfig = registerAs<ICorsConfig>('cors', () => ({
+    headers: get('CORS_HEADERS').required().asArray(','),
+    methods: get('CORS_METHODS').required().asArray(','),
+    origin: get('CORS_ORIGIN').required().asArray(','),
+}));

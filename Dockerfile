@@ -1,12 +1,11 @@
-FROM node:alpine
+FROM node:16.11.0-alpine
 
-WORKDIR /
+WORKDIR /app
 
-COPY ["./package.json", "./yarn.lock", "./"]
-COPY ./dist dist/
-COPY ./templates templates/
+COPY package.json .
+COPY dist .
 
-RUN yarn install --production --no-progress --ignore-scripts
+RUN ["npm", "--production", "--silent"]
 
-EXPOSE 5000
-CMD [ "yarn", "start" ]
+EXPOSE 8080
+CMD ["npm", "run", "start"]

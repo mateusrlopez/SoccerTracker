@@ -1,33 +1,25 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
     "module": "CommonJS",
-    "baseUrl": ".",
+    "target": "ES2017",
     "outDir": "./dist",
-    "typeRoots": [
-      "./src/@types",
-      "./node_modules/@types"
-    ],
-    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
     "removeComments": true,
-    "resolveJsonModule": true,
-    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "isolatedModules": true,
-    "esModuleInterop": false,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
     "paths": {
-      "@auth/*": ["./src/modules/auth/*"],
+      "@app/*": ["./src/app/*"],
       "@config/*": ["./src/config/*"],
-      "@factories/*": ["./test/factories/*"],
-      "@goal/*": ["./src/modules/goal/*"],
-      "@match/*": ["./src/modules/match/*"],
-      "@mocks/*": ["./test/mocks/*"],
-      "@password-reset/*": ["./src/modules/password-reset/*"],
-      "@footballer/*": ["src/modules/footballer/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@stadium/*": ["./src/modules/stadium/*"],
-      "@team/*": ["./src/modules/team/*"],
-      "@user/*": ["./src/modules/user/*"]
+      "@domain/*": ["./src/domain/*"],
+      "@framework/*": ["./src/framework/*"],
+      "@infra/*": ["./src/infra/*"],
+      "@presenters/*": ["./src/presenters/*"]
     }
   }
 }

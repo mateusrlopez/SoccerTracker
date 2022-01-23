@@ -1,53 +1,33 @@
-import { MailerModule } from '@nestjs-modules/mailer';
-import { BullModule } from '@nestjs/bull';
-import { CacheModule, Logger, Module } from '@nestjs/common';
-import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
-import { ScheduleModule } from '@nestjs/schedule';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 
-import { AuthModule } from '@auth/auth.module';
-import { JwtGuard } from '@auth/guards/jwt.guard';
-import { CacheConfig } from '@config/cache.config';
+import { AppConfig } from '@config/app.config';
+import { CorsConfig } from '@config/cors.config';
 import { DatabaseConfig } from '@config/database.config';
-import { MailerConfig } from '@config/mailer.config';
-import { QueueConfig } from '@config/queue.config';
-import { FootballerModule } from '@footballer/footballer.module';
-import { GoalModule } from '@goal/goal.module';
-import { MatchModule } from '@match/match.module';
-import { PasswordModule } from '@password-reset/password-reset.module';
-import { GlobalExceptionFilter } from '@shared/exception.filter';
-import { LoggingInterceptor } from '@shared/logging.interceptor';
-import { StadiumModule } from '@stadium/stadium.module';
-import { TeamModule } from '@team/team.module';
-import { UserModule } from '@user/user.module';
+import { FileStorageClientConfig } from '@config/file-storage-client.config';
+import { FileStorageConfig } from '@config/file-storage.config';
+import { InfrastructureModule } from '@infra/modules/infra.module';
+import { StadiumModule } from '@infra/modules/stadium.module';
+import { TeamModule } from '@infra/modules/team.module';
+import { HttpExceptionFilter } from '@presenters/http/exceptions-filter/http-exeception.filter';
+import { LoggingInterceptor } from '@presenters/http/interceptors/logging.interceptor';
 
 @Module({
-    controllers: [],
-    exports: [],
     imports: [
-        BullModule.forRoot(QueueConfig),
-        CacheModule.register(CacheConfig),
-        MailerModule.forRoot(MailerConfig),
-        ScheduleModule.forRoot(),
-        TypeOrmModule.forRoot(DatabaseConfig),
-        AuthModule,
-        PasswordModule,
-        UserModule,
+        ConfigModule.forRoot({
+            ignoreEnvFile: process.env.NODE_ENV === 'production',
+            load: [AppConfig, CorsConfig, DatabaseConfig, FileStorageConfig, FileStorageClientConfig],
+            isGlobal: true,
+        }),
+        InfrastructureModule,
         TeamModule,
         StadiumModule,
-        FootballerModule,
-        MatchModule,
-        GoalModule,
     ],
     providers: [
-        Logger,
         {
             provide: APP_FILTER,
-            useClass: GlobalExceptionFilter,
-        },
-        {
-            provide: APP_GUARD,
-            useClass: JwtGuard,
+            useClass: HttpExceptionFilter,
         },
         {
             provide: APP_INTERCEPTOR,

@@ -6,10 +6,7 @@
   },
   "extends": [
     "airbnb-base",
-    "prettier",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -22,61 +19,17 @@
     "eslint-plugin-import-helpers"
   ],
   "rules": {
-    "no-console": "off",
+    "prettier/prettier": "error",
     "class-methods-use-this": "off",
     "no-useless-constructor": "off",
-    "prettier/prettier": "error",
     "no-shadow": "off",
-    "import-helpers/order-imports": [
-      "warn",
-      {
-        "newlinesBetween": "always",
-        "groups": [
-          "module",
-          "/^@((?!nest).)*$/",
-          [
-            "parent",
-            "sibling",
-            "index"
-          ]
-        ],
-        "alphabetize": {
-          "order": "asc",
-          "ignoreCase": true
-        }
-      }
-    ],
-    "import/prefer-default-export": "off",
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "ts": "never"
-      }
-    ],
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "test/**/*"
-        ]
-      }
-    ],
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "argsIgnorePattern": "_"
-      }
-    ],
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/explicit-module-boundary-types": [
-      "warn",
-      {
-        "allowArgumentsExplicitlyTypedAsAny": true
-      }
-    ],
-    "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/no-empty-function": "off",
+    "no-empty-function": "off",
+    "no-unused-vars": "off",
+    "no-return-await": "off",
+    "lines-between-class-members": "off",
+    "prefer-destructuring": "off",
+    "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/naming-convention": [
       "error",
       {
@@ -90,13 +43,46 @@
         }
       }
     ],
-    "@typescript-eslint/no-shadow": "error"
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never"
+      }
+    ],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          "module",
+          "/^@((?!(nestjs|jest)).)*$/",
+          [
+            "parent",
+            "sibling",
+            "index"
+          ]
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "ignoreCase": true
+        }
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "test/**/*",
+          "jest.config.ts"
+        ]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
-      "typescript": {
-        "project": "tsconfig.json"
-      }
+      "typescript": {}
     }
   }
 }

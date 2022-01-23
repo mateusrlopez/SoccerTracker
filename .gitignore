@@ -1,14 +1,4 @@
-# Distribution
+.env
 dist
 node_modules
-
-# Environment
-*.env*
-!.env.example
-
-# IDE specific
-.idea
-.vscode
-
-# Coverage tests
-coverage
+upload
