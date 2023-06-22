@@ -1,25 +1,21 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "target": "ES2017",
+    "target": "ES2021",
     "outDir": "./dist",
     "baseUrl": "./",
+    "declaration": false,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": false,
+    "sourceMap": false,
+    "incremental": true,
     "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "paths": {
-      "@app/*": ["./src/app/*"],
-      "@config/*": ["./src/config/*"],
-      "@domain/*": ["./src/domain/*"],
-      "@framework/*": ["./src/framework/*"],
-      "@infra/*": ["./src/infra/*"],
-      "@presenters/*": ["./src/presenters/*"]
-    }
+    "noFallthroughCasesInSwitch": true
   }
 }

@@ -1,5 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-. "$(dirname "$0")/_/husky.sh"
+. "$(dirname -- "$0")/_/husky.sh"
 
-yarn lint-staged && yarn test
+npx lint-staged && npm test

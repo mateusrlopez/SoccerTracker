@@ -1,11 +1,19 @@
-FROM node:16.11.0-alpine
+FROM node:18.15.0 AS builder
 
-WORKDIR /app
+COPY . .
 
-COPY package.json .
-COPY dist .
+RUN ["npm", "install"]
 
-RUN ["npm", "--production", "--silent"]
+RUN ["npm", "run", "build"]
 
-EXPOSE 8080
-CMD ["npm", "run", "start"]
+FROM node:18.15.0-alpine
+
+COPY --from=builder dist dist
+COPY --from=builder prisma prisma
+COPY --from=builder package.json .
+
+RUN ["npm", "install", "--omit=dev", "--ignore-scripts"]
+
+RUN ["npx", "prisma", "generate"]
+
+CMD [ "npm", "run", "start:prod" ]

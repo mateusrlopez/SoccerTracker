@@ -1,4 +1,11 @@
-.env
-dist
+.vscode
+.idea
+.DS_Store
+
 node_modules
-upload
+dist
+
+*.log
+
+.env*
+!.env.example
