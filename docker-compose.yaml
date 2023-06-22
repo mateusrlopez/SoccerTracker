@@ -8,6 +8,6 @@ services:
     container_name: postgres_container
     restart: always
     environment:
-      POSTGRES_USER: soccerstats
-      POSTGRES_PASSWORD: soccerstats
+      POSTGRES_USER: soccertracker
+      POSTGRES_PASSWORD: soccertracker
       POSTGRES_DATABASE: postgres
