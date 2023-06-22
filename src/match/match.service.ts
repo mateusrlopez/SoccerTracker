@@ -8,8 +8,10 @@ import { MatchNotExistsException } from './exceptions/not-exists.exception';
 export interface IMatchService {
     create(createMatchDto: ICreateMatch): Promise<IMatch>;
     findAll(): Promise<Array<IMatch>>;
+    findManyByUser(id: string): Promise<Array<IMatch>>;
     findOneById(id: string): Promise<IMatch>;
     updateOneById(id: string, updateMatchDto: IUpdateMatch): Promise<IMatch>;
+    connectToUser(matchId: string, userId: string): Promise<void>;
     removeOneById(id: string): Promise<void>;
 }
 
@@ -25,6 +27,10 @@ export class MatchServiceImplementation implements IMatchService {
         return this.matchRepository.findMany();
     }
 
+    findManyByUser(id: string): Promise<IMatch[]> {
+        return this.matchRepository.findManyByUser(id);
+    }
+
     async findOneById(id: string): Promise<IMatch> {
         const match = await this.matchRepository.findOneById(id);
 
@@ -37,6 +43,10 @@ export class MatchServiceImplementation implements IMatchService {
 
     updateOneById(id: string, updateMatchDto: IUpdateMatch): Promise<IMatch> {
         return this.matchRepository.updateOneById(id, updateMatchDto);
+    }
+
+    async connectToUser(matchId: string, userId: string): Promise<void> {
+        await this.matchRepository.connectOneToUser(matchId, userId);
     }
 
     async removeOneById(id: string): Promise<void> {

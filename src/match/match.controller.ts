@@ -16,11 +16,11 @@ import { CreateMatchDto } from './dto/create-match.dto';
 import { UpdateMatchDto } from './dto/update-match.dto';
 import { MatchResponseDto } from './dto/match-response.dto';
 
-@Controller('matches')
+@Controller()
 export class MatchController {
     constructor(@Inject('MATCH_SERVICE') private readonly matchService: IMatchService) {}
 
-    @Post()
+    @Post('matches')
     @HttpCode(HttpStatus.CREATED)
     async create(@Body() createMatchDto: CreateMatchDto): Promise<MatchResponseDto> {
         const match = await this.matchService.create(createMatchDto);
@@ -28,21 +28,21 @@ export class MatchController {
         return plainToInstance(MatchResponseDto, match);
     }
 
-    @Get()
+    @Get('matches')
     async findAll(): Promise<Array<MatchResponseDto>> {
         const matches = await this.matchService.findAll();
 
         return plainToInstance(MatchResponseDto, matches);
     }
 
-    @Get(':id')
+    @Get('matches/:id')
     async findOneById(@Param('id') id: string): Promise<MatchResponseDto> {
         const match = await this.matchService.findOneById(id);
 
         return plainToInstance(MatchResponseDto, match);
     }
 
-    @Patch(':id')
+    @Patch('matches/:id')
     async updateOneById(
         @Param('id') id: string,
         @Body() updateMatchDto: UpdateMatchDto
@@ -52,9 +52,22 @@ export class MatchController {
         return plainToInstance(MatchResponseDto, updated);
     }
 
-    @Delete(':id')
+    @Delete('matches/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
-    async removeOneById(@Param('id') id: string) {
+    async removeOneById(@Param('id') id: string): Promise<void> {
         await this.matchService.removeOneById(id);
+    }
+
+    @Get('users/:id/matches')
+    async retrieveByUser(@Param('id') id: string): Promise<Array<MatchResponseDto>> {
+        const matches = await this.matchService.findManyByUser(id);
+
+        return plainToInstance(MatchResponseDto, matches);
+    }
+
+    @Post('matches/:matchId/users/:userId')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    async connectToUser(@Param('matchId') matchId: string, @Param('userId') userId: string) {
+        await this.matchService.connectToUser(matchId, userId);
     }
 }

@@ -7,8 +7,10 @@ import { IMatch } from './entities/match.entity';
 export interface IMatchRepository {
     create(data: ICreateMatch): Promise<IMatch>;
     findMany(): Promise<Array<IMatch>>;
+    findManyByUser(id: string): Promise<Array<IMatch>>;
     findOneById(id: string): Promise<IMatch>;
     updateOneById(id: string, data: IUpdateMatch): Promise<IMatch>;
+    connectOneToUser(matchId: string, userId: string): Promise<void>;
     deleteOneById(id: string): Promise<void>;
 }
 
@@ -29,6 +31,13 @@ export class PrismaMatchRepository implements IMatchRepository {
         });
     }
 
+    findManyByUser(id: string): Promise<IMatch[]> {
+        return this.prisma.match.findMany({
+            where: { users: { every: { id } } },
+            include: { stadium: true, homeTeam: true, awayTeam: true },
+        });
+    }
+
     findOneById(id: string): Promise<IMatch> {
         return this.prisma.match.findUnique({
             where: { id },
@@ -41,6 +50,19 @@ export class PrismaMatchRepository implements IMatchRepository {
             where: { id },
             data,
             include: { stadium: true, homeTeam: true, awayTeam: true },
+        });
+    }
+
+    async connectOneToUser(matchId: string, userId: string): Promise<void> {
+        await this.prisma.match.update({
+            where: { id: matchId },
+            data: {
+                users: {
+                    connect: {
+                        id: userId,
+                    },
+                },
+            },
         });
     }
 

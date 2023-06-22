@@ -17,6 +17,7 @@ model User {
   firstName String   @map("first_name") @db.VarChar()
   lastName  String   @map("last_name") @db.VarChar()
   birthdate DateTime @db.Date
+  matches   Match[]
 
   @@map("users")
 }
@@ -57,6 +58,7 @@ model Match {
   stadium       Stadium  @relation(fields: [stadiumId], references: [id])
   homeTeam      Team     @relation(name: "home", fields: [homeTeamId], references: [id])
   awayTeam      Team     @relation(name: "away", fields: [awayTeamId], references: [id])
+  users         User[]
 
   @@map("matches")
 }

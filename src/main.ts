@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common';
 import * as helmet from 'helmet';
 import * as compression from 'compression';
+import * as csurf from 'csurf';
 import { AppModule } from './app.module';
 import { IApplicationConfiguration } from './configurations/application.configuration';
 
@@ -21,6 +22,7 @@ async function bootstrap() {
 
     app.use(helmet.default());
     app.use(compression());
+    app.use(csurf());
 
     const configurationService = app.get<ConfigService>(ConfigService);
 

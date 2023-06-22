@@ -20,8 +20,10 @@ describe('MatchService', () => {
                     useValue: {
                         create: () => {},
                         findMany: () => {},
+                        findManyByUser: () => {},
                         findOneById: () => {},
                         updateOneById: () => {},
+                        connectOneToUser: () => {},
                         deleteOneById: () => {},
                     },
                 },
@@ -124,6 +126,49 @@ describe('MatchService', () => {
         });
     });
 
+    describe('FindManyByUser', () => {
+        it('should return the retrieved matches related to the user', async () => {
+            const userId = faker.string.uuid();
+            const matches: Array<IMatch> = faker.helpers.multiple(
+                () => ({
+                    id: faker.string.uuid(),
+                    date: faker.date.past(),
+                    stadium: {
+                        id: faker.string.uuid(),
+                        name: `${faker.person.fullName} Stadium`,
+                        country: faker.location.country.name,
+                        capacity: faker.number.float(),
+                        foundationDate: faker.date.birthdate(),
+                    },
+                    homeTeam: {
+                        id: faker.string.uuid(),
+                        name: `${faker.location.city.name} City`,
+                        country: faker.location.country.name,
+                        foundationDate: faker.date.birthdate(),
+                    },
+                    homeTeamScore: faker.number.int({ min: 0, max: 10 }),
+                    awayTeam: {
+                        id: faker.string.uuid(),
+                        name: `${faker.location.city.name} City`,
+                        country: faker.location.country.name,
+                        foundationDate: faker.date.birthdate(),
+                    },
+                    awayTeamScore: faker.number.int({ min: 0, max: 10 }),
+                }),
+                {
+                    count: 5,
+                }
+            );
+
+            jest.spyOn(repository, 'findManyByUser').mockResolvedValue(matches);
+
+            await expect(service.findManyByUser(userId)).resolves.toStrictEqual(matches);
+
+            expect(repository.findManyByUser).toHaveBeenCalledTimes(1);
+            expect(repository.findManyByUser).toHaveBeenCalledWith(userId);
+        });
+    });
+
     describe('FindOneById', () => {
         it('should return the retrieved match', async () => {
             const id = faker.string.uuid();
@@ -217,6 +262,20 @@ describe('MatchService', () => {
 
             expect(repository.updateOneById).toHaveBeenCalledTimes(1);
             expect(repository.updateOneById).toHaveBeenCalledWith(id, data);
+        });
+    });
+
+    describe('ConnectOneToUser', () => {
+        it('should connect a match to an user with no return', async () => {
+            const matchId = faker.string.uuid();
+            const userId = faker.string.uuid();
+
+            jest.spyOn(repository, 'connectOneToUser');
+
+            await expect(service.connectToUser(matchId, userId)).resolves.toBeUndefined();
+
+            expect(repository.connectOneToUser).toHaveBeenCalledTimes(1);
+            expect(repository.connectOneToUser).toHaveBeenCalledWith(matchId, userId);
         });
     });
 
