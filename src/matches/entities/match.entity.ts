@@ -1,4 +1,4 @@
-import { IStadium } from '../../stadium/entities/stadium.entity';
+import { IStadium } from '../../stadiums/entities/stadium.entity';
 
 interface ITeam {
     id: string;

@@ -1,4 +1,4 @@
-import { StadiumResponseDto } from '../../stadium/dto/stadium-response.dto';
+import { StadiumResponseDto } from '../../stadiums/dto/stadium-response.dto';
 
 export class TeamResponseDto {
     id: string;

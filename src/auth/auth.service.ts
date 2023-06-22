@@ -1,9 +1,9 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { compareSync, hash, genSalt } from 'bcryptjs';
-import { UserNotExistsException } from '../user/exceptions/not-exists.exceptions';
-import { IUser } from '../user/entities/user.entity';
-import { IUserService } from '../user/user.service';
-import { ICreateUser } from '../user/dto/create-user.dto';
+import { UserNotExistsException } from '../users/exceptions/not-exists.exceptions';
+import { IUser } from '../users/entities/user.entity';
+import { IUserService } from '../users/user.service';
+import { ICreateUser } from '../users/dto/create-user.dto';
 
 export interface IAuthService {
     register(createUserDto: ICreateUser): Promise<IUser>;

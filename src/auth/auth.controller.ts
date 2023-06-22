@@ -12,11 +12,11 @@ import {
 } from '@nestjs/common';
 import { Request as ExpressRequest, Response as ExpressResponse } from 'express';
 import { plainToInstance } from 'class-transformer';
-import { CreateUserDto } from '../user/dto/create-user.dto';
-import { UserResponseDto } from '../user/dto/user-response.dto';
+import { CreateUserDto } from '../users/dto/create-user.dto';
+import { UserResponseDto } from '../users/dto/user-response.dto';
 import { LocalGuard } from './guards/local.guard';
 import { IAuthService } from './auth.service';
-import { IUser } from '../user/entities/user.entity';
+import { IUser } from '../users/entities/user.entity';
 import { Public } from '../http/public.decorator';
 
 @Controller('auth')

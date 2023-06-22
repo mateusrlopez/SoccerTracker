@@ -2,11 +2,11 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { faker } from '@faker-js/faker';
 import { compareSync, genSaltSync, hashSync } from 'bcryptjs';
 import { UnauthorizedException } from '@nestjs/common';
-import { UserNotExistsException } from '../user/exceptions/not-exists.exceptions';
-import { IUser } from '../user/entities/user.entity';
-import { IUserService } from '../user/user.service';
+import { UserNotExistsException } from '../users/exceptions/not-exists.exceptions';
+import { IUser } from '../users/entities/user.entity';
+import { IUserService } from '../users/user.service';
 import { IAuthService, IJwtService } from './auth.service';
-import { ICreateUser } from '../user/dto/create-user.dto';
+import { ICreateUser } from '../users/dto/create-user.dto';
 import { AuthServiceProvider } from './auth.providers';
 
 describe('AuthService', () => {
