@@ -58,6 +58,12 @@ export class MatchController {
         await this.matchService.removeOneById(id);
     }
 
+    @Post('matches/:matchId/users/:userId')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    async connectOneToUser(@Param('matchId') matchId: string, @Param('userId') userId: string) {
+        await this.matchService.connectOneToUser(matchId, userId);
+    }
+
     @Get('users/:id/matches')
     async retrieveByUser(@Param('id') id: string): Promise<Array<MatchResponseDto>> {
         const matches = await this.matchService.findManyByUser(id);
@@ -65,9 +71,9 @@ export class MatchController {
         return plainToInstance(MatchResponseDto, matches);
     }
 
-    @Post('matches/:matchId/users/:userId')
+    @Delete('matches/:matchId/users/:userId')
     @HttpCode(HttpStatus.NO_CONTENT)
-    async connectToUser(@Param('matchId') matchId: string, @Param('userId') userId: string) {
-        await this.matchService.connectToUser(matchId, userId);
+    async disconnectOneToUser(@Param('matchId') matchId: string, @Param('userId') userId: string) {
+        await this.matchService.disconnectOneToUser(matchId, userId);
     }
 }

@@ -24,6 +24,7 @@ describe('MatchService', () => {
                         findOneById: () => {},
                         updateOneById: () => {},
                         connectOneToUser: () => {},
+                        disconnectOneToUser: () => {},
                         deleteOneById: () => {},
                     },
                 },
@@ -272,10 +273,24 @@ describe('MatchService', () => {
 
             jest.spyOn(repository, 'connectOneToUser');
 
-            await expect(service.connectToUser(matchId, userId)).resolves.toBeUndefined();
+            await expect(service.connectOneToUser(matchId, userId)).resolves.toBeUndefined();
 
             expect(repository.connectOneToUser).toHaveBeenCalledTimes(1);
             expect(repository.connectOneToUser).toHaveBeenCalledWith(matchId, userId);
+        });
+    });
+
+    describe('DisconnectOneToUser', () => {
+        it('should disconnect a match to an user with no return', async () => {
+            const matchId = faker.string.uuid();
+            const userId = faker.string.uuid();
+
+            jest.spyOn(repository, 'disconnectOneToUser');
+
+            await expect(service.disconnectOneToUser(matchId, userId)).resolves.toBeUndefined();
+
+            expect(repository.disconnectOneToUser).toHaveBeenCalledTimes(1);
+            expect(repository.disconnectOneToUser).toHaveBeenCalledWith(matchId, userId);
         });
     });
 

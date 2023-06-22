@@ -11,6 +11,7 @@ export interface IMatchRepository {
     findOneById(id: string): Promise<IMatch>;
     updateOneById(id: string, data: IUpdateMatch): Promise<IMatch>;
     connectOneToUser(matchId: string, userId: string): Promise<void>;
+    disconnectOneToUser(matchId: string, userId: string): Promise<void>;
     deleteOneById(id: string): Promise<void>;
 }
 
@@ -59,6 +60,19 @@ export class PrismaMatchRepository implements IMatchRepository {
             data: {
                 users: {
                     connect: {
+                        id: userId,
+                    },
+                },
+            },
+        });
+    }
+
+    async disconnectOneToUser(matchId: string, userId: string): Promise<void> {
+        await this.prisma.match.update({
+            where: { id: matchId },
+            data: {
+                users: {
+                    disconnect: {
                         id: userId,
                     },
                 },
