@@ -11,12 +11,12 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid()) @db.Uuid
-  email     String   @unique @db.VarChar()
-  password  String   @db.VarChar()
-  firstName String   @map("first_name") @db.VarChar()
-  lastName  String   @map("last_name") @db.VarChar()
-  birthdate DateTime @db.Date
+  id        String        @id @default(uuid()) @db.Uuid
+  email     String        @unique @db.VarChar()
+  password  String        @db.VarChar()
+  firstName String        @map("first_name") @db.VarChar()
+  lastName  String        @map("last_name") @db.VarChar()
+  birthdate DateTime      @db.Date
   matches   Match[]
 
   @@map("users")
@@ -48,16 +48,16 @@ model Team {
 }
 
 model Match {
-  id            String   @id @default(uuid()) @db.Uuid
-  date          DateTime @db.Date
-  stadiumId     String   @map("stadium_id") @db.Uuid
-  homeTeamId    String   @map("home_team_id") @db.Uuid
-  homeTeamScore Int      @map("home_team_score") @db.Integer
-  awayTeamId    String   @map("away_team_id") @db.Uuid
-  awayTeamScore Int      @map("away_team_score") @db.Integer
-  stadium       Stadium  @relation(fields: [stadiumId], references: [id])
-  homeTeam      Team     @relation(name: "home", fields: [homeTeamId], references: [id])
-  awayTeam      Team     @relation(name: "away", fields: [awayTeamId], references: [id])
+  id            String        @id @default(uuid()) @db.Uuid
+  date          DateTime      @db.Date
+  stadiumId     String        @map("stadium_id") @db.Uuid
+  homeTeamId    String        @map("home_team_id") @db.Uuid
+  homeTeamScore Int           @map("home_team_score") @db.Integer
+  awayTeamId    String        @map("away_team_id") @db.Uuid
+  awayTeamScore Int           @map("away_team_score") @db.Integer
+  stadium       Stadium       @relation(fields: [stadiumId], references: [id])
+  homeTeam      Team          @relation(name: "home", fields: [homeTeamId], references: [id])
+  awayTeam      Team          @relation(name: "away", fields: [awayTeamId], references: [id])
   users         User[]
 
   @@map("matches")

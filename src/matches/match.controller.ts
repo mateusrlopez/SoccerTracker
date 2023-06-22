@@ -60,7 +60,10 @@ export class MatchController {
 
     @Post('matches/:matchId/users/:userId')
     @HttpCode(HttpStatus.NO_CONTENT)
-    async connectOneToUser(@Param('matchId') matchId: string, @Param('userId') userId: string) {
+    async connectOneToUser(
+        @Param('matchId') matchId: string,
+        @Param('userId') userId: string
+    ): Promise<void> {
         await this.matchService.connectOneToUser(matchId, userId);
     }
 
@@ -73,7 +76,10 @@ export class MatchController {
 
     @Delete('matches/:matchId/users/:userId')
     @HttpCode(HttpStatus.NO_CONTENT)
-    async disconnectOneToUser(@Param('matchId') matchId: string, @Param('userId') userId: string) {
+    async disconnectOneToUser(
+        @Param('matchId') matchId: string,
+        @Param('userId') userId: string
+    ): Promise<void> {
         await this.matchService.disconnectOneToUser(matchId, userId);
     }
 }

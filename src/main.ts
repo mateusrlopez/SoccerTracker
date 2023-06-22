@@ -25,7 +25,6 @@ async function bootstrap() {
     app.use(csurf());
 
     const configurationService = app.get<ConfigService>(ConfigService);
-
     const { port } = configurationService.get<IApplicationConfiguration>('application');
 
     await app.listen(port, () => Logger.log(`application server started on port ${port}`));

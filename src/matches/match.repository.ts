@@ -7,7 +7,7 @@ import { IMatch } from './entities/match.entity';
 export interface IMatchRepository {
     create(data: ICreateMatch): Promise<IMatch>;
     findMany(): Promise<Array<IMatch>>;
-    findManyByUser(id: string): Promise<Array<IMatch>>;
+    findManyByUser(userId: string): Promise<Array<IMatch>>;
     findOneById(id: string): Promise<IMatch>;
     updateOneById(id: string, data: IUpdateMatch): Promise<IMatch>;
     connectOneToUser(matchId: string, userId: string): Promise<void>;
@@ -32,9 +32,9 @@ export class PrismaMatchRepository implements IMatchRepository {
         });
     }
 
-    findManyByUser(id: string): Promise<IMatch[]> {
+    findManyByUser(userId: string): Promise<IMatch[]> {
         return this.prisma.match.findMany({
-            where: { users: { every: { id } } },
+            where: { users: { every: { id: userId } } },
             include: { stadium: true, homeTeam: true, awayTeam: true },
         });
     }
