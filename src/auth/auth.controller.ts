@@ -33,7 +33,7 @@ export class AuthController {
         const user = await this.authService.register(createUserDto);
         const token = await this.authService.assignToken(user);
 
-        res.append('Authorization', `Bearer ${token}`);
+        res.append('Token', token);
 
         return plainToInstance(UserResponseDto, user);
     }
@@ -48,7 +48,7 @@ export class AuthController {
         const user = req.user as IUser;
         const token = await this.authService.assignToken(user);
 
-        res.append('Authorization', `Bearer ${token}`);
+        res.append('Token', token);
 
         return plainToInstance(UserResponseDto, user);
     }
